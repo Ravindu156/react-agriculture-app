@@ -8,13 +8,13 @@ import {createBrowserRouter,
   Route,
   RouterProvider} from "react-router-dom";
 
-  import Home from './page/Home';
-  import Menu from './page/Menu';
-  import About from './page/About';
-  import Contact from './page/Contact';
-  import Login from './page/Login';
-  import Newproduct from './page/Newproduct';
-  import SignUp from './page/SignUp';
+ import Home from './components/page/Home';
+  import Menu from './components/page/Menu';
+  import About from './components/page/About';
+  import Contact from './components/page/Contact';
+  import Login from './components/page/Login';
+  import Newproduct from './components/page/Newproduct';
+  import SignUp from './components/page/SignUp';
   
 
 const router=createBrowserRouter(

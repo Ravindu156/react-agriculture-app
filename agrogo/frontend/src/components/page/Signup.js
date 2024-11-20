@@ -1,5 +1,5 @@
 import React from 'react'
-import loginSignupImage from "../assest/login-animation.gif"
+import loginSignupImage from '../page/login-animation.gif'
 import { useState } from 'react';
 import { BiShow, BiHide } from 'react-icons/bi';
 import {Link} from 'react-router-dom'
