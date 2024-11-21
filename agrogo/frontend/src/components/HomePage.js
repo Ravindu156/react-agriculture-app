@@ -66,7 +66,14 @@ export default function HomePage(){
 <section id="farmer" className="section farmer">
   <h2>Farmer Section</h2>
   <p>
-   
+    As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:
+    <ul>
+      <li><strong>Track Crop Growth:</strong> Monitor the growth cycle of their crops with detailed insights and predictions.</li>
+      <li><strong>Sell Directly to Buyers:</strong> Connect with sellers and buyers across the region, eliminating middlemen and ensuring fair prices.</li>
+      <li><strong>Receive Expert Advice:</strong> Access advice from agricultural experts on the best farming practices, pest management, and weather forecasts.</li>
+      <li><strong>Manage Supplies:</strong> Easily order essential tools, seeds, fertilizers, and other farming materials from trusted suppliers.</li>
+    </ul>
+    We aim to empower farmers with the knowledge and tools they need to increase productivity, reduce waste, and grow their businesses in an ever-changing world.
   </p>
 </section>
 
