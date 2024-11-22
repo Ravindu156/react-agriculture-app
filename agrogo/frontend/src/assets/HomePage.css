@@ -149,11 +149,37 @@
   .seller {
     background-color: #fff3e0;
   }
+  .seller img{
+    height:400px;
+    width:450px;
+  }
   
+  
+  .seller h2{
+    margin-left: 500px;
+    margin-top: -400px;
+  }
+  
+  .seller p{
+    text-align: justify;
+    margin-left: 500px;
+  }
   .executive-officer {
     background-color: #e3f2fd;
   }
-  
+  .executive-officer img{
+    margin-left: 700px;
+    height:480px;
+
+  }
+  .executive-officer h2{
+    margin-top: -500px;
+  }
+
+  .executive-officer p{
+    justify-content: justify;
+    margin-right: 500px;
+  }
   .section h2 {
     font-size: 2rem;
     margin-bottom: 20px;

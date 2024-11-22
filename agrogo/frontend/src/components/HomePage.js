@@ -2,6 +2,8 @@ import React, {useState,useEffect} from 'react';
 import '../assets/HomePage.css'; 
 import about_image from '../Images/background1.jpg'; 
 import farmer from '../Images/farmer.jpg';
+import seller from '../Images/seller.jpg';
+import officer from '../Images/officer.jpg';
 import image2 from '../Images/Slider2.jpg';
 import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
@@ -114,16 +116,32 @@ export default function HomePage(){
 </section>
 
 <section id="seller" className="section seller">
-  <h2>Seller Section</h2>
+<img src={seller} alt="Group of students working on agricultural projects"/>
+<h2>ARE YOU A SELLER?</h2>
   <p>
-    
+    AgroGo provides a dedicated platform for sellers to manage and expand their agricultural business by offering a range of features:
+    <ul>
+      <li><strong>Reach a Broader Market:</strong> </li>
+      <li><strong>Manage Orders Efficiently:</strong> </li>
+      <li><strong>Optimize Pricing:</strong></li>
+      <li><strong>Improve Supplier Connections:</strong></li>
+    </ul>
+    As a seller, AgroGo is your one-stop-shop to grow your business, streamline your operations, and tap into new opportunities in the agricultural market.
   </p>
 </section>
 
 <section id="executive-officer" className="section executive-officer">
-  <h2>Executive Officer Section</h2>
+<img src={officer} alt="Group of students working on agricultural projects"/>
+<h2>EXECUTIVE OFFICER SECTION</h2>
   <p>
-
+    Executive officers play a critical role in managing the agricultural sector and ensuring the efficiency of the entire supply chain. AgroGo provides executive officers with the tools and resources to:
+    <ul>
+      <li><strong>Oversee Agricultural Operations:</strong></li>
+      <li><strong>Facilitate Policy Development:</strong></li>
+      <li><strong>Collaborate with Stakeholders:</strong></li>
+      <li><strong>Track Market Trends:</strong></li>
+    </ul>
+    AgroGo empowers executive officers by providing a platform for effective decision-making, collaboration, and the implementation of strategies that contribute to the development of the agricultural sector.
   </p>
 </section>
 </div>
