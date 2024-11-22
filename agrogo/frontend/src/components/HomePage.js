@@ -55,6 +55,7 @@ export default function HomePage(){
               <a href="#farmer" onClick={(e)=>navigateToSection(e, 'farmer')}>Farmer</a>
               <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
               <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
+              <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
             </nav>
           </header>
     
@@ -143,6 +144,9 @@ export default function HomePage(){
     </ul>
     AgroGo empowers executive officers by providing a platform for effective decision-making, collaboration, and the implementation of strategies that contribute to the development of the agricultural sector.
   </p>
+</section>
+<section id = "contact-us">
+
 </section>
 </div>
 );
