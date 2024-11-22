@@ -1,11 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import '../assets/HomePage.css'; 
-import backgroundImage from '../Images/background.jpg'; 
 import about_image from '../Images/background1.jpg'; 
-import farmer from '../Images/farmer.jpg'
+import farmer from '../Images/farmer.jpg';
+import image2 from '../Images/Slider2.jpg';
+import image3 from '../Images/Slider3.jpg';
+import image4 from '../Images/Slider4.jpg';
+import image5 from '../Images/Slider5.jpg';
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const images = [ image2, image3, image4, image5];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const navigateToSection = (event, sectionId) => {
     event.preventDefault();
@@ -16,8 +29,23 @@ export default function HomePage(){
     }, 800); 
   };
 
+  const handlePrevSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + images.length) % images.length);
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+  };
     return (
-        <div className="app" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      
+      <div className="carousel-container">
+        <div
+          className="carousel-slide"
+          style={{
+            backgroundImage: `url(${images[currentSlide]})`,
+            transition: 'background-image 1s ease-in-out',
+          }}
+        >
           <header className="header">
             <div className="logo">AgroGo</div>
             <nav className="nav">
@@ -39,7 +67,12 @@ export default function HomePage(){
             </div>
           </main>
      
-
+</div>
+<div className="carousel-nav">
+          <button className="prev" onClick={handlePrevSlide}>❮</button>
+          <button className="next" onClick={handleNextSlide}>❯</button>
+        </div>
+      
 {loading && (
   <div className="loading-overlay">
     <div className="spinner">

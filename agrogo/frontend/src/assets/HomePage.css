@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-y: auto;
   }
   
   .app {
@@ -110,7 +111,9 @@
     height:600px;
   }
   
-
+.about-us{
+  background-color: #e8f5e9;
+}
 .about-us img{
     height:400px;
     width:450px;
@@ -132,7 +135,7 @@
   
   .farmer img{
     margin-left: 700px;
-    height:500px;
+    height:480px;
 
   }
   .farmer h2{
@@ -191,3 +194,92 @@
   100% { transform: rotate(360deg); }
 }
 
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000; 
+  overflow: auto;}
+
+
+.carousel-slide {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out; 
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.carousel-nav button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.carousel-nav button:hover {
+  opacity: 1;
+}
+
+.prev {
+  margin-left: 10px;
+}
+
+.next {
+  margin-right: 10px;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 13%;
+  margin-left: 350px;
+  margin-bottom: 30%;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(63, 62, 62, 0.5); 
+  z-index: 1;
+}
+
+.register-button,
+.login-button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-button:hover,
+.login-button:hover {
+  background-color: #218838;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
