@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import '../assets/HomePage.css'; 
+import '../assest/HomePage.css'; 
 import about_image from '../Images/background1.jpg'; 
 import farmer from '../Images/farmer.jpg';
 import seller from '../Images/seller.jpg';
