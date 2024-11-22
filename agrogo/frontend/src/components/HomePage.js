@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../assets/HomePage.css'; 
 import backgroundImage from '../Images/background.jpg'; 
 import about_image from '../Images/background1.jpg'; 
+import farmer from '../Images/farmer.jpg'
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
@@ -64,14 +65,16 @@ export default function HomePage(){
 </section>
 
 <section id="farmer" className="section farmer">
-  <h2>Farmer Section</h2>
+<img src={farmer} alt="Group of students working on agricultural projects"/>
+  <h2>ARE YOU A FARMER?</h2>
+  
   <p>
     As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:
     <ul>
-      <li><strong>Track Crop Growth:</strong> Monitor the growth cycle of their crops with detailed insights and predictions.</li>
-      <li><strong>Sell Directly to Buyers:</strong> Connect with sellers and buyers across the region, eliminating middlemen and ensuring fair prices.</li>
-      <li><strong>Receive Expert Advice:</strong> Access advice from agricultural experts on the best farming practices, pest management, and weather forecasts.</li>
-      <li><strong>Manage Supplies:</strong> Easily order essential tools, seeds, fertilizers, and other farming materials from trusted suppliers.</li>
+      <li><strong>Track Crop Growth:</strong> </li>
+      <li><strong>Sell Directly to Buyers:</strong> </li>
+      <li><strong>Receive Expert Advice:</strong> </li>
+      <li><strong>Manage Supplies:</strong> </li>
     </ul>
     We aim to empower farmers with the knowledge and tools they need to increase productivity, reduce waste, and grow their businesses in an ever-changing world.
   </p>

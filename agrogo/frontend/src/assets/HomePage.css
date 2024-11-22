@@ -111,7 +111,7 @@
   }
   
 
-  .about-us img{
+.about-us img{
     height:400px;
     width:450px;
   }
@@ -130,6 +130,19 @@
     background-color: #e8f5e9;
   }
   
+  .farmer img{
+    margin-left: 700px;
+    height:500px;
+
+  }
+  .farmer h2{
+    margin-top: -500px;
+  }
+
+  .farmer p{
+    justify-content: justify;
+    margin-right: 500px;
+  }
   .seller {
     background-color: #fff3e0;
   }
