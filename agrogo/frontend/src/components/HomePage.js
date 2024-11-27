@@ -8,12 +8,22 @@ import image2 from '../Images/Slider2.jpg';
 import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
 import image5 from '../Images/Slider5.jpg';
+import { useNavigate } from 'react-router-dom'; ///////////////////
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [ image2, image3, image4, image5];
+
+  const navigate = useNavigate(); // Declare navigate using the hook
+
+  //////////////////////////////////////////////////////////
+  const handleLoginClick = () => {
+    // Simulate successful login
+    navigate('/dashboard'); // Navigate to the dashboard page
+  };
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,6 +48,9 @@ export default function HomePage(){
   const handleNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
   };
+
+  
+
     return (
       
       <div className="carousel-container">
@@ -65,7 +78,7 @@ export default function HomePage(){
               <p>A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
               <div className="buttons">
                 <button className="register-button">Register</button>
-                <button className="login-button">Login</button>
+                <button className="login-button" onClick={handleLoginClick}>Login</button>
               </div>
             </div>
           </main>
