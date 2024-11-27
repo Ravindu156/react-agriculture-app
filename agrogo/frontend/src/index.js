@@ -14,7 +14,7 @@ import {createBrowserRouter,
   import Contact from './components/page/Contact';
   import Login from './components/page/Login';
   import Newproduct from './components/page/Newproduct';
-  import SignUp from './components/page/SignUp';
+
   
 
 const router=createBrowserRouter(
@@ -26,7 +26,7 @@ const router=createBrowserRouter(
       <Route path="contact" element={<Contact/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="newproduct" element={<Newproduct />} />
-     <Route path="signup" element={<SignUp/>}/>
+     
      <React.StrictMode>
     <App />
   </React.StrictMode>
