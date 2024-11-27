@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../assest/logo.png';
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { BsCartFill } from "react-icons/bs";
+
+
+
 function Header() {
   return (
     <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
@@ -18,10 +23,12 @@ function Header() {
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </nav>
-          <div>
-
+          <div className=''>
+                <BsCartFill/>
           </div>
-
+          <div className=''>
+                <HiOutlineUserCircle/>
+          </div>
         
         </div>
 
