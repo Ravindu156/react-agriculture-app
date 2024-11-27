@@ -7,7 +7,7 @@ function Header() {
        <div className="flex items-center h-full justify-between">
         <Link to={""}>
           <div className="h-10">
-            <img src={logo} className="h-full" />
+            <img style={{ height: '50px', width: 'auto' }}  src={logo} className="h-full" />
           </div>
         </Link>
 
@@ -18,6 +18,10 @@ function Header() {
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </nav>
+          <div>
+
+          </div>
+
         
         </div>
 
