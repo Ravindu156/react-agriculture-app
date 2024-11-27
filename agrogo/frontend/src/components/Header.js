@@ -23,10 +23,11 @@ function Header() {
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </nav>
-          <div className=''>
+          <div className='text-2xl text-slate-600 relative'>
                 <BsCartFill/>
+                <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center "></div>
           </div>
-          <div className=''>
+          <div className="">
                 <HiOutlineUserCircle/>
           </div>
         
