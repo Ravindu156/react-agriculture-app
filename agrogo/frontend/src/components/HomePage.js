@@ -18,7 +18,6 @@ export default function HomePage(){
 
   const navigate = useNavigate(); // Declare navigate using the hook
 
-  //////////////////////////////////////////////////////////
   const handleLoginClick = () => {
     // Simulate successful login
     navigate('/dashboard'); // Navigate to the dashboard page
@@ -31,6 +30,10 @@ export default function HomePage(){
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
 
   const navigateToSection = (event, sectionId) => {
     event.preventDefault();
@@ -77,7 +80,7 @@ export default function HomePage(){
               <h2>Empowering Agriculture</h2>
               <p>A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
               <div className="buttons">
-                <button className="register-button">Register</button>
+                <button className="register-button" onClick={handleRegisterClick}>Register</button>
                 <button className="login-button" onClick={handleLoginClick}>Login</button>
               </div>
             </div>
