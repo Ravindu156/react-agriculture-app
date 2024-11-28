@@ -8,7 +8,7 @@ import image2 from '../Images/Slider2.jpg';
 import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
 import image5 from '../Images/Slider5.jpg';
-import { useNavigate } from 'react-router-dom'; ///////////////////
+import { useNavigate } from 'react-router-dom'; 
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
