@@ -12,15 +12,15 @@ const Header = () => {
             <img src={logo} className='h-full'/>
         </div>
         </Link>
-        <div className="">
-          <nav>
+        <div className="flex items-center gap-4 md:gap-7">
+          <nav className='flex gap-4 md:gap-7 text-base md:text-lg'>
           <Link to={""}>Home</Link>
           <Link to={"menu"}>Menu</Link>
           <Link to={"about"}>About</Link>
           <Link to={"contact"}>Contact</Link>
 
           </nav>
-          <div className=''>
+          <div className='text-2xl text-slate-600'>
             <BsCartFill/>
           </div>
           <div className=''>
