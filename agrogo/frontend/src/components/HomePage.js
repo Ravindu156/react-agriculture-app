@@ -23,11 +23,9 @@ export default function HomePage(){
 
   const images = [ image2, image3, image4, image5];
 
-  const navigate = useNavigate(); // Declare navigate using the hook
-
+  const navigate = useNavigate(); 
   const handleLoginClick = () => {
-    // Simulate successful login
-    navigate('/dashboard'); // Navigate to the dashboard page
+    navigate('/dashboard');
   };
 
 
@@ -178,6 +176,16 @@ export default function HomePage(){
 <MdMarkEmailRead /><p>agrogo@gmail.com</p><br/><br/>
 <FaFacebookF /><p>https://facebook.com/agro</p><br/><br/>
 <CgWebsite/><p>www.agrogo.com</p>
+</div>
+<div className='links'>
+  <p><i><b>Explore more...</b></i></p>
+  <br/><br/>
+  <a href = "https://gfair.network/"><p>The Global Forum on Agricultural Research and Innovation (GFAR)</p></a><br/>
+  <a href = "https://www.fwi.co.uk/"><p>Farmers Weekly</p></a><br/>
+  <a href = "https://www.fao.org/home/en" ><p>Food and Agriculture Organization (FAO)</p></a>
+
+
+
 </div>
 <div class="footer-copyright">
       <p>&copy; 2024 AgroGo. All Rights Reserved.</p>
