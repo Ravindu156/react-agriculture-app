@@ -178,7 +178,9 @@ export default function HomePage(){
 <FaFacebookF /><p>https://facebook.com/agro</p><br/><br/>
 <CgWebsite/><p>www.agrogo.com</p>
 </div>
-
+<div class="footer-copyright">
+      <p>&copy; 2024 AgroGo. All Rights Reserved.</p>
+    </div>
 </section>
 </div>
 );
