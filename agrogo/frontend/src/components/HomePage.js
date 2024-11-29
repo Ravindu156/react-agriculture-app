@@ -16,6 +16,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 
 
+
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
   const [currentSlide, setCurrentSlide] = useState(0);
