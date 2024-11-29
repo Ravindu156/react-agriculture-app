@@ -5,6 +5,7 @@ import HomeCard from "../components/HomeCard";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import FilterProduct from "../components/FilterProduct";
 import AllProduct from "../components/AllProduct";
+import Header from "../components/Header";
 
 
 const Home = () => {
@@ -34,10 +35,15 @@ const Home = () => {
 
 
   return (
+    <>
+    <div>
+      <Header/>
+    </div>
     <div className="p-2 md:p-4">
       <div className="md:flex gap-4 py-2">
         <div className="md:w-1/2">
           <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
+           
             <p className="text-sm font-medium text-slate-900">Bike Delivery</p>
             <img
               src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
@@ -125,7 +131,9 @@ const Home = () => {
       
       <AllProduct heading={"Your Product"}/>
     </div>
+    </>
   );
+ 
 };
 
 export default Home;

@@ -8,12 +8,15 @@ import image2 from '../Images/Slider2.jpg';
 import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
 import image5 from '../Images/Slider5.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [ image2, image3, image4, image5];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -103,6 +106,7 @@ export default function HomePage(){
 <section id="farmer" className="section farmer">
 <img src={farmer} alt="Group of students working on agricultural projects"/>
   <h2>ARE YOU A FARMER?</h2>
+  <button onClick={() =>  navigate('/ecom/')}>Ecom</button>
   
   <p>
     As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:

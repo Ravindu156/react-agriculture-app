@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { store } from "./redux/index";
+import { Provider } from "react-redux";
 // import {createBrowserRouter,
 //   createRoutesFromElements,
 //   Router, Routes,
@@ -42,7 +45,8 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
-);
+  </Provider>,
+   document.getElementById('root')
+  );
