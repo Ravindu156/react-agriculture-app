@@ -311,5 +311,19 @@
 }
 
 #contact-us{
-  height:50%;
+  height:80%;
+  color:#fff;
+}
+
+#contact-us h2{
+  padding:50px;
+}
+
+.icons1{
+  margin-left: 60px;
+}
+
+.icons2{
+  margin-left:400px;
+  margin-top: -190px;
 }

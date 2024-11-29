@@ -9,6 +9,12 @@ import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
 import image5 from '../Images/Slider5.jpg';
 import { useNavigate } from 'react-router-dom'; 
+import { IoLocationSharp } from "react-icons/io5";
+import { FaMobileAlt } from "react-icons/fa";
+import { MdMarkEmailRead } from "react-icons/md";
+import { FaFacebookF } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
@@ -162,6 +168,16 @@ export default function HomePage(){
   </p>
 </section>
 <section id = "contact-us">
+<h2>Contact Us</h2>
+<div className='icons1'>
+<IoLocationSharp /><p>University of Vavuniya,<br/>Pampaimadu,<br/>Mannar Road,<br/>Vavuniya</p><br/><br/>
+<FaMobileAlt /><p>+94455725570</p>
+</div>
+<div className='icons2'>
+<MdMarkEmailRead /><p>agrogo@gmail.com</p><br/><br/>
+<FaFacebookF /><p>https://facebook.com/agro</p><br/><br/>
+<CgWebsite/><p>www.agrogo.com</p>
+</div>
 
 </section>
 </div>
