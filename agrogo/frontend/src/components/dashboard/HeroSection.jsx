@@ -1,5 +1,5 @@
-//import video1 from "../assets/video1.mp4";
-//import video2 from "../assets/video2.mp4";
+import video1 from "./constants/video1.mp4";
+import video2 from "./constants/video2.mp4";
 
 const HeroSection = () => {
   return (
@@ -11,7 +11,7 @@ const HeroSection = () => {
           into tomorrow’s opportunities.
         </span>
       </h1>
-      {/* 
+       
       <div className="flex mt-10 justify-center">
         <video
           autoPlay
@@ -33,7 +33,7 @@ const HeroSection = () => {
         </video>
       </div>
 
-      */}
+      
     </div>
   );
 };
