@@ -1,6 +1,49 @@
 export default function UserForm(){
     return(
         <>
+        <form>
+       
+            <div>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <input
+                type="text"
+                name="region"
+                placeholder="Region"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="role"
+                placeholder="Role"
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+        </form>
         </>
     )
 }
