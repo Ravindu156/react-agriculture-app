@@ -1,12 +1,14 @@
-
+import Navbar from "./Navbar"
+import HeroSection from "./HeroSection"
+import "./dashboard.css";
 export default function Dashboard(){
     return(
         <div>
-        <div className="bg-green-800 dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden w-full">
-      
-        </div>
-
-            
+           <Navbar/>
+             <div className="max-w-7xl mx-auto pt-10 px-6">
+              <HeroSection />
+        
+             </div>
         </div>
     )
 }
