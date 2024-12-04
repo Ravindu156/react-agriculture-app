@@ -79,6 +79,7 @@ export default function UserForm(){
                 required
               />
             </div>
+            <button type="submit">Submit</button>
         </form>
         </div>
         </div>
