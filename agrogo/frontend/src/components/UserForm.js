@@ -21,6 +21,15 @@ export default function UserForm(){
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    try {
+      const response = await axios.post("http://localhost:5000/api/users", {
+        name: formData.username,
+        email: formData.email,
+        region: formData.region,
+        role: formData.role,
+        password: formData.password,
+      });
+
     setFormData({
       username: "",
       email: "",
@@ -29,7 +38,10 @@ export default function UserForm(){
       password: "",
       confirmPassword: "",
     });
-  };
+  } catch (error) {
+    console.log("error");
+  }
+};
     return(
       <div className="form">
       <img src = {Image}/>
@@ -37,7 +49,7 @@ export default function UserForm(){
       <div className="form-overlay">
         <h1>AgroGo</h1>
         <h2>Create your account</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
        
             <div>
               <input
