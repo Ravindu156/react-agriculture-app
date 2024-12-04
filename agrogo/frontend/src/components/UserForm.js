@@ -56,18 +56,24 @@ export default function UserForm(){
                 type="text"
                 name="username"
                 placeholder="Username"
+                value={formData.username}
+                onChange={handleChange}
                 required
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
                 required
               />
               <input
                 type="text"
                 name="region"
                 placeholder="Region"
+                value={formData.region}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -76,18 +82,24 @@ export default function UserForm(){
                 type="text"
                 name="role"
                 placeholder="Role"
+                value={formData.role}
+                onChange={handleChange}
                 required
               />
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
                 required
               />
               <input
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
                 required
               />
             </div>
