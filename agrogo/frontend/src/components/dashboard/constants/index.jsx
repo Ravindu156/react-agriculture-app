@@ -6,6 +6,7 @@ export const navItems = [
   { label: "Farm Supply MarketPlace", href: "#" },
   { label: "Crop Calender", href: "#" },
   { label: "Content Management", href: "#" },
+  { label: "Add Articles ", href: "/add-articles" },
 ];
 
    
