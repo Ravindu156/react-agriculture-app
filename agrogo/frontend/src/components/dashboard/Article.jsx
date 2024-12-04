@@ -1,7 +1,7 @@
 // src/components/Article.jsx
 
 import React, { useState } from 'react';
-import AddArticleForm from './AddArticleForm'; // Update this path based on your structure
+import AddArticleForm from './AddArticleForm'; // Ensure the correct path
 
 const Article = () => {
   const [articles, setArticles] = useState([]);
@@ -23,7 +23,22 @@ const Article = () => {
       >
         Add Article
       </button>
-      {showForm && <AddArticleForm onAddArticle={handleAddArticle} />}
+
+      {/* Modal for AddArticleForm */}
+      {showForm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded shadow-lg p-6 w-11/12 md:w-1/3 max-h-[90vh] overflow-y-auto">
+            <AddArticleForm onAddArticle={handleAddArticle} />
+            <button
+              onClick={() => setShowForm(false)}
+              className="mt-4 bg-red-500 text-white p-2 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {articles.map((article, index) => (
           <div key={index} className="border rounded p-4 shadow-md">
