@@ -1,6 +1,42 @@
+import React, { useState } from "react";
+import axios from "axios";
+//import "../assets/UserForm.css";
+import Image from '../Images/Reg (2).jpg';
+
 export default function UserForm(){
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    region: "",
+    role: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setFormData({
+      username: "",
+      email: "",
+      region: "",
+      role: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
     return(
-        <>
+      <div className="form">
+      <img src = {Image}/>
+    <div className="form-container">
+      <div className="form-overlay">
+        <h1>AgroGo</h1>
+        <h2>Create your account</h2>
         <form>
        
             <div>
@@ -44,6 +80,8 @@ export default function UserForm(){
               />
             </div>
         </form>
-        </>
+        </div>
+        </div>
+        </div>
     )
 }
