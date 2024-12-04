@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-//import "../assets/UserForm.css";
+import "../assest/UserForm.css";
 import Image from '../Images/Reg (2).jpg';
 
 export default function UserForm(){
