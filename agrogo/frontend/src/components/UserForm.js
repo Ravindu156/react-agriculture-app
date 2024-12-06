@@ -17,6 +17,50 @@ export default function UserForm(){
     confirmPassword: "",
   });
 
+  const districts = [
+    "Ampara",
+    "Anuradhapura",
+    "Badulla",
+    "Batticaloa",
+    "Colombo",
+    "Galle",
+    "Gampaha",
+    "Hambantota",
+    "Jaffna",
+    "Kalutara",
+    "Kandy",
+    "Kegalle",
+    "Kilinochchi",
+    "Kurunegala",
+    "Mannar",
+    "Matale",
+    "Matara",
+    "Monaragala",
+    "Mullaitivu",
+    "Nuwara Eliya",
+    "Polonnaruwa",
+    "Puttalam",
+    "Ratnapura",
+    "Trincomalee",
+    "Vavuniya",
+  ];
+
+  const roles = [
+    "farmer",
+    "seller",
+    "Agricultural Executive Officer"
+  ];
+
+  const handleRoleSelect = (e) => {
+    const selectedRole = e.target.value;
+    setFormData({ ...formData, role: selectedRole });
+  };
+
+  const handleDistrictSelect = (e) => {
+    const selectedDistrict = e.target.value;
+    setFormData({ ...formData, region: selectedDistrict });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

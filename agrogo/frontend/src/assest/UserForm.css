@@ -1,22 +1,25 @@
-/* Container and Background */
+
 .form{
-    background-size: cover;
-    background-position: center;
-    
+  background-size: cover;
+  background-position: center;
+  height:100vh;
+
+  
 }
 img{
-    height:600px;
-    width:800px;
+  height:99.4vh;
+  width:820px;
 }
 form{
-    height:380px;
-    width:300px;
+  height:430px;
+  width:370px;
+  padding-left: 35px;
 }
 .form-container {
    
    /* Example background image */
-    margin-left: 820px;
-    margin-top: -550px;
+    margin-left: 800px;
+    margin-top: -590px;
     
     justify-content: center;
     align-items: center;
@@ -25,12 +28,12 @@ form{
   
   /* Form Overlay */
   .form-overlay {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(13, 26, 1, 0.6);
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 3px;
     text-align: center;
     color: #fff;
-    width: 400px;
+    width: 460px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
   }
   
@@ -48,7 +51,7 @@ form{
   }
   
   /* Input Fields */
-  .form-overlay input {
+  .form-overlay input,.form-overlay select {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
