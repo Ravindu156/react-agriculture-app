@@ -15,6 +15,7 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^5.0.1",
+    "react-select-async-paginate": "^0.7.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
