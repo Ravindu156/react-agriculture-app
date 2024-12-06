@@ -11,6 +11,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
+        
       </Routes>
     </Router>
   )
