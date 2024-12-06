@@ -5,10 +5,14 @@ import Image from '../Images/Reg (2).jpg';
 
 export default function UserForm(){
   const [formData, setFormData] = useState({
+    firstname:"",
+    lastname:"",
     username: "",
     email: "",
     region: "",
+    mobile:"",
     role: "",
+    nic:"",
     password: "",
     confirmPassword: "",
   });
@@ -23,18 +27,26 @@ export default function UserForm(){
 
     try {
       const response = await axios.post("http://localhost:5000/api/users", {
+        firstname: formData.firstname,
+        lastname: formData.lastname,
         name: formData.username,
         email: formData.email,
+        mobile: formData.mobile,
         region: formData.region,
         role: formData.role,
+        nic:formData.nic,
         password: formData.password,
       });
 
     setFormData({
+      firstname:"",
+        lastname:"",
       username: "",
       email: "",
+      mobile:"",
       region: "",
       role: "",
+      nic:"",
       password: "",
       confirmPassword: "",
     });
@@ -52,6 +64,22 @@ export default function UserForm(){
         <form onSubmit={handleSubmit}>
        
             <div>
+            <input
+                type="text"
+                name="firstname"
+                placeholder="First Name"
+                value={formData.firstname}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="lastname"
+                placeholder="Last Name"
+                value={formData.lastname}
+                onChange={handleChange}
+                required
+              />
               <input
                 type="text"
                 name="username"
@@ -70,22 +98,50 @@ export default function UserForm(){
               />
               <input
                 type="text"
-                name="region"
-                placeholder="Region"
-                value={formData.region}
+                name="mobile"
+                placeholder="Mobile Number"
+                value={formData.mobile}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleDistrictSelect}
+              className="styled-select"
+              required
+            >
+              <option value="">Select Your Region</option>
+              {districts.map((district, index) => (
+                <option key={index} value={district}>
+                  {district}
+                </option>
+              ))}
+              </select>
               <input
-                type="text"
-                name="role"
-                placeholder="Role"
-                value={formData.role}
+                type="nic"
+                name="nic"
+                placeholder="NIC number"
+                value={formData.nic}
                 onChange={handleChange}
                 required
-              />
+              /> <select
+              name="role"
+              value={formData.role}
+              onChange={handleRoleSelect}
+              className="styled-select"
+              required
+            >
+              <option value="">Select Your Role</option>
+              {roles.map((role, index) => (
+                <option key={index} value={role}>
+                  {role}
+                </option>
+              ))}
+              </select>
+              
               <input
                 type="password"
                 name="password"
