@@ -1,3 +1,8 @@
+import { Link } from 'react-router-dom';
+
+
+
+
 const SHeader = () => {
     const [showMenu, setShowMenu] = useState(false);
     const userData = useSelector((state) => state.user);
@@ -24,6 +29,7 @@ const SHeader = () => {
             <Link to={"menu/63f0fdbb3bcc2f97fa53d25d"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
+            <Link to={"/store"}>E-Store</Link>
           </nav>
           <div className="text-2xl text-slate-600 relative">
             <Link to={"cart"}>
