@@ -1,4 +1,4 @@
-const Header = () => {
+const SHeader = () => {
     const [showMenu, setShowMenu] = useState(false);
     const userData = useSelector((state) => state.user);
     const dispatch = useDispatch();
