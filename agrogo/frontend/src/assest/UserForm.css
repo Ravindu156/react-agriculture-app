@@ -16,8 +16,6 @@ form{
   padding-left: 35px;
 }
 .form-container {
-   
-   /* Example background image */
     margin-left: 800px;
     margin-top: -590px;
     
@@ -26,7 +24,6 @@ form{
     font-family: "Arial", sans-serif;
   }
   
-  /* Form Overlay */
   .form-overlay {
     background-color: rgba(13, 26, 1, 0.6);
     padding: 2rem;
@@ -37,7 +34,6 @@ form{
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
   }
   
-  /* Header */
   .form-overlay h1 {
     font-size: 2.5rem;
     font-weight: bold;
@@ -50,7 +46,7 @@ form{
     margin-bottom: 1rem;
   }
   
-  /* Input Fields */
+
   .form-overlay input,.form-overlay select {
     width: 100%;
     padding: 0.75rem;
@@ -61,7 +57,7 @@ form{
     outline: none;
   }
   
-  /* Button */
+
   .form-overlay button {
     width: 100%;
     padding: 0.75rem;
@@ -79,7 +75,7 @@ form{
     background-color: #4a6f4a;
   }
   
-  /* Link */
+
   .form-overlay p {
     margin-top: 1rem;
   }
@@ -93,7 +89,7 @@ form{
   .form-overlay a:hover {
     text-decoration: underline;
   }
-  /* Popup message container */
+
 .popup-message {
     position: fixed;
     top: 0;
@@ -108,24 +104,24 @@ form{
     min-width: 300px;
     max-width: 90%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; /* Smooth fade-in and fade-out */
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; 
   }
   
-  /* Success popup styling */
+
   .popup-message.success {
-    background-color: #28a745; /* Green background */
-    color: #fff; /* White text */
+    background-color: #28a745; 
+    color: #fff; 
     border: 1px solid #1e7e34;
   }
   
-  /* Error popup styling */
+ 
   .popup-message.error {
-    background-color: #dc3545; /* Red background */
-    color: #fff; /* White text */
+    background-color: #dc3545;
+    color: #fff;
     border: 1px solid #b21f2d;
   }
   
-  /* Fade-in and fade-out animations */
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -163,12 +159,12 @@ form{
   }
   
   button[type="button"] {
-    background-color: #007bff; /* Blue for navigation buttons */
+    background-color: #007bff; 
     color: #fff;
   }
   
   button[type="submit"] {
-    background-color: #28a745; /* Green for submit button */
+    background-color: #28a745; 
     color: #fff;
   }
   
