@@ -35,3 +35,4 @@ root.render(
     <App />
   </React.StrictMode>
 );
+reportWebVitals();
