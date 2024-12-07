@@ -178,7 +178,7 @@ export default function UserForm(){
                 onChange={handleChange}
                 required
               />
-            </div>)};
+            </div>)}
             {currentStep === 2 && (
             <div>
             <select
@@ -233,8 +233,22 @@ export default function UserForm(){
                 onChange={handleChange}
                 required
               />
-            </div>)};
-            <button type="submit">Submit</button>
+            </div>)}
+            <div className="form-navigation">
+            {currentStep > 1 && (
+              <button type="button" onClick={handlePrevious}>
+                Previous
+              </button>
+            )}
+            {currentStep < 2 && (
+              <button type="button" onClick={handleNext}>
+                Next
+              </button>
+            )}
+            {currentStep === 2 && (
+              <button type="submit">Submit</button>
+            )}
+          </div>
         </form>
         </div>
         </div>
