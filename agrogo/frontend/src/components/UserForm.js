@@ -17,6 +17,10 @@ export default function UserForm(){
     confirmPassword: "",
   });
 
+  const [currentStep, setCurrentStep] = useState(1);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState(""); 
+
   const districts = [
     "Ampara",
     "Anuradhapura",
@@ -66,6 +70,23 @@ export default function UserForm(){
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleNext = () => {
+    if (currentStep === 1) {
+      if (!formData.username || !formData.email ) {
+        setStatusMessage("Please fill all the required fields in Step 1.");
+        setStatusType("error");
+        return;
+      }
+    }
+    setStatusMessage(""); 
+    setCurrentStep((prev) => prev + 1);
+  };
+
+  const handlePrevious = () => {
+    setStatusMessage(""); // Clear any error messages
+    setCurrentStep((prev) => prev - 1);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -94,8 +115,14 @@ export default function UserForm(){
       password: "",
       confirmPassword: "",
     });
+    setCurrentStep(1); 
+      setStatusMessage("Registration successful!");
+      setStatusType("success");
+      console.log("User registered:", response.data);
   } catch (error) {
-    console.log("error");
+    console.error("Error registering user:", error.response?.data || error.message);
+      setStatusMessage("Error registering user. Please try again.");
+      setStatusType("error");
   }
 };
     return(
@@ -105,8 +132,11 @@ export default function UserForm(){
       <div className="form-overlay">
         <h1>AgroGo</h1>
         <h2>Create your account</h2>
+
+        {statusMessage && <div className={`status-message ${statusType}`}>{statusMessage}</div>}
+
         <form onSubmit={handleSubmit}>
-       
+        {currentStep === 1 && (
             <div>
             <input
                 type="text"
@@ -148,7 +178,8 @@ export default function UserForm(){
                 onChange={handleChange}
                 required
               />
-            </div>
+            </div>)};
+            {currentStep === 2 && (
             <div>
             <select
               name="region"
@@ -202,7 +233,7 @@ export default function UserForm(){
                 onChange={handleChange}
                 required
               />
-            </div>
+            </div>)};
             <button type="submit">Submit</button>
         </form>
         </div>
