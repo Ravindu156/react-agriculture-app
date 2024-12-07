@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import AllProduct from "../components/AllProduct";
-import { addCartItem } from '../redux/productSlide';
+import { addCartItem } from '../redux/ProductSlide';
 
 const Menu = () => {
   const { filterby } = useParams();
