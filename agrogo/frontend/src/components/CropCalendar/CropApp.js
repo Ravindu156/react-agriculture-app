@@ -1,20 +1,22 @@
 import React from 'react';
 import Search from './CropComponents/search/search';
-import'./CropApp.css'
+import'./CropApp.css';
 
 
-function App() {
+function CropApp() {
 
   const handleOnSearchChange = (searchData) =>{
     console.log(searchData);
   }
 
   return(
-<div className='App'>
-<Search onSearchChange={handleOnSearchChange}/>
-</div>
-  )
-  
-}
+<div className="container">
 
-export default App;
+<Search onSearchChange={handleOnSearchChange}/>
+
+</div>
+  );
+  
+};
+
+export default CropApp;
