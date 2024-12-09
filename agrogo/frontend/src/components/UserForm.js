@@ -15,6 +15,9 @@ export default function UserForm(){
     nic:"",
     password: "",
     confirmPassword: "",
+    education: "",
+    occupation: "",
+    experience: ""
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -91,17 +94,7 @@ export default function UserForm(){
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/users", {
-        firstname: formData.firstname,
-        lastname: formData.lastname,
-        name: formData.username,
-        email: formData.email,
-        mobile: formData.mobile,
-        region: formData.region,
-        role: formData.role,
-        nic:formData.nic,
-        password: formData.password,
-      });
+      const response = await axios.post("http://localhost:5000/api/users", formData);
 
     setFormData({
       firstname:"",
@@ -114,6 +107,9 @@ export default function UserForm(){
       nic:"",
       password: "",
       confirmPassword: "",
+      education: "",
+        occupation: "",
+        experience: "",
     });
     setCurrentStep(1); 
       setStatusMessage("Registration successful!");
@@ -123,6 +119,12 @@ export default function UserForm(){
     console.error("Error registering user:", error.response?.data || error.message);
       setStatusMessage("Error registering user. Please try again.");
       setStatusType("error");
+  }
+};
+
+const handleNextStep = () => {
+  if (currentStep === 2 && formData.role === "Agricultural Executive Officer") {
+    setCurrentStep(3);
   }
 };
     return(
@@ -234,20 +236,48 @@ export default function UserForm(){
                 required
               />
             </div>)}
+            {currentStep === 3 && (
+              <div>
+                <input
+                  type="text"
+                  name="education"
+                  placeholder="Education"
+                  value={formData.education}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="occupation"
+                  placeholder="Occupation"
+                  value={formData.occupation}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="experience"
+                  placeholder="Experience"
+                  value={formData.experience}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
+
             <div className="form-navigation">
-            {currentStep > 1 && (
-              <button type="button" onClick={handlePrevious}>
-                Previous
-              </button>
-            )}
-            {currentStep < 2 && (
-              <button type="button" onClick={handleNext}>
-                Next
-              </button>
-            )}
-            {currentStep === 2 && (
-              <button type="submit">Submit</button>
-            )}
+            {currentStep < 2 && <button type="button" onClick={() => setCurrentStep((prev) => prev + 1)}>Next</button>}
+              {currentStep === 2 && formData.role !== "Agricultural Executive Officer" && (
+                <button type="submit">Submit</button>
+              )}
+              {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
+                <button type="button" onClick={handleNextStep}>
+                  Next
+                </button>
+              )}
+              {currentStep === 3 && (
+                <button type="submit">Submit</button>
+              )}
           </div>
         </form>
         </div>
