@@ -4,7 +4,7 @@ import HomePage from './components/HomePage';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/Register';
 //import CropApp from './components/CropCalendar/CropApp';
-
+import Login from './components/Login'
 
 function App() {
   return(
@@ -13,6 +13,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/cropcalendar" element={<CropApp/>}/> */}
       </Routes>
     </Router>

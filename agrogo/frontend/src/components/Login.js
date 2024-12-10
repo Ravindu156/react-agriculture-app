@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "../assets/UserForm.css";
+import "../assest/UserForm.css";
 import Image from '../Images/Reg (2).jpg';
+
 
 export default function Login () {
   const [email, setEmail] = useState('');

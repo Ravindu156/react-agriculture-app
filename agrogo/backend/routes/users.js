@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const secretekey='vau@group14';
+const jwt = require('jsonwebtoken');
 
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile, region, nic,role, password, education, occupation, experience } = req.body;
