@@ -115,6 +115,12 @@ app.get("/product",async(req,res)=>{
 
 
 
+console.log(process.env.STRIPE_SECRET_KEY)
+
+
+
+
+
 
 
 
