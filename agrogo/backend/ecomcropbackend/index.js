@@ -44,6 +44,7 @@ app.get("/",(req,res)=>{
 
 app.post("/signup",(req,res)=>{
     console.log(req.body)
+    const { email } = req.body;
 })
 
 app.listen(PORT,()=>console.log("Server is running at port :" + PORT))
