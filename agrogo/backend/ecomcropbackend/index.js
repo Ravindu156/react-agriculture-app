@@ -108,6 +108,19 @@ const productModel = mogoose.model("product",schemaProduct)
      res.send({message : "Upload successfully"})
 })
 
+app.get("/product",async(req,res)=>{
+  const data =await productModel.find({})
+})
+
+
+
+
+
+app.get("/product",async(req,res)=>{
+  const data = await productModel.find({})
+  res.send(JSON.stringify(data))
+})
+
 
 
 
