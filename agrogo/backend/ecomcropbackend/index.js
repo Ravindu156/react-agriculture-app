@@ -104,17 +104,13 @@ const productModel = mogoose.model("product",schemaProduct)
 
   app.post("/uploadProduct",async(req,res)=>{
      const data = await productModel(req.body)
-     
-
-
-    const data = await productModel(req.body)
-    const datasave = await data.save()
-    res.send({message : "Upload successfully"})
+     const datasave = await data.save()
+     res.send({message : "Upload successfully"})
 })
 
 
 
-  })
+
 
 
 
