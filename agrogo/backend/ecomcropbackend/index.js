@@ -96,8 +96,9 @@ const schemaProduct = mongoose.Schema({
    category:String,
    image:String,
    price:String,
+   description:String,
 
-})
+});
 
 
 
