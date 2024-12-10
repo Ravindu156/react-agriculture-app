@@ -99,6 +99,7 @@ const schemaProduct = mongoose.Schema({
    description:String,
 
 });
+const productModel = mogoose.model("product",schemaProduct)
 
 
 
