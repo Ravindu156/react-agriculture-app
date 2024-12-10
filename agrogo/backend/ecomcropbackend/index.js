@@ -45,6 +45,26 @@ app.get("/",(req,res)=>{
 app.post("/signup",(req,res)=>{
     console.log(req.body)
     const { email } = req.body;
+
+
+   const resultData = await userModel.findOne({email : email})
+   
+    console.log(resultData)
+    if(!resultData){
+        const data = userModel(req.body) 
+                const save = data.save()
+                res.send({message:"Successfully sign up"})
+    }
+    else{
+        res.send({message: "Email id is already registered"})
+    }
+
+
+
+
+
+
+
 })
 
 app.listen(PORT,()=>console.log("Server is running at port :" + PORT))
