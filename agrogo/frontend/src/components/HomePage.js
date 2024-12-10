@@ -25,7 +25,7 @@ export default function HomePage(){
 
   const navigate = useNavigate(); 
   const handleLoginClick = () => {
-    navigate('/dashboard');
+    navigate('/login');
   };
 
 
