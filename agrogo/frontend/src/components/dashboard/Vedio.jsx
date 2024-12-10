@@ -4,7 +4,7 @@ import video2 from "./constants/video2.mp4";
 const HeroSection = () => {
   return (
     <div className="flex flex-col items-center mt-1 lg:mt-2">
-      <h1 className="text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide">
+      <h1 className="text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide hide-scrollbar">
       Turning today’s farming challenges 
         <span className="bg-gradient-to-r from-green-800 to-green-500 text-transparent bg-clip-text">
           {" "}

@@ -8,3 +8,161 @@
   font-family: "Poppins", sans-serif;
   color-scheme: light;
 }
+
+/* Hide scrollbar */
+.hide-scrollbar {
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Additional styles for Article component */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bg-black {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
+
+.max-h-[80%] {
+  max-height: 80%;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-red-500 {
+  background-color: #f56565; /* Tailwind's red-500 */
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-0.5 {
+  top: 0.125rem; /* Adjusts the top position */
+}
+
+.right-1.5 {
+  right: 0.375rem; /* Adjusts the right position */
+}
+
+.text-3xl {
+  font-size: 1.875rem; /* Tailwind's text-3xl */
+}
+
+.text-5xl {
+  font-size: 3rem; /* Tailwind's text-5xl */
+}
+
+.text-6xl {
+  font-size: 3.75rem; /* Tailwind's text-6xl */
+}
+
+.bg-blue-500 {
+  background-color: #4299e1; /* Tailwind's blue-500 */
+}
+
+.p-2 {
+  padding: 0.5rem; /* Tailwind's padding */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* Tailwind's rounded */
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind's shadow-md */
+}
+
+.border {
+  border-width: 1px; /* Tailwind's border */
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem; /* Tailwind's margin-bottom */
+}
+
+.mt-20 {
+  margin-top: 5rem; /* Tailwind's margin-top */
+}
+
+.grid {
+  display: grid; /* Tailwind's grid */
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* Tailwind's grid-cols-1 */
+}
+
+.sm\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Tailwind's responsive grid */
+}
+
+.lg\:grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Tailwind's responsive grid */
+}
+
+.gap-4 {
+  gap: 1rem; /* Tailwind's gap */
+}
+
+.text-xl {
+  font-size: 1.25rem; /* Tailwind's text-xl */
+}
+
+.font-bold {
+  font-weight: 700; /* Tailwind's font-bold */
+}
+
+.text-gray-600 {
+  color: #4a5568; /* Tailwind's gray-600 */
+}
+
+.text-gray-500 {
+  color: #a0aec0; /* Tailwind's gray-500 */
+}
+
+.mt-2 {
+  margin-top: 0.5rem; /* Tailwind's margin-top */
+}
+
+.text-sm {
+  font-size: 0.875rem; /* Tailwind's text-sm */
+}
+
+.text-gray-500 {
+  color: #a0aec0; /* Tailwind's gray-500 */
+}
