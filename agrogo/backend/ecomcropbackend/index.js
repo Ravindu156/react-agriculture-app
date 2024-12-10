@@ -99,7 +99,7 @@ const schemaProduct = mongoose.Schema({
    description:String,
 
 });
-const productModel = mogoose.model("product",schemaProduct)
+const productModel = mongoose.model("product",schemaProduct)
 
 
   app.post("/uploadProduct",async(req,res)=>{
