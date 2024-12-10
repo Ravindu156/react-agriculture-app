@@ -91,6 +91,11 @@ app.post("/login",(req,res) => {
 
 
 
+const schemaProduct = mongoose.Schema({
+
+
+})
+
 
 
 
