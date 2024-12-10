@@ -110,16 +110,14 @@ const productModel = mogoose.model("product",schemaProduct)
 
 app.get("/product",async(req,res)=>{
   const data =await productModel.find({})
-})
-
-
-
-
-
-app.get("/product",async(req,res)=>{
-  const data = await productModel.find({})
   res.send(JSON.stringify(data))
 })
+
+
+
+
+
+
 
 
 
