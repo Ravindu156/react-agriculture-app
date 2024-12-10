@@ -40,7 +40,7 @@ const Navbar = () => {
           </ul>
           <div className="hidden lg:flex items-center space-x-6 ml-auto">
             {/* Notification Button */}
-            <button onClick={toggleNotifications} className="relative">
+            <button onClick={toggleNotifications} className="relative hide-scrollbar">
               <Bell size={24} />
               {notificationOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg p-2">
@@ -49,7 +49,7 @@ const Navbar = () => {
               )}
             </button>
             {/* Profile Button */}
-            <button onClick={toggleProfileMenu} className="relative">
+            <button onClick={toggleProfileMenu} className="relative hide-scrollbar">
               <User size={24} />
               {profileMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg p-2">

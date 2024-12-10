@@ -14,7 +14,7 @@ const Article = () => {
 
   return (
     <div className="mt-20 hide-scrollbar"> {/* Added hide-scrollbar class here */}
-      <div className="flex justify-between items-center my-10">
+      <div className="flex justify-center  justify-between items-center my-10">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl hide-scrollbar text-center">
           Articles
         </h2>
