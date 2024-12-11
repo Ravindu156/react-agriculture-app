@@ -173,14 +173,8 @@ app.post("/create-checkout-session",async(req,res)=>{
     }
 
     catch(err){
-      
+      res.status(err.statuscode || 500).json(err.message)
     }
-
-
-    catch (err){
-      res.status(err.statusCode || 500).json(err.message)
-   }
-
 })
 
 
