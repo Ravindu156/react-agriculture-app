@@ -124,6 +124,7 @@ export default function UserForm(){
       setStatusMessage("Registration successful!");
       setStatusType("success");
       console.log("User registered:", response.data);
+      navigate('/dashboard'); 
   } catch (error) {
     console.error("Error registering user:", error.response?.data || error.message);
     if (error.response && error.response.data && error.response.data.message) {
@@ -291,7 +292,7 @@ const handleNextStep = () => {
               {currentStep === 2 && formData.role !== "Agricultural Executive Officer" && (
                 <>
                 <button type = "button" onClick = {handlePrevious}>Previous</button>
-                <button type="submit" onClick={() => navigate("/dashboard")}>Submit</button></>
+                <button type="submit">Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
                 <button type="button" onClick={handleNextStep}>
@@ -299,7 +300,7 @@ const handleNextStep = () => {
                 </button>
               )}
               {currentStep === 3 && (
-                <button type="submit" onClick={() => navigate("/dashboard")}>Submit</button>
+                <button type="submit">Submit</button>
               )}
           </div>
         </form>
