@@ -5,14 +5,14 @@ import'./CropApp.css';
 
 function CropApp() {
 
-  const handleOnSearchChange = (searchData) =>{
+  const handleOnSearchChange = (searchData)=>{
     console.log(searchData);
   }
 
   return(
 <div className="container">
 
-<Search onSearchChange={handleOnSearchChange}/>
+<Search  onSearchChange={handleOnSearchChange}/>
 
 </div>
   );
