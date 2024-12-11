@@ -168,7 +168,7 @@ app.post("/create-checkout-session",async(req,res)=>{
       
       
 
-      
+      const session = await stripe.checkout.sessions.create(params)
           
 
 
