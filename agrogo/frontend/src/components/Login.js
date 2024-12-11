@@ -17,8 +17,12 @@ export default function Login () {
       const response = await axios.post('http://localhost:5000/api/users/login/', { email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard'); 
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+    } catch (error) {
+      setError(error.response?.data?.message || 'Login failed');
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message); 
+      }
+    
     }
   };
 
@@ -29,7 +33,7 @@ export default function Login () {
       <div className="form-overlay">
         <h1>AgroGo</h1>
         <h2>Log in to your account</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <div className={`status-message ${error}`}>{error}</div>}
       <form onSubmit={handleLogin} style={{marginTop:"90px", height:"357px"}}>
         <div>
           <label>Email:</label>
