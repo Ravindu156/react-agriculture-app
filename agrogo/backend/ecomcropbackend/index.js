@@ -151,7 +151,7 @@ app.post("/create-checkout-session",async(req,res)=>{
 
             },
 
-            adjustable quantity : {
+            adjustable_quantity : {
               enabled : true,
               minimum :1,
             },
@@ -176,63 +176,7 @@ app.post("/create-checkout-session",async(req,res)=>{
       res.status(err.statuscode || 500).json(err.message)
     }
 })
-
-
-
-
-
-
-            
-
-
-
-
-          }
-           
-
-
-
-
-
-        })
-
-
-
-
-
-
-
-
-
-
-  }
- }
-
-
-
-
-
-
-
-
-
-
-
-
-})
   
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(PORT,()=>console.log("Server is running at port :" + PORT))
 
