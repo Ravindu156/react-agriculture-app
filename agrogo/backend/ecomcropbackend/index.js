@@ -145,8 +145,23 @@ app.post("/create-checkout-session",async(req,res)=>{
               currency : "inr",
               product_data : {
                 name : item.name,
-              }
-            }
+              },
+              
+              unit_amount : item.price * 100,
+
+            },
+            
+            adjustable quantity : {
+              enabled : true,
+              minimum :1,
+            },
+
+
+            
+
+
+
+
           }
            
 
