@@ -150,11 +150,17 @@ app.post("/create-checkout-session",async(req,res)=>{
               unit_amount : item.price * 100,
 
             },
-            
+
             adjustable quantity : {
               enabled : true,
               minimum :1,
             },
+            
+
+            quantity : item.qty
+          
+
+
 
 
             
