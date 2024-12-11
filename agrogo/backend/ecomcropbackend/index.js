@@ -155,9 +155,15 @@ app.post("/create-checkout-session",async(req,res)=>{
               enabled : true,
               minimum :1,
             },
-            
+
 
             quantity : item.qty
+          }
+        }),
+
+        success_url : `${process.env.FRONTEND_URL}/success`,
+        
+      
           
 
 
