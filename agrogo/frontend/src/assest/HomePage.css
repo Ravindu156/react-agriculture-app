@@ -43,7 +43,7 @@
     align-items: center;
     justify-content: center;
     height: calc(100vh - 80px); 
-    color:#a4b98c;
+    color:#e8f5e9;
     
   }
   
@@ -58,12 +58,14 @@
   .overlay h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    border-color: #000;
+    text-shadow:2px 2px  #000;
   }
   
   .overlay p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    text-shadow:1px 1px  #000;
+  
   }
   
   .buttons {
@@ -338,6 +340,6 @@
 
 .links{
   margin-left: 750px;
-  margin-top: -250px;
+  margin-top: -180px;
 }
 

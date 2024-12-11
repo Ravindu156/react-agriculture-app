@@ -128,10 +128,10 @@ export default function HomePage(){
   <p>
     As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:
     <ul>
-      <li><strong>Track Crop Growth:</strong> </li>
-      <li><strong>Sell Directly to Buyers:</strong> </li>
-      <li><strong>Receive Expert Advice:</strong> </li>
-      <li><strong>Manage Supplies:</strong> </li>
+      <li><strong>Track Crop Growth</strong> </li>
+      <li><strong>Sell Directly to Buyers</strong> </li>
+      <li><strong>Receive Expert Advice</strong> </li>
+      <li><strong>Manage Supplies</strong> </li>
     </ul>
     We aim to empower farmers with the knowledge and tools they need to increase productivity, reduce waste, and grow their businesses in an ever-changing world.
   </p>
@@ -143,10 +143,10 @@ export default function HomePage(){
   <p>
     AgroGo provides a dedicated platform for sellers to manage and expand their agricultural business by offering a range of features:
     <ul>
-      <li><strong>Reach a Broader Market:</strong> </li>
-      <li><strong>Manage Orders Efficiently:</strong> </li>
-      <li><strong>Optimize Pricing:</strong></li>
-      <li><strong>Improve Supplier Connections:</strong></li>
+      <li><strong>Reach a Broader Market</strong> </li>
+      <li><strong>Manage Orders Efficiently</strong> </li>
+      <li><strong>Optimize Pricing</strong></li>
+      <li><strong>Improve Supplier Connections</strong></li>
     </ul>
     As a seller, AgroGo is your one-stop-shop to grow your business, streamline your operations, and tap into new opportunities in the agricultural market.
   </p>
@@ -154,14 +154,14 @@ export default function HomePage(){
 
 <section id="executive-officer" className="section executive-officer">
 <img src={officer} alt="Group of students working on agricultural projects"/>
-<h2>EXECUTIVE OFFICER SECTION</h2>
+<h2>ARE YOU AN EXECUTIVE OFFICER?</h2>
   <p>
     Executive officers play a critical role in managing the agricultural sector and ensuring the efficiency of the entire supply chain. AgroGo provides executive officers with the tools and resources to:
     <ul>
-      <li><strong>Oversee Agricultural Operations:</strong></li>
-      <li><strong>Facilitate Policy Development:</strong></li>
-      <li><strong>Collaborate with Stakeholders:</strong></li>
-      <li><strong>Track Market Trends:</strong></li>
+      <li><strong>Oversee Agricultural Operations</strong></li>
+      <li><strong>Facilitate Policy Development</strong></li>
+      <li><strong>Collaborate with Stakeholders</strong></li>
+      <li><strong>Track Market Trends</strong></li>
     </ul>
     AgroGo empowers executive officers by providing a platform for effective decision-making, collaboration, and the implementation of strategies that contribute to the development of the agricultural sector.
   </p>

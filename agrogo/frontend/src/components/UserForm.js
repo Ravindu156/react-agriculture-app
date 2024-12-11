@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../assest/UserForm.css";
 import Image from '../Images/Reg (2).jpg';
+import { useNavigate } from "react-router-dom";
 
 export default function UserForm(){
   const [formData, setFormData] = useState({
@@ -23,6 +24,11 @@ export default function UserForm(){
   const [currentStep, setCurrentStep] = useState(1);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState(""); 
+  
+
+  const navigate = useNavigate();
+
+  
 
   const districts = [
     "Ampara",
@@ -89,7 +95,7 @@ export default function UserForm(){
   };
 
   const handlePrevious = () => {
-    setStatusMessage(""); // Clear any error messages
+    setStatusMessage(""); 
     setCurrentStep((prev) => prev - 1);
   };
 
@@ -121,7 +127,7 @@ export default function UserForm(){
   } catch (error) {
     console.error("Error registering user:", error.response?.data || error.message);
     if (error.response && error.response.data && error.response.data.message) {
-      setStatusMessage(error.response.data.message);  // Display the error message from the backend
+      setStatusMessage(error.response.data.message); 
     } else {
       setStatusMessage("Error registering user. Please try again.");
     }
@@ -187,7 +193,13 @@ const handleNextStep = () => {
                 onChange={handleChange}
                 required
               />
-            </div>)}
+             
+                  <div>
+                    <a style={{cursor:"pointer"}}onClick={() => navigate("/login")}>You are already registered. Log in here</a>
+                  </div>
+                
+              </div>
+            )}
             {currentStep === 2 && (
             <div>
             <select
@@ -273,11 +285,13 @@ const handleNextStep = () => {
             )}
 
             <div className="form-navigation">
-            {currentStep < 2 && <button type="button" onClick={handleNext}>Next</button>}
+              
+            {currentStep < 2 && <button type="button" onClick={handleNext}>Next</button>
+            }
               {currentStep === 2 && formData.role !== "Agricultural Executive Officer" && (
                 <>
                 <button type = "button" onClick = {handlePrevious}>Previous</button>
-                <button type="submit">Submit</button></>
+                <button type="submit" onClick={() => navigate("/dashboard")}>Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
                 <button type="button" onClick={handleNextStep}>
@@ -285,7 +299,7 @@ const handleNextStep = () => {
                 </button>
               )}
               {currentStep === 3 && (
-                <button type="submit">Submit</button>
+                <button type="submit" onClick={() => navigate("/dashboard")}>Submit</button>
               )}
           </div>
         </form>
