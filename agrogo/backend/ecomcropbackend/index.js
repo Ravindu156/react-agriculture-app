@@ -139,6 +139,20 @@ app.post("/create-checkout-session",async(req,res)=>{
        
 
         line_items : req.body.map((item)=>{
+          
+          return{
+            price_data : {
+              currency : "inr",
+              product_data : {
+                name : item.name,
+              }
+            }
+          }
+           
+
+
+
+
 
         })
 
