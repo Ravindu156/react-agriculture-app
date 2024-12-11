@@ -108,6 +108,7 @@ const productModel = mongoose.model("product",schemaProduct)
      res.send({message : "Upload successfully"})
 })
 
+
 app.get("/product",async(req,res)=>{
   const data =await productModel.find({})
   res.send(JSON.stringify(data))
@@ -120,6 +121,9 @@ console.log(process.env.STRIPE_SECRET_KEY)
 
 
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+  
 
 
 
