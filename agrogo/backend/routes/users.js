@@ -7,6 +7,22 @@ const jwt = require('jsonwebtoken');
 
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile, region, nic,role, password, education, occupation, experience } = req.body;
+    
+    if (mobile.length !== 10) {
+      return res.status(400).json({ message: 'Mobile number must be 10 digits long' });
+    }
+    if (nic.length < 10) {
+      return res.status(400).json({ message: 'NIC number is incorrect' });
+    }
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters, including one uppercase letter, one number, and one special character.' });
+    }
+
     const userData = {
         firstname,
         lastname,
@@ -31,6 +47,12 @@ router.post('/', async (req, res) => {
         await newUser.save();
         res.json(newUser);
       } catch (error) {
+        if (error.code === 11000) {
+          const duplicateField = Object.keys(error.keyValue)[0];
+          return res.status(400).json({
+            message: `The ${duplicateField} is already taken. Please use a different ${duplicateField}.`,
+          });
+        }
         res.status(500).json({ error: error.message });
       }
     });
