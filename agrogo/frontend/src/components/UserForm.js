@@ -71,11 +71,14 @@ export default function UserForm(){
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (statusMessage) {
+      setStatusMessage("");
+    }
   };
 
   const handleNext = () => {
     if (currentStep === 1) {
-      if (!formData.username || !formData.email ) {
+      if (!formData.username || !formData.email || !formData.username || !formData.email || !formData.mobile ) {
         setStatusMessage("Please fill all the required fields in Step 1.");
         setStatusType("error");
         return;
@@ -117,7 +120,11 @@ export default function UserForm(){
       console.log("User registered:", response.data);
   } catch (error) {
     console.error("Error registering user:", error.response?.data || error.message);
+    if (error.response && error.response.data && error.response.data.message) {
+      setStatusMessage(error.response.data.message);  // Display the error message from the backend
+    } else {
       setStatusMessage("Error registering user. Please try again.");
+    }
       setStatusType("error");
   }
 };
@@ -266,9 +273,11 @@ const handleNextStep = () => {
             )}
 
             <div className="form-navigation">
-            {currentStep < 2 && <button type="button" onClick={() => setCurrentStep((prev) => prev + 1)}>Next</button>}
+            {currentStep < 2 && <button type="button" onClick={handleNext}>Next</button>}
               {currentStep === 2 && formData.role !== "Agricultural Executive Officer" && (
-                <button type="submit">Submit</button>
+                <>
+                <button type = "button" onClick = {handlePrevious}>Previous</button>
+                <button type="submit">Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
                 <button type="button" onClick={handleNextStep}>
