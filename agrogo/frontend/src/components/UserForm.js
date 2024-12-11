@@ -64,9 +64,38 @@ export default function UserForm(){
     "Agricultural Executive Officer"
   ];
 
+  const education = [
+   "High School Diploma",
+   "Vocational Training/Certificate",
+    "Associate Degree",
+    "Bachelor's Degree",
+    "Master's Degree",
+    "Doctorate (PhD)",
+    "Professional Degree (e.g.MD, JD, etc.)"
+  ]
+
+  const experience = [
+    "No Experience",
+      "Less than 1 Year",
+      "1-2 Years",
+      "3-5 Years",
+      "6-10 Years",
+     " More than 10 Years"
+  ]
+
   const handleRoleSelect = (e) => {
     const selectedRole = e.target.value;
     setFormData({ ...formData, role: selectedRole });
+  };
+
+  const handleEduSelect = (e) => {
+    const selectedEdu = e.target.value;
+    setFormData({ ...formData, education: selectedEdu });
+  };
+
+  const handleExpSelect = (e) => {
+    const selectedExp = e.target.value;
+    setFormData({ ...formData, experience: selectedExp });
   };
 
   const handleDistrictSelect = (e) => {
@@ -258,14 +287,36 @@ const handleNextStep = () => {
             </div>)}
             {currentStep === 3 && (
               <div>
-                <input
-                  type="text"
-                  name="education"
-                  placeholder="Education"
-                  value={formData.education}
-                  onChange={handleChange}
-                  required
-                />
+                <select
+              name="education"
+              value={formData.education}
+              onChange={handleEduSelect}
+              className="styled-select"
+              required
+            >
+              <option value="">Select Your Education Level</option>
+              {education.map((edu, index) => (
+                <option key={index} value={edu}>
+                  {edu}
+                </option>
+              ))}
+              </select>
+
+              <select
+              name="experience"
+              value={formData.experience}
+              onChange={handleExpSelect}
+              className="styled-select"
+              required
+            >
+              <option value="">Select Your Experience Level</option>
+              {experience.map((exp, index) => (
+                <option key={index} value={exp}>
+                  {exp}
+                </option>
+              ))}
+              </select>
+
                 <input
                   type="text"
                   name="occupation"
@@ -274,14 +325,7 @@ const handleNextStep = () => {
                   onChange={handleChange}
                   required
                 />
-                <input
-                  type="text"
-                  name="experience"
-                  placeholder="Experience"
-                  value={formData.experience}
-                  onChange={handleChange}
-                  required
-                />
+                
               </div>
             )}
 
