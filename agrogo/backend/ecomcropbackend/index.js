@@ -126,15 +126,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 app.post("/create-checkout-session",async(req,res)=>{
 
-  try{
-    const params = {
-        submit_type : 'pay',
-        mode : "payment",
-        payment_method_types : ['card'],
-        billing_address_collection : "auto",
-        shipping_options : [{shipping_rate : "shr_1N0qDnSAq8kJSdzMvlVkJdua"}],
-
-
+  
  try{
   const params = {
        submit_type : 'pay',
@@ -142,6 +134,23 @@ app.post("/create-checkout-session",async(req,res)=>{
        payment_method_types : ['card'],
        billing_address_collection : "auto",
        shipping_options : [{shipping_rate : "shr_1N0qDnSAq8kJSdzMvlVkJdua"}],
+
+
+       
+
+        line_items : req.body.map((item)=>{
+
+        })
+
+
+
+
+
+
+
+
+
+
   }
  }
 
