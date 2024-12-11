@@ -172,6 +172,20 @@ app.post("/create-checkout-session",async(req,res)=>{
        res.status(200).json(session.id)
     }
 
+    catch(err){
+      
+    }
+
+
+    catch (err){
+      res.status(err.statusCode || 500).json(err.message)
+   }
+
+})
+
+
+
+
 
 
             
