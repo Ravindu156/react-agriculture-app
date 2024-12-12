@@ -13,6 +13,16 @@ mongoose.connect('mongodb://localhost:27017/products')
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err))
 
+//product section
+const schemaProduct = mongoose.Schema({
+    name:String,
+    category:String,
+    image:String,
+    price:String,
+    description:String
+})
+const productModel = mongoose.model("product",schemaProduct)
+
 //api
 app.get("/",(req,res)=>{
     res.send("Server is running")
