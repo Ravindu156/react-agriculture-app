@@ -14,6 +14,7 @@ import { FaMobileAlt } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
+import { Link } from 'react-router-dom';
 
 
 
@@ -77,7 +78,7 @@ export default function HomePage(){
               <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
               <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
               <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
-              <a href="#store" onClick={handleLoginClick}>E-Store</a>
+              <Link to="/store">E-Store</Link>
             </nav>
           </header>
     
