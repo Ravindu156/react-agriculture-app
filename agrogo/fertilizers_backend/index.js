@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080
 
 //mongoDB connection
 
-mongoose.connect('mongodb://localhost:27017/products') 
+mongoose.connect('mongodb://localhost:27017/fertlizer_store') 
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err))
 
@@ -22,6 +22,15 @@ const schemaProduct = mongoose.Schema({
     description:String
 })
 const productModel = mongoose.model("product",schemaProduct)
+
+//save product in data
+//api
+app.post("/uploadProduct",async(req,res)=>{
+    console.log(req.body)
+    const data = await productModel(req.body)
+    const datasave = await data.save()
+    res.send({message:"upload successfully"})
+})
 
 //api
 app.get("/",(req,res)=>{
