@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+//import reportWebVitals from './reportWebVitals';
 
  /*import {createBrowserRouter,
   createRoutesFromElements,
@@ -28,14 +28,7 @@ import Home from './components/page/Home';
       <Route path="login" element={<Login/>}/>
       <Route path="newproduct" element={<Newproduct />} />
   )
-<<<<<<< HEAD
-
-
-)*/
-=======
-)
 */
->>>>>>> 9434c12cc01f51cab9e104b83ce29281556280f7
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -43,4 +36,4 @@ root.render(
     
   </React.StrictMode>
 );
-reportWebVitals();
+//reportWebVitals();
