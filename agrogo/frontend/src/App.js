@@ -13,9 +13,13 @@ function App() {
       <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
-
-  )
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} />
+      </Routes>
   
-}
+  </Router>
+  
+)};
 
 export default App;
