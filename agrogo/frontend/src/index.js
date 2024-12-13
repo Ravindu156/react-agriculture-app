@@ -13,7 +13,7 @@ import App from './App';
 import Home from './components/page/Home';
 =======
  import Home from './components/page/Home';
->>>>>>> Stashed changes
+
   import Menu from './components/page/Menu';
   import About from './components/page/About';
   import Contact from './components/page/Contact';
@@ -53,10 +53,10 @@ import Home from './components/page/Home';
 )
 <<<<<<< Updated upstream
 )
-*/
+
 
 =======
-*/
+
 >>>>>>> 3cc51558d8a3073aa2861f985385cacf62ecaa6f
 =======
 
@@ -85,4 +85,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
->>>>>>> Stashed changes
+
