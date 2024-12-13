@@ -1,10 +1,10 @@
-
+*{
+  width: device-width;
+}
 .form{
   background-size: cover;
   background-position: center;
   height:100vh;
-
-  
 }
 img{
   height:99.4vh;
