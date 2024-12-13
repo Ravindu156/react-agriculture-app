@@ -2,12 +2,16 @@
   "devDependencies": {
     "concurrently": "^9.1.0"
   },
-  
-
   "scripts": {
-  "start": "node backend/server.js", 
-  "server": "nodemon backend/server.js", 
-  "client": "npm start --prefix frontend", 
-  "dev": "concurrently \"npm run server\" \"npm run client\""
-}
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.3"
+  }
 }
