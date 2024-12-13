@@ -31,11 +31,10 @@ import Home from './components/page/Home';
 <<<<<<< HEAD
 
 
-)*/
-=======
+)
 )
 */
->>>>>>> 9434c12cc01f51cab9e104b83ce29281556280f7
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
