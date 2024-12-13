@@ -29,3 +29,15 @@
   .nav-bar a:hover {
     color: #ccc;
   }
+
+  .sell-button {
+    background-color: red; /* Red background */
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* No underline */
+}
+
+.sell-button:hover {
+    background-color: darkred; /* Darker red on hover */
+}

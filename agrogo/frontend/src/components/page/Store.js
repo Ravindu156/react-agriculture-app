@@ -5,12 +5,11 @@ import { Routes, Route, } from 'react-router-dom';
 import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
 import Cart from './Store/Cart';
+import Seller from './Store/StoreCom/Seller';
 
 const Store = () => {
   const [cart, setCart] = useState([]);
-
-
-  const products = [
+  const [products, setProducts] = useState([
     {
         id: 1,
         name: 'Organic Fertilizer',
@@ -29,8 +28,14 @@ const Store = () => {
         price: 19.99,
         image: 'path/to/inorganic-fertilizer.jpg', // Replace with actual image path
     },
-    // Add more products as needed
-];
+    // Add more initial products as needed
+]);
+
+  const handleAddProduct = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+  };
+
+  
 const handleAddToCart = (product) => {
   setCart((prevCart) => [...prevCart, product]);
 };
@@ -42,6 +47,11 @@ const handleRemoveFromCart = (productId) => {
   return (
     <div>
     <NavigationBar />
+    <Routes>
+                <Route path="/store" element={<ProductCard products={products} />} />
+                <Route path="/sell" element={<Seller onAddProduct={handleAddProduct} />} />
+                {/* Add other routes as needed */}
+            </Routes>
     <div className="product-list">
                 {products.map(product => (
                   <ProductCard 
