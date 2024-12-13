@@ -1,0 +1,222 @@
+
+.form{
+  background-size: cover;
+  background-position: center;
+  height:100vh;
+
+  
+}
+img{
+  height:99.4vh;
+  width:820px;
+}
+form{
+  height:430px;
+  width:370px;
+  padding-left: 35px;
+}
+.form-container {
+    margin-left: 800px;
+    margin-top: -590px;
+    
+    justify-content: center;
+    align-items: center;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .form-overlay {
+    background-color: rgba(13, 26, 1, 0.6);
+    padding: 2rem;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    width: 460px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-overlay h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #66cc33;
+  }
+  
+  .form-overlay h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+
+  .form-overlay input,.form-overlay select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+
+  .form-overlay button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #5a845c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-overlay button:hover {
+    background-color: #4a6f4a;
+  }
+  
+
+  .form-overlay p {
+    margin-top: 1rem;
+  }
+  
+  .form-overlay a {
+    color: #66cc33;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .form-overlay a:hover {
+    text-decoration: underline;
+  }
+
+.popup-message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 20px;
+    z-index: 9999;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    min-width: 300px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; 
+  }
+  
+
+  .popup-message.success {
+    background-color: #28a745; 
+    color: #fff; 
+    border: 1px solid #1e7e34;
+  }
+  
+ 
+  .popup-message.error {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #b21f2d;
+  }
+  
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+  }
+  .form-navigation {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button[type="button"] {
+    background-color: #007bff; 
+    color: #fff;
+  }
+  
+  button[type="submit"] {
+    background-color: #28a745; 
+    color: #fff;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  .status-message {
+    position: fixed;
+    top: -50px; /* Start offscreen */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(90deg, #4caf50, #2e7d32); /* Green gradient for success */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    animation: slideDown 2s ease-out, fadeOut 10s 15s forwards;
+  }
+  
+  .status-message.error {
+    background: linear-gradient(90deg, #f44336, #b71c1c); /* Red gradient for error */
+  }
+  
+ 
+  @keyframes slideDown {
+    0% {
+      top: -50px;
+      opacity: 0;
+    }
+    100% {
+      top: 20px;
+      opacity: 1;
+    }
+  }
+  
+ 
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .status-message {
+      font-size: 0.9rem;
+      padding: 0.8rem 1.5rem;
+    }
+  }
+  

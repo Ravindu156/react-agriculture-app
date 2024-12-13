@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-y: auto;
   }
   
   .app {
@@ -44,6 +43,8 @@
     align-items: center;
     justify-content: center;
     height: calc(100vh - 80px); 
+    color:#e8f5e9;
+    
   }
   
   .overlay {
@@ -57,11 +58,14 @@
   .overlay h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    text-shadow:2px 2px  #000;
   }
   
   .overlay p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    text-shadow:1px 1px  #000;
+  
   }
   
   .buttons {
@@ -136,6 +140,7 @@
   .farmer img{
     margin-left: 700px;
     height:480px;
+    width:450px;
 
   }
   .farmer h2{
@@ -170,7 +175,7 @@
   .executive-officer img{
     margin-left: 700px;
     height:480px;
-
+    width:450px;
   }
   .executive-officer h2{
     margin-top: -500px;
@@ -311,5 +316,30 @@
 }
 
 #contact-us{
-  height:50%;
+  height:81%;
+  color:#fff;
 }
+
+#contact-us h2{
+  padding:50px;
+}
+
+.icons1{
+  margin-left: 60px;
+}
+
+.icons2{
+  margin-left:400px;
+  margin-top: -180px;
+}
+
+.footer-copyright{
+  margin-left: 500px;
+  margin-top: 140px;
+}
+
+.links{
+  margin-left: 750px;
+  margin-top: -180px;
+}
+
