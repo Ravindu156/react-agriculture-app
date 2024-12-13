@@ -1,10 +1,7 @@
 import { Menu, X, Bell, User } from "lucide-react";
 import { useState } from "react";
-<<<<<<< HEAD
-import logo from "./logo.png";
-=======
 import logo from "../dashboard/logo.png";
->>>>>>> 3cc51558d8a3073aa2861f985385cacf62ecaa6f
+
 import { navItems } from "./constants";
 
 const Navbar = () => {
