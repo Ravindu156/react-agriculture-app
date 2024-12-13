@@ -8,7 +8,14 @@ import image2 from '../Images/Slider2.jpg';
 import image3 from '../Images/Slider3.jpg';
 import image4 from '../Images/Slider4.jpg';
 import image5 from '../Images/Slider5.jpg';
-import { useNavigate } from 'react-router-dom'; ///////////////////
+import { useNavigate } from 'react-router-dom'; 
+import { IoLocationSharp } from "react-icons/io5";
+import { FaMobileAlt } from "react-icons/fa";
+import { MdMarkEmailRead } from "react-icons/md";
+import { FaFacebookF } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+
+
 
 export default function HomePage(){
   const [loading, setLoading] = useState(false); 
@@ -16,12 +23,9 @@ export default function HomePage(){
 
   const images = [ image2, image3, image4, image5];
 
-  const navigate = useNavigate(); // Declare navigate using the hook
-
-  //////////////////////////////////////////////////////////
+  const navigate = useNavigate(); 
   const handleLoginClick = () => {
-    // Simulate successful login
-    navigate('/dashboard'); // Navigate to the dashboard page
+    navigate('/login');
   };
 
 
@@ -31,6 +35,10 @@ export default function HomePage(){
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
 
   const navigateToSection = (event, sectionId) => {
     event.preventDefault();
@@ -77,7 +85,7 @@ export default function HomePage(){
               <h2>Empowering Agriculture</h2>
               <p>A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
               <div className="buttons">
-                <button className="register-button">Register</button>
+                <button className="register-button" onClick={handleRegisterClick}>Register</button>
                 <button className="login-button" onClick={handleLoginClick}>Login</button>
               </div>
             </div>
@@ -120,10 +128,10 @@ export default function HomePage(){
   <p>
     As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:
     <ul>
-      <li><strong>Track Crop Growth:</strong> </li>
-      <li><strong>Sell Directly to Buyers:</strong> </li>
-      <li><strong>Receive Expert Advice:</strong> </li>
-      <li><strong>Manage Supplies:</strong> </li>
+      <li><strong>Track Crop Growth</strong> </li>
+      <li><strong>Sell Directly to Buyers</strong> </li>
+      <li><strong>Receive Expert Advice</strong> </li>
+      <li><strong>Manage Supplies</strong> </li>
     </ul>
     We aim to empower farmers with the knowledge and tools they need to increase productivity, reduce waste, and grow their businesses in an ever-changing world.
   </p>
@@ -135,10 +143,10 @@ export default function HomePage(){
   <p>
     AgroGo provides a dedicated platform for sellers to manage and expand their agricultural business by offering a range of features:
     <ul>
-      <li><strong>Reach a Broader Market:</strong> </li>
-      <li><strong>Manage Orders Efficiently:</strong> </li>
-      <li><strong>Optimize Pricing:</strong></li>
-      <li><strong>Improve Supplier Connections:</strong></li>
+      <li><strong>Reach a Broader Market</strong> </li>
+      <li><strong>Manage Orders Efficiently</strong> </li>
+      <li><strong>Optimize Pricing</strong></li>
+      <li><strong>Improve Supplier Connections</strong></li>
     </ul>
     As a seller, AgroGo is your one-stop-shop to grow your business, streamline your operations, and tap into new opportunities in the agricultural market.
   </p>
@@ -146,20 +154,42 @@ export default function HomePage(){
 
 <section id="executive-officer" className="section executive-officer">
 <img src={officer} alt="Group of students working on agricultural projects"/>
-<h2>EXECUTIVE OFFICER SECTION</h2>
+<h2>ARE YOU AN EXECUTIVE OFFICER?</h2>
   <p>
     Executive officers play a critical role in managing the agricultural sector and ensuring the efficiency of the entire supply chain. AgroGo provides executive officers with the tools and resources to:
     <ul>
-      <li><strong>Oversee Agricultural Operations:</strong></li>
-      <li><strong>Facilitate Policy Development:</strong></li>
-      <li><strong>Collaborate with Stakeholders:</strong></li>
-      <li><strong>Track Market Trends:</strong></li>
+      <li><strong>Oversee Agricultural Operations</strong></li>
+      <li><strong>Facilitate Policy Development</strong></li>
+      <li><strong>Collaborate with Stakeholders</strong></li>
+      <li><strong>Track Market Trends</strong></li>
     </ul>
     AgroGo empowers executive officers by providing a platform for effective decision-making, collaboration, and the implementation of strategies that contribute to the development of the agricultural sector.
   </p>
 </section>
 <section id = "contact-us">
+<h2>Contact Us</h2>
+<div className='icons1'>
+<IoLocationSharp /><p>University of Vavuniya,<br/>Pampaimadu,<br/>Mannar Road,<br/>Vavuniya</p><br/><br/>
+<FaMobileAlt /><p>+94455725570</p>
+</div>
+<div className='icons2'>
+<MdMarkEmailRead /><p>agrogo@gmail.com</p><br/><br/>
+<FaFacebookF /><p>https://facebook.com/agro</p><br/><br/>
+<CgWebsite/><p>www.agrogo.com</p>
+</div>
+<div className='links'>
+  <p><i><b>Explore more...</b></i></p>
+  <br/><br/>
+  <a href = "https://gfair.network/"><p>The Global Forum on Agricultural Research and Innovation (GFAR)</p></a><br/>
+  <a href = "https://www.fwi.co.uk/"><p>Farmers Weekly</p></a><br/>
+  <a href = "https://www.fao.org/home/en" ><p>Food and Agriculture Organization (FAO)</p></a>
 
+
+
+</div>
+<div class="footer-copyright">
+      <p>&copy; 2024 AgroGo. All Rights Reserved.</p>
+    </div>
 </section>
 </div>
 );
