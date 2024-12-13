@@ -1,11 +1,11 @@
 import React from 'react';
-import '../StoreCom/StoreAssets/StoreNav.css';
+import '../page/Store/StoreAssets/StoreNav.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Fertilizers from './Store/Fertilizers';
 import FarmingTools from './Store/FarmingTools';
 import OrganicProducts from './Store/OrganicProducts';
 import InorganicProducts from './Store/InorganicProducts';
-import NavigationBar from '../StoreCom/NavigationBar';
+import NavigationBar from './Store/StoreCom/NavigationBar';
 const Store = () => {
   return (
     <div>

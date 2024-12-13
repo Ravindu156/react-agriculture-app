@@ -1,11 +1,10 @@
 import React from 'react';
+import NavigationBar from './StoreCom/NavigationBar';
 
 const FarmingTools = () => {
   return (
-    <div>
-      <h1>Farming Tools</h1>
-      <p>This is the farming tools page.</p>
-    </div>
+    <NavigationBar />
+   
   );
 };
 

@@ -1,11 +1,9 @@
 import React from 'react';
-
+import NavigationBar from './StoreCom/NavigationBar';
+import './StoreAssets/StoreNav.css';
 const Fertilizers = () => {
   return (
-    <div>
-      <h1>Fertilizers</h1>
-      <p>This is the fertilizers page.</p>
-    </div>
+    <NavigationBar />
   );
 };
 
