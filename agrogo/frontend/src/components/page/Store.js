@@ -6,6 +6,9 @@ import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
 import Cart from './Store/Cart';
 import Seller from './Store/StoreCom/Seller';
+import Of from'./Store/StoreAssets/Img/OF.jpg';
+import ONF from'./Store/StoreAssets/Img/NF.png';
+import Nf from'./Store/StoreAssets/Img/FF.jpg';
 
 const Store = () => {
   const [cart, setCart] = useState([]);
@@ -14,19 +17,19 @@ const Store = () => {
         id: 1,
         name: 'Organic Fertilizer',
         price: 25.99,
-        image: 'path/to/organic-fertilizer.jpg', // Replace with actual image path
+        image: Of, // Replace with actual image path
     },
     {
         id: 2,
         name: 'Farming Tool Set',
         price: 49.99,
-        image: 'path/to/farming-tool-set.jpg', // Replace with actual image path
+        image: ONF, // Replace with actual image path
     },
     {
         id: 3,
         name: 'Inorganic Fertilizer',
         price: 19.99,
-        image: 'path/to/inorganic-fertilizer.jpg', // Replace with actual image path
+        image: Nf, // Replace with actual image path
     },
     // Add more initial products as needed
 ]);

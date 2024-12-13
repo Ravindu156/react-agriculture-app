@@ -30,6 +30,7 @@ const Seller = ({ onAddProduct }) => {
 
             <h2>Add a New Product</h2>
             <form onSubmit={handleSubmit}>
+            <p>Name of the product</p>
                 <input
                     type="text"
                     placeholder="Product Name"
@@ -37,18 +38,22 @@ const Seller = ({ onAddProduct }) => {
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
+             <p>Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="Fertilizer">Fertilizer</option>
                     <option value="Tool">Tool</option>
                     <option value="Inorganic Product">Inorganic Product</option>
                     <option value="Organic Product">Organic Product</option>
                 </select>
+              <p>Upload a image</p>   
                 <input
                     type="file"
                     onChange={(e) => setImage(e.target.files[0])}
                     required
                 />
+                <p>Quantity</p>
                 <input
+                    
                     type="number"
                     placeholder="Quantity"
                     value={quantity}
@@ -56,6 +61,7 @@ const Seller = ({ onAddProduct }) => {
                     min="1"
                     required
                 />
+                 <p>give a description</p>
                 <textarea
                     placeholder="Description"
                     value={description}
