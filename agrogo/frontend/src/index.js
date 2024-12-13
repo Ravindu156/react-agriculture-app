@@ -29,12 +29,16 @@ import Home from './components/page/Home';
       <Route path="newproduct" element={<Newproduct />} />
   )
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 )
 )
 */
 
+=======
+*/
+>>>>>>> 3cc51558d8a3073aa2861f985385cacf62ecaa6f
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
