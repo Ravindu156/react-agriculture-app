@@ -1,10 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import '../page/Store/StoreAssets/StoreNav.css';
 import { Routes, Route, } from 'react-router-dom';
 import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
+import Cart from './Store/Cart';
 
 const Store = () => {
+  const [cart, setCart] = useState([]);
+
+
   const products = [
     {
         id: 1,
@@ -26,7 +31,13 @@ const Store = () => {
     },
     // Add more products as needed
 ];
+const handleAddToCart = (product) => {
+  setCart((prevCart) => [...prevCart, product]);
+};
 
+const handleRemoveFromCart = (productId) => {
+  setCart((prevCart) => prevCart.filter(item => item.id !== productId));
+};
 
   return (
     <div>
@@ -35,11 +46,13 @@ const Store = () => {
                 {products.map(product => (
                   <ProductCard 
                     key={product.id} 
-                    product={product} />
+                    product={product} 
+                    onAddToCart={handleAddToCart}
+                   /> 
                 ))}
             </div>
     
-   
+            <Cart cartItems={cart} onRemoveFromCart={handleRemoveFromCart} /> {/* Render the Cart component */}
   </div>
   );
 };
