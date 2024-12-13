@@ -42,3 +42,24 @@
 .cart-item button:hover {
     background-color: #c82333; /* Darker red on hover */
 }
+
+.cart-total {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    text-align: right;
+}
+
+.buy-button {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.buy-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
