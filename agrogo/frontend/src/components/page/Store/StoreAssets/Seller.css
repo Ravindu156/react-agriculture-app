@@ -1,8 +1,7 @@
 /* Seller.css */
 
 .seller-form {
-    max-width: 1600px; /* Maximum width of the form */
-    height: 1000px;
+    max-width: 600px; /* Maximum width of the form */
     margin: 20px auto; /* Center the form */
     padding: 20px; /* Padding inside the form */
     border: 1px solid #ccc; /* Light border */
