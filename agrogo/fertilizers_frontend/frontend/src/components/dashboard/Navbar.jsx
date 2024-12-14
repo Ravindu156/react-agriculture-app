@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 
-import logo from "../dashboard/logo.png";
+import logo from "./logo.png";
 
 import { navItems } from "./constants";
 

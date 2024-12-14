@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../page/Store/StoreAssets/StoreNav.css';
+import './Store/StoreAssets/StoreNav.css';
 import { Routes, Route, } from 'react-router-dom';
 import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
