@@ -42,25 +42,25 @@ app.get("/",(req,res)=>{
     res.send("Server is running")
 })
 
-app.post("/signup",(req,res)=>{
-    console.log(req.body)
-    const { email } = req.body;
+// app.post("/signup",(req,res)=>{
+//     console.log(req.body)
+//     const { email } = req.body;
 
 
-   const resultData = await userModel.findOne({email : email})
+//    const resultData = await userModel.findOne({email : email})
    
-    console.log(resultData)
-    if(!resultData){
-        const data = userModel(req.body) 
-                const save = data.save()
-                res.send({message:"Successfully sign up"})
-    }
-    else{
-        res.send({message: "Email id is already registered"})
-    }
+//     console.log(resultData)
+//     if(!resultData){
+//         const data = userModel(req.body) 
+//                 const save = data.save()
+//                 res.send({message:"Successfully sign up"})
+//     }
+//     else{
+//         res.send({message: "Email id is already registered"})
+//     }
 
 
-})
+// })
 
 app.post("/login",(req,res) => {
    const {email} =req.body;
@@ -121,7 +121,7 @@ console.log(process.env.STRIPE_SECRET_KEY)
 
 
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+//const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 
 app.post("/create-checkout-session",async(req,res)=>{
