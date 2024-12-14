@@ -2,7 +2,7 @@ import React from "react";
 import { TbPlus, TbMinus } from "react-icons/tb";
 import { AiFillDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { deleteCartItem,increaseQty,decreaseQty } from "../redux/productSlide";
+import { deleteCartItem,increaseQty,decreaseQty } from "../redux/ProductSlide";
 
 const CartProduct = ({ id, name, image, category, qty, total, price }) => {
     const dispatch = useDispatch()
