@@ -1,13 +1,6 @@
 .cart {
     padding: 20px;
     text-align: center;
-    position: fixed; /* Fixes the cart to the right side */
-    right: 0; /* Aligns it to the right */
-    top: 100px; /* Adjusts the top position */
-    width: 300px; /* Set a width for the cart */
-    background-color: rgb(193, 229, 209); /* Optional: background color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for better visibility */
-    z-index: 1000; /* Ensures it stays above other elements */
 }
 
 .cart-items {
