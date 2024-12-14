@@ -44,7 +44,7 @@ const Home = () => {
         <div className="md:w-1/2">
           <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
            
-            <p className="text-sm font-medium text-slate-900">Bike Delivery</p>
+            <p className="text-sm font-medium text-slate-900">Natural Foods</p>
             <img
               src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
               className="h-7"
