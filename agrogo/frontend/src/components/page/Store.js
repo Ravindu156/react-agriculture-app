@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import '../page/Store/StoreAssets/StoreNav.css';
+import '../page/Store/StoreAssets/Productlist.css';
 import { Routes, Route, } from 'react-router-dom';
 import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
@@ -31,7 +32,7 @@ const Store = () => {
         price: 19.99,
         image: Nf, // Replace with actual image path
     },
-    // Add more initial products as needed
+    // Add  products 
 ]);
 
   const handleAddProduct = (newProduct) => {
@@ -53,7 +54,7 @@ const handleRemoveFromCart = (productId) => {
     <Routes>
                 <Route path="/store" element={<ProductCard products={products} />} />
                 <Route path="/sell" element={<Seller onAddProduct={handleAddProduct} />} />
-                {/* Add other routes as needed */}
+               
             </Routes>
     <div className="product-list">
                 {products.map(product => (

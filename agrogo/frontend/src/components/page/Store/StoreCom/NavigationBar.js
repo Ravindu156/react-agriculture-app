@@ -11,7 +11,7 @@ const NavigationBar = () => {
       <li><Link to="/organic-products">Organic Products</Link></li>
       <li><Link to="/inorganic-products">Inorganic Products</Link></li>
       <li>
-          <Link to="/Seller" className="sell-button">Sell</Link>
+          <Link to="/Seller" className="sell-button">Sell Products</Link>
       </li>
     </ul>
   </nav>
