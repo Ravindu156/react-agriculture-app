@@ -5,6 +5,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/Register';
 import Store from './components/page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
+import Login from './components/Login';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
+      <Route path = '/login' element = {<Login/>}/>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
