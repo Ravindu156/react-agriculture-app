@@ -35,7 +35,7 @@ const CurrentWeather = ({data}) => {
                         <span className="parameter-label">Humidity</span>
                         <span className="parameter-label">{Math.round(data.main.humidity)}%</span>
                     </div>
-                    <div className="parameter-row">.
+                    <div className="parameter-row">
                         <span className="parameter-label">Pressure</span>
                         <span className="parameter-label">{Math.round(data.main.pressure)} hpa</span>
                     </div>
