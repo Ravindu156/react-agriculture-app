@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assest/UserForm.css";
 import Image from '../Images/Reg (2).jpg';
 import { useNavigate } from "react-router-dom";
 
@@ -171,24 +170,41 @@ const handleNextStep = () => {
   }
 };
     return(
-      <div className="form">
-      <img src = {Image}/>
-    <div className="form-container">
-      <div className="form-overlay">
-        <h1>AgroGo</h1>
-        <h2>Create your account</h2>
+      <div className="flex min-h-screen">
+      <div className="w-3/5 hidden lg:block">
+        <img 
+          src={Image} 
+          alt="Login Background" 
+          className="w-full h-full object-cover" 
+        />
+      </div>
+    <div className="w-full lg:w-2/5 bg-yellow-50 flex flex-col items-center justify-center">
+      <div className="max-w-md w-full space-y-6">
+        <h1 className="text-4xl font-bold text-green-600 text-center">AgroGo</h1>
+        <h2 className="text-2xl text-center mb-4">Create your account</h2>
 
-        {statusMessage && <div className={`status-message ${statusType}`}>{statusMessage}</div>}
+        {statusMessage && (
+  <div
+    className={`fixed top-0 left-1/2 transform -translate-x-1/2 mb-4 px-8 py-4 text-center text-white rounded-lg shadow-lg z-50 ${
+      statusType === "error"
+        ? "bg-gradient-to-r from-red-500 to-red-700 animate-slideDown animate-fadeOut"
+        : "bg-gradient-to-r from-green-400 to-green-600 animate-slideDown animate-fadeOut"
+    }`}
+  >
+    {statusMessage}
+  </div>
+)}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
         {currentStep === 1 && (
-            <div>
+            <div className="space-y-4">
             <input
                 type="text"
                 name="firstname"
                 placeholder="First Name"
                 value={formData.firstname}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
               <input
@@ -196,6 +212,7 @@ const handleNextStep = () => {
                 name="lastname"
                 placeholder="Last Name"
                 value={formData.lastname}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 onChange={handleChange}
                 required
               />
@@ -205,6 +222,7 @@ const handleNextStep = () => {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
               <input
@@ -213,6 +231,7 @@ const handleNextStep = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
               <input
@@ -221,22 +240,23 @@ const handleNextStep = () => {
                 placeholder="Mobile Number"
                 value={formData.mobile}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
              
                   <div>
-                    <a style={{cursor:"pointer"}}onClick={() => navigate("/login")}>You are already registered. Log in here</a>
+                    <a className="text-stone-500 hover:text-blue-700 cursor-pointer" style={{cursor:"pointer"}}onClick={() => navigate("/login")}>You are already registered. Log in here</a>
                   </div>
                 
               </div>
             )}
             {currentStep === 2 && (
-            <div>
+            <div className="space-y-4">
             <select
               name="region"
               value={formData.region}
               onChange={handleDistrictSelect}
-              className="styled-select"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
               required
             >
               <option value="">Select Your Region</option>
@@ -252,12 +272,13 @@ const handleNextStep = () => {
                 placeholder="NIC number"
                 value={formData.nic}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               /> <select
               name="role"
               value={formData.role}
               onChange={handleRoleSelect}
-              className="styled-select"
+             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
               required
             >
               <option value="">Select Your Role</option>
@@ -274,6 +295,7 @@ const handleNextStep = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
               <input
@@ -282,16 +304,17 @@ const handleNextStep = () => {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
             </div>)}
             {currentStep === 3 && (
-              <div>
+              <div className="space-y-4">
                 <select
               name="education"
               value={formData.education}
               onChange={handleEduSelect}
-              className="styled-select"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
               required
             >
               <option value="">Select Your Education Level</option>
@@ -306,7 +329,7 @@ const handleNextStep = () => {
               name="experience"
               value={formData.experience}
               onChange={handleExpSelect}
-              className="styled-select"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
               required
             >
               <option value="">Select Your Experience Level</option>
@@ -323,28 +346,29 @@ const handleNextStep = () => {
                   placeholder="Occupation"
                   value={formData.occupation}
                   onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 />
                 
               </div>
             )}
 
-            <div className="form-navigation">
+            <div className="flex justify-between">
               
-            {currentStep < 2 && <button type="button" onClick={handleNext}>Next</button>
+            {currentStep < 2 && <button type="button" onClick={handleNext} className="px-4 py-2 bg-blue-800 text-white rounded-lg">Next</button>
             }
               {currentStep === 2 && formData.role !== "Agricultural Executive Officer" && (
                 <>
-                <button type = "button" onClick = {handlePrevious}>Previous</button>
-                <button type="submit">Submit</button></>
+                <button type = "button" onClick = {handlePrevious} className="px-4 py-2 bg-blue-800 text-white rounded-lg">Previous</button>
+                <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
-                <button type="button" onClick={handleNextStep}>
+                <button type="button" onClick={handleNextStep} className="px-4 py-2 bg-blue-800 text-white rounded-lg">
                   Next
                 </button>
               )}
               {currentStep === 3 && (
-                <button type="submit">Submit</button>
+                <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button>
               )}
           </div>
         </form>
