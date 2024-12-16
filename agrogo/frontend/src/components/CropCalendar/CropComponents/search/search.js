@@ -6,19 +6,19 @@ const Search = ({ onSearchChange }) => {
     const [search, setSearch] = useState(null);
 
     const loadOptions = (inputValue) => {
-        return fetch(`${GEO_API_URL}/cities?countryIds=LK&minPopulation=100000&namePrefix=${inputValue}`, geoApiOptions)
+        return fetch(`${GEO_API_URL}/cities?countryIds=LK&type=ALL&minPopulation=100000&namePrefix=${inputValue}`, geoApiOptions)
             .then((response) => response.json())
             .then((response) => {
-                console.log(response.data)
-                return {
-                    options: response.data.map((city) => {
-                        return {
-                            value: `${city.latitude} ${city.longitude}`, // Value includes latitude and longitude
-                            label: `${city.name}, ${city.countryCode}`, // Corrected "lable" to "label"
-                        };
-                    }),
-                };
-            })
+                if (response.data && Array.isArray(response.data)) {
+                    return {
+                        options: response.data.map((location) => ({
+                            value: `${location.latitude} ${location.longitude}`, // Latitude and longitude as value
+                            label: `${location.name}, ${location.countryCode}`, // Name and country code as label
+                        })),
+                    };
+                }
+                return { options: [] }; 
+            }) 
             .catch((err) => {
                 console.error("Error fetching options:", err);
                 return { options: [] }; // Return empty options on error
