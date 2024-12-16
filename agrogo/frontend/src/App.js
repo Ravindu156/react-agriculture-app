@@ -5,6 +5,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/Register';
 import Store from './components/page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
+import CropApp from './components/CropCalendar/CropApp';
+import Login from './components/Login';
 
 
 function App() {
