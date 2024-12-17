@@ -3,6 +3,7 @@ import Search from './CropComponents/search/search';
 import'./CropApp.css';
 import CurrentWeather from './CropComponents/current-weather/current-weather';
 import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
+import Forecast from './CropComponents/forecast/forcast';
 
 
 function CropApp() {
@@ -36,6 +37,7 @@ function CropApp() {
 
 <Search  onSearchChange={handleOnSearchChange}/>
 {currentWeather && <CurrentWeather data={currentWeather}/>}
+{forecast && <Forecast data={forecast}/>}
 
 </div>
   );
