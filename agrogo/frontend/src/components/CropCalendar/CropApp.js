@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Search from './CropComponents/search/search';
-import'./CropApp.css';
+import './CropApp.css';
 import CurrentWeather from './CropComponents/current-weather/current-weather';
 import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
 import Forecast from './CropComponents/forecast/forcast';
+import GoogleMapComponent from './CropComponents/map/googlemap';
+import "leaflet/dist/leaflet.css";
 
 
 function CropApp() {
@@ -12,36 +14,39 @@ function CropApp() {
   const [forecast, setForecast] = useState(null);
 
 
-  const handleOnSearchChange = (searchData)=>{
+  const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
     const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
 
-    Promise.all([currentWeatherFetch,forecastFetch])
-    .then(async(response)=>{
-      const WeatherResponse = await response[0].json();
-      const forecastResponse = await response[1].json();
+    Promise.all([currentWeatherFetch, forecastFetch])
+      .then(async (response) => {
+        const WeatherResponse = await response[0].json();
+        const forecastResponse = await response[1].json();
 
-      setCurrentWeather({city: searchData.label, ...WeatherResponse});
-      setForecast({city: searchData.label, ...forecastResponse});
-    })
-    .catch((err) => console.log(err));
-    }
+        setCurrentWeather({ city: searchData.label, ...WeatherResponse });
+        setForecast({ city: searchData.label, ...forecastResponse });
+      })
+      .catch((err) => console.log(err));
+  }
 
-    console.log(currentWeather);
-    console.log(forecast);
+  console.log(currentWeather);
+  console.log(forecast);
 
-  return(
-<div className="container">
-
-<Search  onSearchChange={handleOnSearchChange}/>
-{currentWeather && <CurrentWeather data={currentWeather}/>}
-{forecast && <Forecast data={forecast}/>}
-
-</div>
+  return (
+    <div className="container">
+      <div className="we">
+        <Search onSearchChange={handleOnSearchChange} />
+        {currentWeather && <CurrentWeather data={currentWeather} />}
+        {forecast && <Forecast data={forecast} />}
+      </div>
+      <div className="map">
+        <GoogleMapComponent />
+      </div>
+    </div>
   );
-  
+
 };
 
 export default CropApp;
