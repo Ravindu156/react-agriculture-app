@@ -8,10 +8,25 @@ import Menu from './page/Menu';
 import Newproduct from './page/Newproduct';
 import HomePage from './components/HomePage';
 import Header from './components/Header';
+import { useEffect } from "react";
+import { setDataProduct } from "./redux/ProductSlide";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 function App() {
+  const dispatch = useDispatch()
+  const productData = useSelector((state)=>state.product)
+ 
+  useEffect(()=>{
+    (async()=>{
+      const res = await fetch(`http://localhost:8080/product`)
+      const resData = await res.json()
+      dispatch(setDataProduct(resData))
+    })()
+  },[])
+
+
   return(
 <Router>
       <Routes>
