@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 //mongodb connection
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.MONGODB_URL)
+  .connect("mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo")
   .then(() => console.log("Connect to Databse"))
   .catch((err) => console.log(err));
 
