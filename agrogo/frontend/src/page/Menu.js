@@ -18,7 +18,7 @@ const Menu = () => {
 
   const handleBuy = ()=>{
     dispatch(addCartItem(productDisplay))
-      navigate("/cart")
+      navigate("/ecom/cart")
   }
   return (
     <div className="p-2 md:p-4">

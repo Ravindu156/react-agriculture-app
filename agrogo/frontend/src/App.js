@@ -11,6 +11,8 @@ import Header from './components/Header';
 import { useEffect } from "react";
 import { setDataProduct } from "./redux/ProductSlide";
 import { useDispatch, useSelector } from "react-redux";
+import Cart from './page/Cart';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -28,7 +30,10 @@ function App() {
 
 
   return(
+    <>
+      <Toaster/>
 <Router>
+ 
       <Routes>
         <Route path="/" element={<HomePage />} />
        {/*  <Route path="/ecom/home" element={<Home />} /> */}
@@ -36,11 +41,14 @@ function App() {
         <Route path="/ecom/signup" element={<SignUp />} />
         <Route path="/ecom/header" element={<Header/>}/>
         <Route path="/ecom/login" element={<Login/>}/>
-        <Route path="/ecom/menu" element={<Menu/>}/>
+       {/*  <Route path="/ecom/menu" element={<Menu/>}/> */}
+        <Route path="menu/:filterby" element={<Menu />} />
         <Route path="/ecom/newproduct" element={<Newproduct/>}/>
         <Route path='/ecom' element={<Home/>}/>
+        <Route path="/ecom/cart" element={<Cart/>} />
       </Routes>
     </Router>
+    </>
   )
   
 }

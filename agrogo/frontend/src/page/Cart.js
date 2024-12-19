@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CartProduct from "../component/cartProduct";
+import CartProduct from "../components/cartProduct";
 import emptyCartImage from "../assest/empty.gif"
 import { toast } from "react-hot-toast";
 import {loadStripe} from '@stripe/stripe-js';
