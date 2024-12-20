@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080;
 mongoose.set("strictQuery", false);
 mongoose
   .connect("mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo")
-  .then(() => console.log("Connect to Databse"))
+  .then(() => console.log("Connect to Databse...."))
   .catch((err) => console.log(err));
 
 //schema
@@ -115,7 +115,7 @@ app.post("/uploadProduct",async(req,res)=>{
     const data = await productModel(req.body)
     const datasave = await data.save()
     res.send({message : "Upload successfully", data: data});
-    console.log(data);
+   // console.log(data);
 })
 
 //
