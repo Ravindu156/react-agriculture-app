@@ -5,7 +5,7 @@ import HomePage from './components/HomePage';
 import Register from './components/Register';
 import Store from './components/page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
-
+import Inorganic from'./components/page/Store/InorganicProducts'; 
 
 function App() {
   return(
@@ -16,6 +16,7 @@ function App() {
       
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
+      <Route path="/Inorganic" element={<Inorganic />} />
       </Routes>
   
   </Router>

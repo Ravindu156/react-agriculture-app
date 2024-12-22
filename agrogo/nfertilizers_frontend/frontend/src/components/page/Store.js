@@ -6,6 +6,7 @@ import NavigationBar from './Store/StoreCom/NavigationBar';
 import ProductCard from './Store/StoreCom/ProductCard';
 import Cart from './Store/Cart';
 import Seller from './Store/StoreCom/Seller';
+import Inorganic from './Store/InorganicProducts';
 import Of from'./Store/StoreAssets/Img/OF.jpg';
 import ONF from'./Store/StoreAssets/Img/NF.png';
 import Nf from'./Store/StoreAssets/Img/FF.jpg';
@@ -53,6 +54,7 @@ const handleRemoveFromCart = (productId) => {
     <Routes>
                 <Route path="/store" element={<ProductCard products={products} />} />
                 <Route path="/sell" element={<Seller onAddProduct={handleAddProduct} />} />
+                <Route path="/inoganic" element={<Inorganic onAddProduct={handleAddProduct} />} />
                 {/* Add other routes as needed */}
             </Routes>
     <div className="product-list">
@@ -66,7 +68,10 @@ const handleRemoveFromCart = (productId) => {
             </div>
     
             <Cart cartItems={cart} onRemoveFromCart={handleRemoveFromCart} /> {/* Render the Cart component */}
+            
   </div>
+
+  
   );
 };
 
