@@ -12,29 +12,29 @@ app.use(express.json({ limit: "10mb" }));
 
 const PORT = process.env.PORT || 8080;
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+//app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use(bodyParser.json());
 
 //mongodb connection
 mongoose.set("strictQuery", false);
-// mongoose
-//   .connect("mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo")
-//   .then(() => console.log("Connect to Databse...."))
-//   .catch((err) => console.log(err));
-  mongoose
-  .connect(
-    "mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
-  .then(() => {
-    console.log("Connected to Database!");
-    process.exit(0); // Exit the process after a successful connection
-  })
-  .catch((err) => {
-    console.error("Connection Error:", err);
-    process.exit(1); // Exit with an error code
-  });
+mongoose
+  .connect("mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo")
+  .then(() => console.log("Connect to Databse...."))
+  .catch((err) => console.log(err));
+  // mongoose
+  // .connect(
+  //   "mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo?retryWrites=true&w=majority",
+  //   { useNewUrlParser: true, useUnifiedTopology: true }
+  // )
+  // .then(() => {
+  //   console.log("Connected to Database!");
+  //   process.exit(0); // Exit the process after a successful connection
+  // })
+  // .catch((err) => {
+  //   console.error("Connection Error:", err);
+  //   process.exit(1); // Exit with an error code
+  // });
 
 //schema
 const userSchema = mongoose.Schema({
@@ -197,6 +197,6 @@ app.get("/product",async(req,res)=>{
 //server is ruuning
 
 
-app.use('/api/users', userRoutes);
+//app.use('/api/users', userRoutes);
 
 app.listen(PORT, () => console.log("server is running at port : " + PORT));
