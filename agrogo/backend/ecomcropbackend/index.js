@@ -3,12 +3,18 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const Stripe = require('stripe')
+const bodyParser = require('body-parser');
+const userRoutes = require('../routes/users');
 
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
 const PORT = process.env.PORT || 8080;
+
+app.use(cors({ origin: 'http://localhost:3000' }));
+
+app.use(bodyParser.json());
 
 //mongodb connection
 mongoose.set("strictQuery", false);
@@ -176,4 +182,8 @@ app.get("/product",async(req,res)=>{
 
 
 //server is ruuning
+
+
+app.use('/api/users', userRoutes);
+
 app.listen(PORT, () => console.log("server is running at port : " + PORT));

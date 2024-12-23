@@ -6,13 +6,15 @@ import SignUp from './page/SignUp';
 import Login from './page/Login';
 import Menu from './page/Menu';
 import Newproduct from './page/Newproduct';
-import HomePage from './components/HomePage';
+import HomePage from './home/HomePage';
 import Header from './components/Header';
 import { useEffect } from "react";
 import { setDataProduct } from "./redux/ProductSlide";
 import { useDispatch, useSelector } from "react-redux";
 import Cart from './page/Cart';
 import { Toaster } from 'react-hot-toast';
+import Register from './home/Register';
+import Login1 from './home/Login';
 
 
 
@@ -36,6 +38,8 @@ function App() {
  
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path = "/register" element = {<Register/>}/>
+      <Route path = '/login' element = {<Login1/>}/>
        {/*  <Route path="/ecom/home" element={<Home />} /> */}
         <Route path="/ecom/about" element={<About />} />
         <Route path="/ecom/signup" element={<SignUp />} />
