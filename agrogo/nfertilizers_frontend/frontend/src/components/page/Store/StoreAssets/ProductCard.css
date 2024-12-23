@@ -8,6 +8,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.agro-card {
+    border: 1px solid #cf5a5a;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px;
+    width: 200px; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .product-image {
     width: 100%;
     height: auto;

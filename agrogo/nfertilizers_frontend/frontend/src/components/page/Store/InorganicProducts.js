@@ -88,7 +88,7 @@ const filteredProducts = products.filter(product =>
             <div style={{ flex: 1, padding: '20px' }}>
                 
             </div>
-            <div style={{ flex: 2, padding: '20px', marginLeft: '20px' }}>
+            <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
                 <h2>Inorganic Products</h2>
                 {selectedProductData ? (
                     <BarChart data={selectedProductData} />
