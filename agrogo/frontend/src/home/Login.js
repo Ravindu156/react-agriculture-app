@@ -13,7 +13,7 @@ export default function Login () {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/users/login/', { email, password });
+      const response = await axios.post('http://localhost:5000/api/users/login/', { email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard'); 
     } catch (error) {

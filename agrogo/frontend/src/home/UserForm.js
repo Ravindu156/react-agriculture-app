@@ -131,7 +131,7 @@ export default function UserForm(){
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/api/users", formData);
+      const response = await axios.post("http://localhost:5000/api/users/", formData);
 
     setFormData({
       firstname:"",
