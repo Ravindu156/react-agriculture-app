@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Image from '../Images/farmer.jpg';
+import Image from '../Images/Reg (2).jpg';
 
 
 export default function Login () {

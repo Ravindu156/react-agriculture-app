@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Image from '../Images/farmer.jpg';
+import Image from '../Images/Reg (2).jpg';
 import { useNavigate } from "react-router-dom";
 
 export default function UserForm(){
