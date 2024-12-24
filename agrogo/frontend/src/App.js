@@ -36,20 +36,30 @@ function App() {
       <Toaster/>
 <Router>
  
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/>
-       {/*  <Route path="/ecom/home" element={<Home />} /> */}
+       {/*  <Route path="/ecom/home" element={<Home />} /> 
         <Route path="/ecom/about" element={<About />} />
         <Route path="/ecom/signup" element={<SignUp />} />
         <Route path="/ecom/header" element={<Header/>}/>
         <Route path="/ecom/login" element={<Login/>}/>
-       {/*  <Route path="/ecom/menu" element={<Menu/>}/> */}
+         <Route path="/ecom/menu" element={<Menu/>}/> 
         <Route path="menu/:filterby" element={<Menu />} />
         <Route path="/ecom/newproduct" element={<Newproduct/>}/>
         <Route path='/ecom' element={<Home/>}/>
         <Route path="/ecom/cart" element={<Cart/>} />
+      </Routes> */}
+
+
+      <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path = "/register" element = {<Register/>}/>
+      <Route path = '/login' element = {<Login/>}/>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} />
       </Routes>
     </Router>
     </>
