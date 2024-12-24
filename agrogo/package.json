@@ -15,6 +15,11 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.2"
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.469.0",
+    "mongoose": "^8.9.2",
+    "react-accessible-accordion": "^5.0.0",
+    "react-select-async-paginate": "^0.7.7",
+    "slick-carousel": "^1.8.1"
   }
 }

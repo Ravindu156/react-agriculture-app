@@ -6,15 +6,22 @@ import SignUp from './page/SignUp';
 import Login from './page/Login';
 import Menu from './page/Menu';
 import Newproduct from './page/Newproduct';
-import HomePage from './home/HomePage';
 import Header from './components/Header';
 import { useEffect } from "react";
 import { setDataProduct } from "./redux/ProductSlide";
 import { useDispatch, useSelector } from "react-redux";
 import Cart from './page/Cart';
 import { Toaster } from 'react-hot-toast';
-import Register from './home/Register';
+
 import Login1 from './home/Login';
+
+import HomePage from './home/HomePage';
+import Dashboard from './components/dashboard/Dashboard';
+import Register from './home/Register';
+// import Store from './components/page/Store';
+// import Seller from './components/page/Store/StoreCom/Seller';
+
+
 
 
 
@@ -54,12 +61,15 @@ function App() {
 
 
       <Routes>
+
       <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
-      <Route path = '/login' element = {<Login/>}/>
+      <Route path = '/login' element = {<Login1/>}/>
+      
+      {/* <Route path = '/login' element = {<Login/>}/> */}
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/Store" element={<Store />} />
-      <Route path="/Seller" element={<Seller />} />
+      {/* <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} /> */}
       </Routes>
     </Router>
     </>
