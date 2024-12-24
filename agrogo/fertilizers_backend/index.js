@@ -32,6 +32,13 @@ app.post("/uploadProduct",async(req,res)=>{
     res.send({message:"upload successfully"})
 })
 
+
+//
+app.get("/product",async(req,res)=>{
+    const data = await productModel.find({})
+    res.send(JSON.stringify(data))
+  })
+  
 //api
 app.get("/",(req,res)=>{
     res.send("Server is running")
