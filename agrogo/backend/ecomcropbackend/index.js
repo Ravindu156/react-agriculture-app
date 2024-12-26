@@ -5,6 +5,9 @@ const dotenv = require("dotenv").config();
 const Stripe = require('stripe')
 const bodyParser = require('body-parser');
 const userRoutes = require('../routes/users');
+//const articleRoutes = require('../routes/article');
+
+
 
 const app = express();
 app.use(cors());
@@ -198,5 +201,10 @@ app.get("/product",async(req,res)=>{
 
 
 //app.use('/api/users', userRoutes);
+
+
+
+// Use article routes
+//app.use('/api/articles', articleRoutes);
 
 app.listen(PORT, () => console.log("server is running at port : " + PORT));

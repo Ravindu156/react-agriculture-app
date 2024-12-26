@@ -39,7 +39,7 @@ const Article = () => {
               >
                 &times; {/* Close symbol */}
               </button>
-              <h2 className="text-black">Add Article</h2>
+             
             </div>
             <AddArticleForm onAddArticle={handleAddArticle} />
           </div>
