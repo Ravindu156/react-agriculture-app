@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AddArticleForm = ({ onAddArticle }) => {
+const AddArticleForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [date, setDate] = useState('');
@@ -10,15 +10,27 @@ const AddArticleForm = ({ onAddArticle }) => {
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState('');
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      setImage(file);
+    } else {
+      alert('Please upload a valid image file.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newArticle = new FormData();
     newArticle.append('title', title);
     newArticle.append('author', author);
     newArticle.append('date', date);
     newArticle.append('category', category);
     newArticle.append('content', content);
-    newArticle.append('image', image); // Append the image file
+    if (image) {
+      newArticle.append('image', image);
+    }
 
     try {
       const response = await axios.post('http://localhost:5000/api/articles/addArticle', newArticle, {
@@ -38,15 +50,6 @@ const AddArticleForm = ({ onAddArticle }) => {
     } catch (error) {
       console.error('Error adding article:', error);
       setMessage('Error adding article. Please try again.');
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith('image/')) {
-      setImage(file);
-    } else {
-      alert('Please upload a valid image file.');
     }
   };
 
