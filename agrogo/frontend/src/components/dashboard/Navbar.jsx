@@ -36,12 +36,16 @@ const Navbar = () => {
             <span className="text-xl tracking-tight">Agrogo</span>
           </div>
           <ul className="hidden lg:flex ml-14 space-x-12">
+            
+          <a href="#articles" className="scroll-smooth">Articles</a>
+
             {navItems.map((item, index) => (
               <li key={index}>
                 <a href={item.href}>{item.label}</a>
               </li>
             ))}
           </ul>
+          
           <div className="hidden lg:flex items-center space-x-6 ml-auto">
             {/* Notification Button */}
             <button onClick={toggleNotifications} className="relative hide-scrollbar">

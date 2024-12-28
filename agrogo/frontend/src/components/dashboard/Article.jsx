@@ -27,7 +27,7 @@ const Article = () => {
   };
 
   return (
-    <div className="mt-20 hide-scrollbar">
+    <div id="articles" className="mt-20 hide-scrollbar">
       <div className="flex justify-center items-center my-10">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center">Articles</h2>
         <button
