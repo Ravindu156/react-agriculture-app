@@ -37,7 +37,7 @@ const Navbar = () => {
           </div>
           <ul className="hidden lg:flex ml-14 space-x-12">
             
-          <a href="#articles" className="scroll-smooth">Articles</a>
+          
 
             {navItems.map((item, index) => (
               <li key={index}>
