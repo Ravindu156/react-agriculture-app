@@ -6,7 +6,6 @@ const app = express();
 const userRoutes = require('./routes/users');
 const multer = require('multer');
 const path = require('path');
-
 const articleRoutes = require('./routes/article');
 
 

@@ -30,12 +30,15 @@ const Article = () => {
     <div id="articles" className="mt-20 hide-scrollbar" >
       <div className="flex justify-center items-center my-10 custom-padding">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center " >Articles</h2>
+        
+        
+
         <button
           onClick={() => setShowForm(true)}
-          className="bg-blue-500 text-white p-2 rounded relative "
+          className="bg-blue-500 text-white p-2  relative rounded-full"
           onMouseOver={(e) => e.currentTarget.setAttribute('title', 'Add Article')}
         >
-          +
+          Add Articles
         </button>
       </div>
 

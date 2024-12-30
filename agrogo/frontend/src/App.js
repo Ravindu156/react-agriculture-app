@@ -43,11 +43,11 @@ function App() {
       <Toaster/>
 <Router>
  
-      {/* <Routes>
+       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/>
-       {/*  <Route path="/ecom/home" element={<Home />} /> 
+        <Route path="/ecom/home" element={<Home />} /> 
         <Route path="/ecom/about" element={<About />} />
         <Route path="/ecom/signup" element={<SignUp />} />
         <Route path="/ecom/header" element={<Header/>}/>
@@ -57,7 +57,7 @@ function App() {
         <Route path="/ecom/newproduct" element={<Newproduct/>}/>
         <Route path='/ecom' element={<Home/>}/>
         <Route path="/ecom/cart" element={<Cart/>} />
-      </Routes> */}
+      </Routes> 
 
 
       <Routes>
