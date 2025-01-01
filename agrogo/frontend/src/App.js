@@ -20,7 +20,10 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
 // import Store from './components/page/Store';
 // import Seller from './components/page/Store/StoreCom/Seller';
-
+import CropCalendar from'./components/cropcalendar/cropApp';
+import Store from './components/page/Store';
+import Seller from './components/page/Store/StoreCom/Seller';
+import Inorganic from'./components/page/Store/InorganicProducts'; 
 
 
 
@@ -43,11 +46,11 @@ function App() {
       <Toaster/>
 <Router>
  
-      {/* <Routes>
+       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/>
-       {/*  <Route path="/ecom/home" element={<Home />} /> 
+        <Route path="/ecom/home" element={<Home />} /> 
         <Route path="/ecom/about" element={<About />} />
         <Route path="/ecom/signup" element={<SignUp />} />
         <Route path="/ecom/header" element={<Header/>}/>
@@ -57,7 +60,7 @@ function App() {
         <Route path="/ecom/newproduct" element={<Newproduct/>}/>
         <Route path='/ecom' element={<Home/>}/>
         <Route path="/ecom/cart" element={<Cart/>} />
-      </Routes> */}
+      </Routes> 
 
 
       <Routes>
@@ -70,6 +73,10 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} /> */}
+      <Route path="/cropcalendar" element={<CropCalendar/>}/>
+      <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} />
+      <Route path="/Inorganic" element={<Inorganic />} />
       </Routes>
     </Router>
     </>
