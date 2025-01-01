@@ -25,7 +25,7 @@ app.use('/api/articles', articleRoutes);
 
 // MongoDB Connection
 mongoose
-    .connect('mongodb://localhost:27017/', {
+    .connect('mongodb://localhost:27017/scgh', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
