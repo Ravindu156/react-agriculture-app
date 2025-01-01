@@ -4,9 +4,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const userRoutes = require('./routes/users');
+
+require('dotenv').config();
+const chatRoutes = require('./routes/ChatBot')
+
 const multer = require('multer');
 const path = require('path');
 const articleRoutes = require('./routes/article');
+
 
 
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -29,6 +34,9 @@ mongoose.connect("mongodb://localhost:27017/scg", { useNewUrlParser: true, useUn
 
 
     app.use('/api/users', userRoutes);
+
+    app.use('/api/chat',chatRoutes)
+=======
 
     // Routes
 app.use('/api/articles', articleRoutes);
