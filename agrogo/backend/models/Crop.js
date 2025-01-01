@@ -15,5 +15,6 @@ const cropSchema = mongoose.Schema({
   });
   
   
-  const userModel = mongoose.model("user", userSchema);
+  const cropModel = mongoose.model("crop", cropSchema);
+  module.exports = cropModel;
   

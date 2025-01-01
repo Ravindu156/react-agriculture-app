@@ -17,9 +17,15 @@ import HomePage from './home/HomePage';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
 import CropCalendar from'./components/cropcalendar/cropApp';
+<<<<<<< HEAD
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
+=======
+//import Store from './components/page/Store';
+//import Seller from './components/page/Store/StoreCom/Seller';
+//import Inorganic from'./components/page/Store/InorganicProducts'; 
+>>>>>>> 657509e79cbd622d0d965a73d012f512355007cb
 
 
 
@@ -30,7 +36,7 @@ function App() {
  
   useEffect(()=>{
     (async()=>{
-      const res = await fetch(`http://localhost:8080/product`)
+      const res = await fetch(`http://localhost:5000/ecom/products/product`)
       const resData = await res.json()
       dispatch(setDataProduct(resData))
     })()
@@ -70,9 +76,9 @@ function App() {
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
-      <Route path="/Store" element={<Store />} />
+      {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
-      <Route path="/Inorganic" element={<Inorganic />} />
+      <Route path="/Inorganic" element={<Inorganic />} /> */}
       </Routes>
     </Router>
     </>
