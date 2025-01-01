@@ -7,7 +7,7 @@ router.post("/uploadProduct",async(req,res)=>{
     const data = await productModel(req.body)
     const datasave = await data.save()
     res.send({message : "Upload successfully", data: data});
-    console.log(data);
+    //console.log(data);
 })
 
 //
