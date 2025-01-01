@@ -1,4 +1,7 @@
+const mongoose = require('mongoose');
+
 //schema
+
 const cropSchema = mongoose.Schema({
     firstName: String,
     lastName: String,

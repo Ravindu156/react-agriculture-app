@@ -39,7 +39,7 @@ mongoose
   //   process.exit(1); // Exit with an error code
   // });
 
-//schema
+//schema ok
 const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -55,12 +55,12 @@ const userSchema = mongoose.Schema({
 //
 const userModel = mongoose.model("user", userSchema);
 
-//api
+//api ok
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-//sign up
+//sign up ok
 app.post("/signup", async (req, res) => {
   const { email } = req.body;
 
@@ -89,7 +89,7 @@ app.post("/signup", async (req, res) => {
 
 });
 
-//api login
+//api login ok
 app.post("/login", (req, res) => {
   // console.log(req.body);
   const { email } = req.body;
