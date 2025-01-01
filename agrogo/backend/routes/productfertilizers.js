@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
+const productfertilizerModel = require('../models/ProductFertilizer')
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const router = express.Router();
 //api
 router.post("/uploadProduct",async(req,res)=>{
     console.log(req.body)
-    const data = await productModel(req.body)
+    const data = await productfertilizerModel(req.body)
     const datasave = await data.save()
     res.send({message:"upload successfully"})
 })
@@ -16,7 +17,7 @@ router.post("/uploadProduct",async(req,res)=>{
 
 //
 router.get("/product",async(req,res)=>{
-    const data = await productModel.find({})
+    const data = await productfertilizerModel.find({})
     res.send(JSON.stringify(data))
   })
   
