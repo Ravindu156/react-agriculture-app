@@ -41,9 +41,13 @@ app.post("/uploadProduct",verifyToken,async(req,res)=>{
 
 //
 app.get("/product",verifyToken,async(req,res)=>{
+   try{
     const data = await productfertilizerModel.find({})
     res.send(JSON.stringify(data))
-  })
+  } catch (err) {
+    res.status(500).send({ message: "Error fetching products" });
+}
+})
   
 //api
 app.get("/",(req,res)=>{
