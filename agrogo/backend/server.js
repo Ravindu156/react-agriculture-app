@@ -17,6 +17,7 @@ const cropsRouters = require('./routes/crops');
 const productsRouters = require('./routes/products');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
+const productfertilizerRoute=require('./routes/productfertilizers')
 
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
