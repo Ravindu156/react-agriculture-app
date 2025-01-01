@@ -14,20 +14,20 @@ mongoose.connect('mongodb://localhost:27017/fertlizer_store')
 .catch(err => console.log(err))
 
 //product section
-const schemaProduct = mongoose.Schema({
+const schemaProductfertilizers = mongoose.Schema({
     name:String,
     category:String,
     image:String,
     price:String,
     description:String
 })
-const productModel = mongoose.model("product",schemaProduct)
+const productfertilizerModel = mongoose.model("product",schemaProductfertilizer)
 
 //save product in data
 //api
 app.post("/uploadProduct",async(req,res)=>{
     console.log(req.body)
-    const data = await productModel(req.body)
+    const data = await productfertilizerModel(req.body)
     const datasave = await data.save()
     res.send({message:"upload successfully"})
 })
@@ -35,7 +35,7 @@ app.post("/uploadProduct",async(req,res)=>{
 
 //
 app.get("/product",async(req,res)=>{
-    const data = await productModel.find({})
+    const data = await productfertilizerModel.find({})
     res.send(JSON.stringify(data))
   })
   
