@@ -23,6 +23,7 @@ app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
+app.use('ecom/productfertilizer',productfertilizerRoute);
 
 // MongoDB Connection
 mongoose
