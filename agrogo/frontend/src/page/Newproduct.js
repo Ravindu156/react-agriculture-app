@@ -43,7 +43,7 @@ const Newproduct = () => {
     const {name,image,category,price} = data
 
     if(name && image && category && price){
-      const fetchData = await fetch(`http://localhost:8080/uploadProduct`,{
+      const fetchData = await fetch(`http://localhost:5000/ecom/products/uploadProduct`,{
         method : "POST",
         headers : {
           "content-type" : "application/json"

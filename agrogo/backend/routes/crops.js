@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { userModel } = require('../models/User')
+const cropModel = require('../models/Crop')
 
 
 router.get("/", (req, res) => {
