@@ -12,16 +12,12 @@ import { setDataProduct } from "./redux/ProductSlide";
 import { useDispatch, useSelector } from "react-redux";
 import Cart from './page/Cart';
 import { Toaster } from 'react-hot-toast';
-
 import Login1 from './home/Login';
-
 import HomePage from './home/HomePage';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
-// import Store from './components/page/Store';
-// import Seller from './components/page/Store/StoreCom/Seller';
 import CropCalendar from'./components/cropcalendar/cropApp';
-import Store from './components/page/Store';
+import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
 
@@ -69,10 +65,10 @@ function App() {
       <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/>
       
-      {/* <Route path = '/login' element = {<Login/>}/> */}
+      {<Route path = '/login' element = {<Login/>}/> }
       <Route path="/dashboard" element={<Dashboard />} />
-      {/* <Route path="/Store" element={<Store />} />
-      <Route path="/Seller" element={<Seller />} /> */}
+      <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} />
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
