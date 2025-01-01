@@ -26,16 +26,21 @@ const productfertilizerModel = mongoose.model("product",schemaProductfertilizer)
 
 //save product in data
 //api
-app.post("/uploadProduct",async(req,res)=>{
+app.post("/uploadProduct",verifyToken,async(req,res)=>{
+    try{
     console.log(req.body)
     const data = await productfertilizerModel(req.body)
     const datasave = await data.save()
     res.send({message:"upload successfully"})
+    } catch (err) {
+        res.status(500).send({ message: "Error uploading product" });
+    }
+
 })
 
 
 //
-app.get("/product",async(req,res)=>{
+app.get("/product",verifyToken,async(req,res)=>{
     const data = await productfertilizerModel.find({})
     res.send(JSON.stringify(data))
   })
