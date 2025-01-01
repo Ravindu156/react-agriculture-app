@@ -20,6 +20,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
 // import Store from './components/page/Store';
 // import Seller from './components/page/Store/StoreCom/Seller';
+import CropCalendar from'./components/cropcalendar/cropApp';
 
 
 
@@ -70,6 +71,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} /> */}
+      <Route path="/cropcalendar" element={<CropCalendar/>}/>
       </Routes>
     </Router>
     </>
