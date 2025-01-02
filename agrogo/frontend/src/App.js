@@ -16,9 +16,13 @@ import { Toaster } from 'react-hot-toast';
 import Login1 from './home/Login';
 
 import HomePage from './home/HomePage';
+import Register from './home/Register';
+
 import Dashboard from './components/dashboard/Dashboard';
 import AdminDashboard from './components/dashboard/AdminDashboard';
-import Register from './home/Register';
+import Profile from "./components/dashboard/Profile";
+
+
 
  import Store from './components/page/Store';
  import Seller from './components/page/Store/StoreCom/Seller';
@@ -69,11 +73,10 @@ function App() {
         <Route path="/ecom/cart" element={<Cart/>} />
         <Route path='/ecom/contact' element={<Contact/>}/>
         <Route path='/ecom/products' element={<Products/>}/>
-      </Routes> 
+     
 
 
-      <Routes>
-
+     
       {/* <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/> */}
@@ -81,6 +84,8 @@ function App() {
       
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/admindashboard" element={<AdminDashboard />} />
+      
+      <Route path="/profile" element={<Profile />} />
 
 
        {/* <Route path="/Store" element={<Store />} />
