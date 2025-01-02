@@ -5,9 +5,11 @@ export const navItems = [
   { label: "Farm Management Tools", href: "/Store" },
   { label: "Farm Supply MarketPlace", href: "/ecom/home" },
   { label: "Crop Calender", href: "/cropcalendar" },
-  { label: "Admin Dashboard", href: "/admindashboard" },
-  { label: "Add Product", href: "/ecom/newproduct" },
+  { label: "ChatBot", href: "#" },
+  { label: "Add Product", href: "/ecom/newproduct", roles: ["farmer"] },
+ 
 ];
+
 
 export const adminnavItems = [
   { label: "User Management", href: "#UserManagement" },

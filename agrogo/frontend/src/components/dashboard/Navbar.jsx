@@ -12,6 +12,15 @@ const Navbar = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem("user")); // Parse the user object
+  const role = user?.role || "guest"; // Default to "guest" if no role is found
+
+  // Filter navItems based on role
+  const filteredNavItems = navItems.filter(
+    (item) => !item.roles || item.roles.includes(role)
+  );
+
+
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
@@ -39,7 +48,7 @@ const Navbar = () => {
             
           
 
-            {navItems.map((item, index) => (
+            {filteredNavItems.map((item, index) => (
               <li key={index}>
                 <a href={item.href}>{item.label}</a>
               </li>
@@ -56,6 +65,8 @@ const Navbar = () => {
                 </div>
               )}
             </button>
+
+
             {/* Profile Button */}
             <button onClick={toggleProfileMenu} className="relative hide-scrollbar">
               <User size={24} />
@@ -76,6 +87,8 @@ const Navbar = () => {
               )}
             </button>
             
+
+            <p>{role}</p>
             
             </div>
           {/* Mobile Navbar Toggle */}
