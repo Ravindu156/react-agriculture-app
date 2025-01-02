@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const productfertilizerModel = require('../models/ProductFertilizer')
-const verifyToken = require("./auth");
+const verifyToken = require("../middleware/auth");
 const router = express.Router();
 
 //save product in data
@@ -20,14 +20,14 @@ router.post("/uploadProduct",verifyToken,async(req,res)=>{
     })
 
 //
-app.get("/product",verifyToken,async(req,res)=>{
-    try{
-     const data = await productfertilizerModel.find({})
-     res.send(JSON.stringify(data))
-   } catch (err) {
-     res.status(500).send({ message: "Error fetching products" });
- }
- })
+// app.get("/product",verifyToken,async(req,res)=>{
+//     try{
+//      const data = await productfertilizerModel.find({})
+//      res.send(JSON.stringify(data))
+//    } catch (err) {
+//      res.status(500).send({ message: "Error fetching products" });
+//  }
+//  })
    
   
 
