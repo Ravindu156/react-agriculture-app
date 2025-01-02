@@ -17,15 +17,15 @@ import HomePage from './home/HomePage';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
 import CropCalendar from'./components/cropcalendar/cropApp';
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
-=======
+//=======
 //import Store from './components/page/Store';
 //import Seller from './components/page/Store/StoreCom/Seller';
 //import Inorganic from'./components/page/Store/InorganicProducts'; 
->>>>>>> 657509e79cbd622d0d965a73d012f512355007cb
+//>>>>>>> 657509e79cbd622d0d965a73d012f512355007cb
 
 
 
@@ -76,9 +76,10 @@ function App() {
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
+      <Route path="/Inorganic" element={<Inorganic />} />
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
-      <Route path="/Inorganic" element={<Inorganic />} /> */}
+       */}
       </Routes>
     </Router>
     </>

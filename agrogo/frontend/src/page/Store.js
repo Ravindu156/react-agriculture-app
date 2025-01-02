@@ -7,6 +7,7 @@ import NavigationBar from '../components/page/Store/StoreCom/NavigationBar';
 import ProductCard from '../components/page/Store/StoreCom/ProductCard';
 import Cart from '../components/page/Store/Cart';
 import Seller from '../components/page/Store/StoreCom/Seller';
+import Inorganic from '../components/page/Store/InorganicProducts';
 import Of from'../components/page/Store/StoreAssets/Img/NF.png';
 import ONF from'../components/page/Store/StoreAssets/Img/NF.png';
 import Nf from'../components/page/Store/StoreAssets/Img/FF.jpg';
@@ -54,6 +55,7 @@ const handleRemoveFromCart = (productId) => {
     <Routes>
                 <Route path="/store" element={<ProductCard products={products} />} />
                 <Route path="/sell" element={<Seller onAddProduct={handleAddProduct} />} />
+                <Route path="/inoganic" element={<Inorganic onAddProduct={handleAddProduct} />} />
                 {/* Add other routes as needed */}
             </Routes>
     <div className="product-list">
