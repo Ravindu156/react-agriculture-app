@@ -30,7 +30,7 @@ const Article = () => {
   };
 
   return (
-    <div id="articles" className="mt-20 hide-scrollbar" >
+    <div id="articles" className="mt-20 hide-scrollbar custom-padding" >
       <div className="flex justify-center items-center my-10 custom-padding">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center " >Articles</h2>
         
@@ -38,7 +38,7 @@ const Article = () => {
  {role === 'Agricultural Executive Officer' && (
         <button
           onClick={() => setShowForm(true)}
-          className="bg-blue-500 text-white p-2  relative rounded-full"
+          className="bg-blue-500 text-white p-2 rounded-full absolute right-20 transform -translate-y-1/2 "
           onMouseOver={(e) => e.currentTarget.setAttribute('title', 'Add Article')}
         >
           Add Articles
