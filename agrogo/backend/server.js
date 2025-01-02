@@ -11,13 +11,14 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json({ limit: '60mb' }));
 app.use(express.urlencoded({ extended: true, limit: '60mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+const profileRoutes = require("./routes/profile");
 // Routers
 const cropsRouters = require('./routes/crops');
 const productsRouters = require('./routes/products');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
 //const productfertilizerRoute=require('./routes/productfertilizers')
+app.use("/api/profiles", profileRoutes);
 
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
