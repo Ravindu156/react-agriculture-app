@@ -5,15 +5,11 @@ const mongoose = require("mongoose")
 const productfertilizerModel = require('../models/ProductFertilizer')
 const verifyToken = require("../middleware/auth");
 
-// routes/productfertilizerroute.js
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const productFertilizerModel = require('../models/ProductFertilizer');
+
 //const verifyToken = require("./auth");
 
 const router = express.Router();
-const verifyToken = require('../middleware/auth');
+
 
 
 
