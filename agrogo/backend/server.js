@@ -17,13 +17,13 @@ const cropsRouters = require('./routes/crops');
 const productsRouters = require('./routes/products');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
-const productfertilizerRoute=require('./routes/productfertilizers')
+//const productfertilizerRoute=require('./routes/productfertilizers')
 
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
-app.use('/ecom/productfertilizer',productfertilizerRoute);
+//app.use('/ecom/productfertilizer',productfertilizerRoute);
 
 // MongoDB Connection
 mongoose
