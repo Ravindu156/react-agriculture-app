@@ -1,6 +1,14 @@
 const express=require("express");
 const router = express.Router();
 const User = require("../models/User");
+const multer = require("multer");
+
+// Configure Multer for profile picture uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+});
+const upload = multer({ storage });
 
 // Get user profile
 router.get("/:id", async (req, res) => {
