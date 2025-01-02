@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+
+
 const mongoose = require('mongoose');
 
 // Define the schema
@@ -15,7 +16,7 @@ const productfertilizerModel =
     mongoose.models.product || mongoose.model("product", schemaproductfertilizer);
 
 module.exports = productfertilizerModel;
-=======
+
 //product section
 // const mongoose = require('mongoose');
 
@@ -27,4 +28,21 @@ module.exports = productfertilizerModel;
 //     description:String
 // })
 // const productfertilizerModel = mongoose.model("fertilizer",schemaproductfertilizer)
->>>>>>> 5b86e050196a97dc38d60f5c7b63aaea1cc9997f
+
+/// models/productfertilizer.js
+const mongoose = require('mongoose');
+
+// Rename the schema to be more specific
+const productFertilizerSchema = mongoose.Schema({
+  name: String,
+  category: String,
+  image: String,
+  price: String,
+  description: String,
+});
+
+// Rename the model to be distinct
+const productFertilizerModel = mongoose.model("ProductFertilizer", productFertilizerSchema);
+
+module.exports = productFertilizerModel;
+
