@@ -17,14 +17,19 @@ import Login1 from './home/Login';
 
 import HomePage from './home/HomePage';
 import Dashboard from './components/dashboard/Dashboard';
+import AdminDashboard from './components/dashboard/AdminDashboard';
 import Register from './home/Register';
+
 // import Store from './components/page/Store';
 // import Seller from './components/page/Store/StoreCom/Seller';
-import CropCalendar from'./components/cropcalendar/cropApp';
+
+
+import CropCalendar from './components/cropcalendar/cropApp';
 import Contact from './page/Contact';
 import Products from './components/Products';
-//import Store from './components/page/Store';
-//import Seller from './components/page/Store/StoreCom/Seller';
+
+// import Store from './components/page/Store';
+// import Seller from './components/page/Store/StoreCom/Seller';
 //import Inorganic from'./components/page/Store/InorganicProducts'; 
 
 
@@ -73,10 +78,15 @@ function App() {
       <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/>
       
-      {/* <Route path = '/login' element = {<Login/>}/> */}
+      
       <Route path="/dashboard" element={<Dashboard />} />
-      {/* <Route path="/Store" element={<Store />} />
-      <Route path="/Seller" element={<Seller />} /> */}
+      <Route path="/admindashboard" element={<AdminDashboard />} />
+
+
+       {/* <Route path="/Store" element={<Store />} />
+      <Route path="/Seller" element={<Seller />} />  */}
+
+
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
