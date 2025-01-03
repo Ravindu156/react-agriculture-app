@@ -1,5 +1,5 @@
 /* General Styles */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,10 +23,10 @@
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
+  } */
   
   /* Gradient Left Section */
-  .gradient-background {
+  /* .gradient-background {
     width: 40%;
     background: linear-gradient(135deg, black, darkgreen, lightgreen);
     display: flex;
@@ -40,7 +40,8 @@
   }
   
   /* Profile Form Right Section */
-  .profile-container {
+
+  /* .profile-container {
     width: 60%;
     padding: 40px;
     display: flex;
@@ -106,7 +107,7 @@
   }
   
   /* Responsive Design */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .profile-wrapper {
       flex-direction: column;
     }
@@ -120,5 +121,5 @@
       width: 100%;
       padding: 20px;
     }
-  }
-  
+  } */ 
+   
