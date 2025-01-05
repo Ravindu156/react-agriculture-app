@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
 import AgroCard from '../Store/StoreCom/AgroCard';
-import './StoreAssets/StoreNav.css';
+import './StoreAssets/Inorganic.css';
 import BarChart from './StoreCom/BarChart';
 
 const InorganicProducts = () => {

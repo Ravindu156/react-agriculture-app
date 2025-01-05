@@ -44,8 +44,7 @@ This app is designed to help farmers manage their crops, access expert advice, t
 - **Dialogflow**: For natural language processing.
 - **TensorFlow.js** or **Keras**: For image recognition to analyze crop diseases.
 
-### Scheduling & Zoom Integration
-- **Zoom API**: To schedule and conduct virtual meetings with agricultural experts.
+### Scheduling 
 - **Calendar API**: To display and manage meeting schedules.
 
 

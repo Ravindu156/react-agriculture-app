@@ -18,10 +18,15 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './home/Register';
 import CropCalendar from'./components/cropcalendar/cropApp';
 //<<<<<<< HEAD
+//<<<<<<< HEAD
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
 //=======
+//=======
+import Contact from './page/Contact';
+import Products from './components/Products';
+//>>>>>>> 0febb36ddfad058cacd8ce83d660aa16adf6b4c7
 //import Store from './components/page/Store';
 //import Seller from './components/page/Store/StoreCom/Seller';
 //import Inorganic from'./components/page/Store/InorganicProducts'; 
@@ -51,25 +56,27 @@ function App() {
        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path = "/register" element = {<Register/>}/>
-      <Route path = '/login' element = {<Login1/>}/>
+        <Route path = '/login' element = {<Login1/>}/>
         <Route path="/ecom/home" element={<Home />} /> 
         <Route path="/ecom/about" element={<About />} />
         <Route path="/ecom/signup" element={<SignUp />} />
         <Route path="/ecom/header" element={<Header/>}/>
         <Route path="/ecom/login" element={<Login/>}/>
-         <Route path="/ecom/menu" element={<Menu/>}/> 
+        <Route path="/ecom/menu" element={<Menu/>}/> 
         <Route path="menu/:filterby" element={<Menu />} />
         <Route path="/ecom/newproduct" element={<Newproduct/>}/>
         <Route path='/ecom' element={<Home/>}/>
         <Route path="/ecom/cart" element={<Cart/>} />
+        <Route path='/ecom/contact' element={<Contact/>}/>
+        <Route path='/ecom/products' element={<Products/>}/>
       </Routes> 
 
 
       <Routes>
 
-      <Route path="/" element={<HomePage />} />
+      {/* <Route path="/" element={<HomePage />} />
       <Route path = "/register" element = {<Register/>}/>
-      <Route path = '/login' element = {<Login1/>}/>
+      <Route path = '/login' element = {<Login1/>}/> */}
       
       {<Route path = '/login' element = {<Login/>}/> }
       <Route path="/dashboard" element={<Dashboard />} />

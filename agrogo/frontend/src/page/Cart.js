@@ -5,6 +5,7 @@ import emptyCartImage from "../assest/empty.gif"
 import { toast } from "react-hot-toast";
 import {loadStripe} from '@stripe/stripe-js';
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const Cart = () => {
   const productCartItem = useSelector((state) => state.product.cartItem);
@@ -52,8 +53,8 @@ const Cart = () => {
   }
   return (
     <>
-    
-      <div className="p-2 md:p-4">
+      <Header/>
+      <div className="p-2 md:p-6">
         <h2 className="text-lg md:text-2xl font-bold text-slate-600">
           Your Cart Items
         </h2>
