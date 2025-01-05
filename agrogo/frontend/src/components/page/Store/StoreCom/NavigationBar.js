@@ -6,18 +6,13 @@ const NavigationBar = () => {
   return (
     <nav className="nav-bar">
     <ul>
-      <li><Link to="/fertilizers">Fertilizers</Link></li>
-      <li><Link to="/farming-tools">Farming Tools</Link></li>
-      <li><Link to="/organic-products">Organic Products</Link></li>
-
-      <li><Link to="/inorganic">Inorganic Products</Link></li>
+      
+      <li><Link to="/inorganic">Exchange</Link></li>
       <li>
-          <Link to="/Seller" className="sell-button">Sell</Link>
+          <Link to="/Seller" className="sell-button">Sell product</Link>
       </li>
-      <li><Link to="/inorganic-products">Inorganic Products</Link></li>
       <li>
-          <Link to="/Seller" className="sell-button">Sell Products</Link>
-
+          <Link to="/buy" className="buy-button">buy product</Link>
       </li>
     </ul>
   </nav>

@@ -78,7 +78,7 @@ export default function HomePage(){
               <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
               <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
               <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
-              {/* <Link to="/store">E-Store</Link> */}
+              <Link to="/store">E-Store</Link> 
             </nav>
           </header>
     

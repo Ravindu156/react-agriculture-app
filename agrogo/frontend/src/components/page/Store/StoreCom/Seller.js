@@ -9,12 +9,10 @@ import NavigationBar from './NavigationBar';
 const Seller = ({ onAddProduct }) => {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('Fertilizer');
-    const [image, setImage] = useState(null);
     const [quantity, setQuantity] = useState(1);
-//<<<<<<< HEAD
+    const [place, setPlace] = useState(1);
     const [price, setPrice] = useState(1);
-//=======
-//>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
+    const [product, setProduct] = useState(1);
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
 
@@ -22,9 +20,9 @@ const Seller = ({ onAddProduct }) => {
         e.preventDefault();
         const product = {
             id: Date.now(), // Simple ID generation
-            name,
+            product,
             category,
-            image: URL.createObjectURL(image), // Create a URL for the image
+            place,
             price: 0, // Set a default price or add a price input
             quantity,
             description,
@@ -40,34 +38,30 @@ const Seller = ({ onAddProduct }) => {
         <div className="seller-form">
              
 
-        <div className="seller-form">
+        
 
-</div>
+
             <h2>Add a New Product</h2>
             <form onSubmit={handleSubmit}>
             <p>Name of the product</p>
-                <input
-                    type="text"
-                    placeholder="Product Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
+                <select value={product} onChange={(e) => setCategory(e.target.value)}>
+                    <option value="Carrot">Carrot</option>
+                    <option value="Beans">Beans Product</option>
+                </select>
              <p>Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                    <option value="Fertilizer">Fertilizer</option>
-                    <option value="Tool">Tool</option>
                     <option value="Inorganic Product">Inorganic Product</option>
                     <option value="Organic Product">Organic Product</option>
                 </select>
-              <p>Upload a image</p>   
-                <input
-                    type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
-                    required
-                />
 
-                <p>Price</p>
+            <p>Select the place</p>    
+                <select value={place} onChange={(e) => setCategory(e.target.value)}>
+                    <option value="Nuwaraeliya">Nuwaraeliya</option>
+                    <option value="jaffna">Jaffna</option>
+                </select>   
+              
+
+                <p>Ask Price</p>
                 <input
                     
                     type="number"
@@ -79,7 +73,7 @@ const Seller = ({ onAddProduct }) => {
                 />
 
 
-                <p>Quantity</p>
+                <p>Quantity (in Kg)</p>
                 <input
                     
                     type="number"
@@ -103,8 +97,9 @@ const Seller = ({ onAddProduct }) => {
                 <button type="submit">Add Product</button>
             </form>
         </div>
-
         </div>
+
+        
 
     );
 };

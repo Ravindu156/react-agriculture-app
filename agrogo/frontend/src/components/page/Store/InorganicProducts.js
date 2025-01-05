@@ -62,9 +62,13 @@ const filteredProducts = products.filter(product =>
 
 
   return (
-   <div>
+    <div>
     <NavigationBar />
-    <div className="search-container">
+    
+    <div className="inorganic-products-container">
+   
+    <div className="search-bar">
+      <h2>Serch Product and Select</h2>
         <input
           type="text"
           placeholder="Search for Inorganic Products..."
@@ -73,24 +77,29 @@ const filteredProducts = products.filter(product =>
           className="search-input"
         />
       </div>
-      <div className="product-list">
+      <div className="products-display">
         {filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
+            <div key={product.id} className="product-card ">
             <AgroCard key={product.id} 
             product={product} 
             onSelect={() => handleProductSelect(product)}
             />
+            </div>
           ))
         ) : (
           <p>No products found.</p>
         )}
       </div>
-      <div style={{ display: 'flex' }}>
+
+
+      <div className="charts-display">
             <div style={{ flex: 1, padding: '20px' }}>
-                
+            <h2>Product Sales Charts</h2>
             </div>
+           
             <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
-                <h2>Inorganic Products</h2>
+                
                 {selectedProductData ? (
                     <BarChart data={selectedProductData} />
                 ) : (
@@ -100,7 +109,7 @@ const filteredProducts = products.filter(product =>
         </div>
 
     </div> 
-
+    </div>
   );
 };
 
