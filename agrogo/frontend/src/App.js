@@ -15,43 +15,20 @@ import { Toaster } from 'react-hot-toast';
 import Login1 from './home/Login';
 import HomePage from './home/HomePage';
 import Register from './home/Register';
-<<<<<<< HEAD
+
 import CropCalendar from'./components/cropcalendar/cropApp';
-//<<<<<<< HEAD
-//<<<<<<< HEAD
+
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
-//=======
-//=======
+
 import Contact from './page/Contact';
 import Products from './components/Products';
-//>>>>>>> 0febb36ddfad058cacd8ce83d660aa16adf6b4c7
-//import Store from './components/page/Store';
-//import Seller from './components/page/Store/StoreCom/Seller';
-=======
+
 
 import Dashboard from './components/dashboard/Dashboard';
 import AdminDashboard from './components/dashboard/AdminDashboard';
 import Profile from "./components/dashboard/Profile";
-
-
-
- import Store from './components/page/Store';
- import Seller from './components/page/Store/StoreCom/Seller';
-
-
-import CropCalendar from './components/cropcalendar/cropApp';
-import Contact from './page/Contact';
-import Products from './components/Products';
-
-// import Store from './components/page/Store';
-// import Seller from './components/page/Store/StoreCom/Seller';
->>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
-//import Inorganic from'./components/page/Store/InorganicProducts'; 
-//>>>>>>> 657509e79cbd622d0d965a73d012f512355007cb
-
-
 
 
 function App() {
@@ -96,7 +73,7 @@ function App() {
       <Route path = "/register" element = {<Register/>}/>
       <Route path = '/login' element = {<Login1/>}/> */}
       
-<<<<<<< HEAD
+
       {<Route path = '/login' element = {<Login/>}/> }
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Store" element={<Store />} />
@@ -106,7 +83,7 @@ function App() {
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
        */}
-=======
+
       
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/admindashboard" element={<AdminDashboard />} />
@@ -126,7 +103,7 @@ function App() {
      {/* <Route path="/Inorganic" element={<Inorganic />} /> */}
 
 
->>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
+
       </Routes>
     </Router>
     </>

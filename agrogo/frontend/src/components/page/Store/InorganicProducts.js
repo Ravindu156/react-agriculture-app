@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 import React, { useState } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
@@ -100,14 +100,7 @@ const filteredProducts = products.filter(product =>
         </div>
 
     </div> 
-=======
-import React from 'react';
-import NavigationBar from './StoreCom/NavigationBar';
 
-const InorganicProducts = () => {
-  return (
-    <NavigationBar />
->>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
   );
 };
 
