@@ -1,4 +1,5 @@
 /* Seller.css */
+<<<<<<< HEAD
 body { 
     background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
     background-repeat: no-repeat;
@@ -12,6 +13,12 @@ body {
     
     width: 50%; /* Maximum width of the form */
     height: 50%;
+=======
+
+.seller-form {
+    max-width: 1600px; /* Maximum width of the form */
+    height: 1000px;
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
     margin: 20px auto; /* Center the form */
     padding: 20px; /* Padding inside the form */
     border: 1px solid #ccc; /* Light border */

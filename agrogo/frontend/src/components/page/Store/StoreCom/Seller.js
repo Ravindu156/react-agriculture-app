@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../StoreAssets/Seller.css'
+<<<<<<< HEAD
 import NavigationBar from './NavigationBar';
+=======
+
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
 const Seller = ({ onAddProduct }) => {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('Fertilizer');
     const [image, setImage] = useState(null);
     const [quantity, setQuantity] = useState(1);
+<<<<<<< HEAD
     const [price, setPrice] = useState(1);
+=======
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
 
@@ -27,10 +34,15 @@ const Seller = ({ onAddProduct }) => {
     };
 
     return (
+<<<<<<< HEAD
        <div>
         <NavigationBar />
         <div className="seller-form">
              
+=======
+        <div className="seller-form">
+
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
             <h2>Add a New Product</h2>
             <form onSubmit={handleSubmit}>
             <p>Name of the product</p>
@@ -54,6 +66,7 @@ const Seller = ({ onAddProduct }) => {
                     onChange={(e) => setImage(e.target.files[0])}
                     required
                 />
+<<<<<<< HEAD
                 <p>Price</p>
                 <input
                     
@@ -64,12 +77,18 @@ const Seller = ({ onAddProduct }) => {
                     min="1"
                     required
                 />
+=======
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
                 <p>Quantity</p>
                 <input
                     
                     type="number"
                     placeholder="Quantity"
+<<<<<<< HEAD
                     value={price}
+=======
+                    value={quantity}
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
                     onChange={(e) => setQuantity(e.target.value)}
                     min="1"
                     required
@@ -84,7 +103,10 @@ const Seller = ({ onAddProduct }) => {
                 <button type="submit">Add Product</button>
             </form>
         </div>
+<<<<<<< HEAD
         </div>
+=======
+>>>>>>> f013fbe78ecdb2230aa1144d323d06e268bc80d0
     );
 };
 

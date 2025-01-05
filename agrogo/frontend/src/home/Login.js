@@ -10,24 +10,47 @@ export default function Login () {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/api/users/login/', { email, password });
+  //     localStorage.setItem('token', response.data.token);
+  //     navigate('/dashboard'); 
+  //   } catch (error) {
+  //     setError(error.response?.data?.message || 'Login failed');
+  //     if (error.response && error.response.data && error.response.data.message) {
+  //       setError(error.response.data.message); 
+  //     }
+    
+  //   }
+  // };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      // Send login credentials to the backend
       const response = await axios.post('http://localhost:5000/api/users/login/', { email, password });
-      localStorage.setItem('token', response.data.token);
+  
+      // Extract token and user details from the response
+      const { token, user } = response.data;
+  
+      // Store token and user details in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+  
+      // Redirect to the dashboard
       navigate('/dashboard'); 
       
     } catch (error) {
-      setError(error.response?.data?.message || 'Login failed');
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message); 
-      }
-    
+      // Handle errors and display appropriate messages
+      const errorMessage = error.response?.data?.message || 'Login failed';
+      setError(errorMessage); 
     }
     if (email === 'admin@gmail.com' && password === 'User@1234') {
       navigate('/dashboard');
     } 
   };
+  
 
   return (
     <div className="flex min-h-screen">
