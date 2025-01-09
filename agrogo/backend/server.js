@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
-
+const sellerProductsRouters = require('./routes/sellerProducts');
 const app = express();
 
 // Middleware
@@ -22,6 +22,7 @@ app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
+app.use('/ecom/seller-products', sellerProductsRouters);
 
 // MongoDB Connection
 mongoose

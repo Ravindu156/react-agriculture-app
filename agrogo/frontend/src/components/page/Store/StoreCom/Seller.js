@@ -18,18 +18,27 @@ const Seller = ({ onAddProduct }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const product = {
-            id: Date.now(), // Simple ID generation
-            product,
-            category,
-            place,
-            price: 0, // Set a default price or add a price input
-            quantity,
-            description,
+        const productData = {
+          product: name,
+          category,
+          place,
+          price,
+          quantity,
+          description,
         };
-        onAddProduct(product); // Call the function to add the product
-        navigate('/store'); // Redirect to the store page
-    };
+      
+        fetch('http://localhost:5000/ecom/seller-products/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            navigate('/store'); // Redirect to the store page after successful submission
+          })
+          .catch((error) => console.error('Error:', error));
+      };
 
     return (
 
@@ -44,7 +53,7 @@ const Seller = ({ onAddProduct }) => {
             <h2>Add a New Product</h2>
             <form onSubmit={handleSubmit}>
             <p>Name of the product</p>
-                <select value={product} onChange={(e) => setCategory(e.target.value)}>
+                <select value={name} onChange={(e) => setName(e.target.value)}>
                     <option value="Carrot">Carrot</option>
                     <option value="Beans">Beans Product</option>
                 </select>
@@ -55,7 +64,7 @@ const Seller = ({ onAddProduct }) => {
                 </select>
 
             <p>Select the place</p>    
-                <select value={place} onChange={(e) => setCategory(e.target.value)}>
+                <select value={place} onChange={(e) => setPlace(e.target.value)}>
                     <option value="Nuwaraeliya">Nuwaraeliya</option>
                     <option value="jaffna">Jaffna</option>
                 </select>   
@@ -66,7 +75,8 @@ const Seller = ({ onAddProduct }) => {
                     
                     type="number"
                     placeholder="price"
-                    value={quantity}
+                    value={price}
+
                     onChange={(e) => setPrice(e.target.value)}
                     min="1"
                     required
@@ -78,11 +88,7 @@ const Seller = ({ onAddProduct }) => {
                     
                     type="number"
                     placeholder="Quantity"
-
-                    value={price}
-
                     value={quantity}
-
                     onChange={(e) => setQuantity(e.target.value)}
                     min="1"
                     required

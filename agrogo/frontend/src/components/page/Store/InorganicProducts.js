@@ -5,10 +5,25 @@ import NavigationBar from '../Store/StoreCom/NavigationBar';
 import AgroCard from '../Store/StoreCom/AgroCard';
 import './StoreAssets/Inorganic.css';
 import BarChart from './StoreCom/BarChart';
+import Seller from './StoreCom/Seller';
 
 const InorganicProducts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProductData, setSelectedProductData] = useState(null);
+  const [currentPrice, setCurrentPrice] = useState(100); // Example current price
+  const [quantities, setQuantities] = useState([]); // State to store quantities added by sellers
+  
+  // Function to handle adding a new quantity from the Seller form
+  const handleAddQuantity = (newQuantity) => {
+    setQuantities([...quantities, newQuantity]);
+
+  };
+
+  // Calculate the total quantity
+  const totalQuantity = quantities.reduce((total, qty) => total + qty, 0);
+
+
+
   //chart
   const chartData = [
     { day: 'Day 1', price: 20 },
@@ -108,8 +123,10 @@ const filteredProducts = products.filter(product =>
             </div>
         </div>
 
+                
     </div> 
     </div>
+    
   );
 };
 
