@@ -25,7 +25,7 @@ app.use('/api/articles', articleRoutes);
 
 // MongoDB Connection
 mongoose
-    .connect('mongodb://localhost:27017/scgh', {
+    .connect('mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

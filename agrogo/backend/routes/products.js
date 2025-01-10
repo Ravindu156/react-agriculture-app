@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const  productModel = require('../models/Product');
+const verify = require('../middleware/auth');
 
-router.post("/uploadProduct",async(req,res)=>{
+router.post("/uploadProduct",verify,async(req,res)=>{
     
     const data = await productModel(req.body)
     const datasave = await data.save()
@@ -10,8 +11,8 @@ router.post("/uploadProduct",async(req,res)=>{
     console.log(data);
 })
 
-//
-router.get("/product",async(req,res)=>{
+
+router.get("/product",verify,async(req,res)=>{
   const data = await productModel.find({})
   res.send(JSON.stringify(data))
 })

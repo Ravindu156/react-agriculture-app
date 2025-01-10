@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const Article = require('../models/Article');
-
+const verify = require('../middleware/auth');
 const router = express.Router();
 
 // Configure multer for file uploads
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Add an article
-router.post('/addArticle', upload.single('image'), async (req, res) => {
+router.post('/addArticle', upload.single('image'),verify, async (req, res) => {
   try {
     const { title, author, date, category, content } = req.body;
     const newArticle = new Article({
