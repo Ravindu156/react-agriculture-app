@@ -7,12 +7,15 @@ const NavigationBar = () => {
     <nav className="nav-bar">
     <ul>
       
-      <li><Link to="/inorganic">Exchange</Link></li>
+      <li><Link to="/inorganic" className="ex-button">Exchange</Link></li>
       <li>
           <Link to="/Seller" className="sell-button">Sell product</Link>
       </li>
       <li>
-          <Link to="/buy" className="buy-button">buy product</Link>
+          <Link to="/Buy" className="buy-button">Buy product</Link>
+      </li>
+      <li>
+          <Link to="/Admin" className="admin-button">Admin</Link>
       </li>
     </ul>
   </nav>

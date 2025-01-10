@@ -21,6 +21,8 @@ import CropCalendar from'./components/cropcalendar/cropApp';
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
+import Buy from './components/page/Store/Buy';
+import Admin from './components/page/Store/Admin';
 
 import Contact from './page/Contact';
 import Products from './components/Products';
@@ -80,6 +82,8 @@ function App() {
       <Route path="/Seller" element={<Seller />} />
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
       <Route path="/Inorganic" element={<Inorganic />} />
+      <Route path="/Buy" element={<Buy />} />
+      <Route path="/Admin" element={<Admin />} />
       {/* <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
        */}

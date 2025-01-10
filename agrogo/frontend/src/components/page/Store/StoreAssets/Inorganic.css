@@ -91,6 +91,8 @@
     color: #f8f4f4;
 }
 
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     .search-bar input {

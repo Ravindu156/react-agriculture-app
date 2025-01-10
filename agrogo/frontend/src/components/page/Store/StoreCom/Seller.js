@@ -6,14 +6,13 @@ import NavigationBar from './NavigationBar';
 
 
 
-const Seller = ({ onAddProduct }) => {
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('Fertilizer');
+const Seller = () => {
+    const [name, setName] = useState("");
+    const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState(1);
-    const [place, setPlace] = useState(1);
-    const [price, setPrice] = useState(1);
-    const [product, setProduct] = useState(1);
-    const [description, setDescription] = useState('');
+    const [place, setPlace] = useState("");
+    
+     const [description, setDescription] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -22,7 +21,6 @@ const Seller = ({ onAddProduct }) => {
           product: name,
           category,
           place,
-          price,
           quantity,
           description,
         };
@@ -35,7 +33,7 @@ const Seller = ({ onAddProduct }) => {
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            navigate('/store'); // Redirect to the store page after successful submission
+            navigate('/inorganic'); // Redirect to the store page after successful submission
           })
           .catch((error) => console.error('Error:', error));
       };
@@ -45,17 +43,13 @@ const Seller = ({ onAddProduct }) => {
        <div>
         <NavigationBar />
         <div className="seller-form">
-             
-
-        
-
-
-            <h2>Add a New Product</h2>
+             <h2>Add a New Product</h2>
             <form onSubmit={handleSubmit}>
             <p>Name of the product</p>
                 <select value={name} onChange={(e) => setName(e.target.value)}>
-                    <option value="Carrot">Carrot</option>
-                    <option value="Beans">Beans Product</option>
+            <option value="Carrot">Carrot</option>
+            <option value="Apple">Apple</option>
+            <option value="Pineapple">Pineapple</option>
                 </select>
              <p>Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -69,21 +63,7 @@ const Seller = ({ onAddProduct }) => {
                     <option value="jaffna">Jaffna</option>
                 </select>   
               
-
-                <p>Ask Price</p>
-                <input
-                    
-                    type="number"
-                    placeholder="price"
-                    value={price}
-
-                    onChange={(e) => setPrice(e.target.value)}
-                    min="1"
-                    required
-                />
-
-
-                <p>Quantity (in Kg)</p>
+             <p>Quantity (in Kg)</p>
                 <input
                     
                     type="number"
