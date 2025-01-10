@@ -26,14 +26,20 @@ router.post('/create', (req, res) => {
 });
 
 router.get('/chart-data', (req, res) => {
-  const { name, category, place } = req.query;
+  const { name, category } = req.query;
 
-  SellerProduct.findOne({ product: name, category, place })
-    .then((product) => {
-      if (product) {
-        res.status(200).json(product.chartData); // Send chart data
+  SellerProduct.find({ product: name, category })
+    .then((products) => {
+      if (products.length > 0) {
+        // Extract prices and dates from the products
+        const chartData = products.map((product) => ({
+          date: product.date, // Date from the product
+          price: product.price, // Price from the product
+        }));
+
+        res.status(200).json(chartData); // Send chart data
       } else {
-        res.status(404).json({ message: 'Product not found' });
+        res.status(404).json({ message: 'No matching products found' });
       }
     })
     .catch((err) => {

@@ -8,11 +8,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const BarChart = ({ data }) => {
     const chartData = {
-        labels: data.map(item => item.day), // Assuming data has a 'day' property
+        labels: data.labels, // Assuming data has a 'day' property
         datasets: [
             {
                 label: 'Price',
-                data: data.map(item => item.price), // Assuming data has a 'price' property
+                data: data.prices, // Assuming data has a 'price' property
                 backgroundColor: 'rgba(19, 231, 72, 0.6)',
                 borderColor: 'rgb(19, 21, 21)',
                 borderWidth: 1,

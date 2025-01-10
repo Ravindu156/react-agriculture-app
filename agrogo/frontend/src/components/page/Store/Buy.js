@@ -10,21 +10,20 @@ import Seller from './StoreCom/Seller';
 const BuyProducts = () => {
     const [name, setName] = useState('');
   const [category, setCategory] = useState('');
-  const [place, setPlace] = useState('');
   const [chartData, setChartData] = useState([]);
      
      // Fetch chart data whenever name, category, or place changes
   useEffect(() => {
-    if (name && category && place) {
-      fetchChartData(name, category, place);
+    if (name && category) {
+      fetchChartData(name, category);
     }
-  }, [name, category, place]);
+  }, [name, category]);
 
   // Function to fetch chart data from the backend
-  const fetchChartData = async (name, category, place) => {
+  const fetchChartData = async (name, category) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/chart-data', {
-        params: { name, category, place },
+      const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-data', {
+        params: { name, category},
       });
       setChartData(response.data); // Update chart data
     } catch (error) {
@@ -33,7 +32,17 @@ const BuyProducts = () => {
     }
   };
   
-  
+  const formatChartData = () => {
+    if (chartData.length > 0) {
+      const labels = chartData.map((data) => data.date);
+      const prices = chartData.map((data) => data.price);
+
+      return { labels, prices };
+    } else {
+      return { labels: [], prices: [] };
+    }
+  };
+
   return (
     <div>
       <NavigationBar />
@@ -59,15 +68,7 @@ const BuyProducts = () => {
           </select>
         </div>
 
-        {/* Dropdown for Place */}
-        <div className="search-bar">
-          <p>Select the place</p>
-          <select value={place} onChange={(e) => setPlace(e.target.value)}>
-            <option value="">Select Place</option>
-            <option value="Nuwaraeliya">Nuwaraeliya</option>
-            <option value="Jaffna">Jaffna</option>
-          </select>
-        </div>
+      
 
         {/* Chart Display */}
         <div className="charts-display">
@@ -76,7 +77,7 @@ const BuyProducts = () => {
           </div>
           <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
             {chartData.length > 0 ? (
-              <BarChart data={chartData} />
+              <BarChart data={formatChartData()} />
             ) : (
               <p >Select a product to see the price chart.</p>
             )}
