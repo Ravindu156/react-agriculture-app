@@ -11,7 +11,7 @@ export default function UserForm(){
     email: "",
     region: "",
     mobile:"",
-    role: "",
+    role: "user",
     nic:"",
     password: "",
     confirmPassword: "",
@@ -57,12 +57,6 @@ export default function UserForm(){
     "Vavuniya",
   ];
 
-  const roles = [
-    "farmer",
-    "seller",
-    "Agricultural Executive Officer"
-  ];
-
   const education = [
    "High School Diploma",
    "Vocational Training/Certificate",
@@ -82,9 +76,9 @@ export default function UserForm(){
      " More than 10 Years"
   ]
 
-  const handleRoleSelect = (e) => {
-    const selectedRole = e.target.value;
-    setFormData({ ...formData, role: selectedRole });
+  const handleCheckboxChange = (e) => {
+    const isExecutiveOfficer = e.target.checked;
+    setFormData({ ...formData, role: isExecutiveOfficer ? "Agricultural Executive Officer" : "user" });
   };
 
   const handleEduSelect = (e) => {
@@ -274,21 +268,8 @@ const handleNextStep = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
-              /> <select
-              name="role"
-              value={formData.role}
-              onChange={handleRoleSelect}
-             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
-              required
-            >
-              <option value="">Select Your Role</option>
-              {roles.map((role, index) => (
-                <option key={index} value={role}>
-                  {role}
-                </option>
-              ))}
-              </select>
-              
+              /> 
+             
               <input
                 type="password"
                 name="password"
@@ -307,6 +288,18 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+
+<div>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      onChange={handleCheckboxChange}
+                      className="form-checkbox"
+                    />
+                    <span className="ml-2">Register as Agricultural Executive Officer</span>
+                  </label>
+                </div>
+              
             </div>)}
             {currentStep === 3 && (
               <div className="space-y-4">
