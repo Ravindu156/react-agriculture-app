@@ -94,5 +94,15 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
       }
     });
+
+    router.get('/aeos', async (req, res) => {
+      try {
+        const aeos = await User.find({ role: "Agricultural Executive Officer" });
+        res.json(aeos);
+      } catch (error) {
+        res.status(500).json({ message: "Error fetching AEOs" });
+      }
+    });
+    
     
 module.exports = router;

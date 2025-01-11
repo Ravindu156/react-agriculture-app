@@ -15,7 +15,7 @@ import { Toaster } from 'react-hot-toast';
 import Login1 from './home/Login';
 import HomePage from './home/HomePage';
 import Register from './home/Register';
-
+import Advisory from './home/Advisory';
 import CropCalendar from'./components/cropcalendar/cropApp';
 
 import Store from './page/Store';
@@ -97,6 +97,7 @@ function App() {
 
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
 
+      <Route path="/advisory" element={<Advisory />} />
 
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
