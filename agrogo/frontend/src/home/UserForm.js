@@ -11,6 +11,7 @@ export default function UserForm(){
     email: "",
     region: "",
     mobile:"",
+    gender:"",
     role: "user",
     nic:"",
     password: "",
@@ -57,6 +58,11 @@ export default function UserForm(){
     "Vavuniya",
   ];
 
+  const gender=[
+    "Male",
+    "Female",
+    "Other"
+  ]
   const education = [
    "High School Diploma",
    "Vocational Training/Certificate",
@@ -91,6 +97,11 @@ export default function UserForm(){
     setFormData({ ...formData, experience: selectedExp });
   };
 
+  const handleGenderSelect = (e) => {
+    const selectedGender = e.target.value;
+    setFormData({ ...formData, gender: selectedGender });
+  };
+
   const handleDistrictSelect = (e) => {
     const selectedDistrict = e.target.value;
     setFormData({ ...formData, region: selectedDistrict });
@@ -106,7 +117,7 @@ export default function UserForm(){
 
   const handleNext = () => {
     if (currentStep === 1) {
-      if (!formData.username || !formData.email || !formData.username || !formData.email || !formData.mobile ) {
+      if (!formData.username || !formData.email || !formData.username || !formData.email ||!formData.gender || !formData.mobile ) {
         setStatusMessage("Please fill all the required fields in Step 1.");
         setStatusType("error");
         return;
@@ -134,6 +145,7 @@ export default function UserForm(){
       email: "",
       mobile:"",
       region: "",
+      gender:"",
       role: "",
       nic:"",
       password: "",
@@ -237,6 +249,21 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleGenderSelect}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+              required
+            >
+              <option value="">Select Your Gender</option>
+              {gender.map((g, index) => (
+                <option key={index} value={g}>
+                  {g}
+                </option>
+              ))}
+              </select>
              
                   <div>
                     <a className="text-stone-500 hover:text-blue-700 cursor-pointer" style={{cursor:"pointer"}}onClick={() => navigate("/login")}>You are already registered. Log in here</a>
