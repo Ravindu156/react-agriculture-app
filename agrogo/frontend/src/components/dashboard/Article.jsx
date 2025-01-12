@@ -11,7 +11,7 @@ const Article = () => {
   const user = JSON.parse(localStorage.getItem('user')); // Replace with your auth mechanism
   const role = user?.role || 'guest';
 
-  // Fetch all articles from the backend
+  // //Fetch all articles from the backend
   // useEffect(() => {
   //   const fetchArticles = async () => {
   //     try {
@@ -25,23 +25,36 @@ const Article = () => {
   //   fetchArticles();
   // }, []);
 
-
-  // Get admin aprove articles
+//Fetch admin aproved articles from the backend
   useEffect(() => {
     const fetchApprovedArticles = async () => {
       try {
-        // Fetch approved articles from the backend
         const response = await axios.get('http://localhost:5000/api/articles/approved');
-        setArticles(response.data); // Set the approved articles in the state
+        setArticles(response.data); // Set the approved articles in state
       } catch (error) {
         console.error('Error fetching approved articles:', error);
-      } finally {
-        setLoading(false);
       }
     };
-
+  
     fetchApprovedArticles();
   }, []);
+
+  // // Get admin aprove articles
+  // useEffect(() => {
+  //   const fetchApprovedArticles = async () => {
+  //     try {
+  //       // Fetch approved articles from the backend
+  //       const response = await axios.get('http://localhost:5000/api/articles/approved');
+  //       setArticles(response.data); // Set the approved articles in the state
+  //     } catch (error) {
+  //       console.error('Error fetching approved articles:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchApprovedArticles();
+  // }, []);
 
 
   const handleApproveArticle = async (id) => {

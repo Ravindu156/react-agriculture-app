@@ -24,6 +24,10 @@ const articleSchema = new mongoose.Schema({
   image: {
     type: String, // Path to the uploaded image
   },
+  adminApproval: {
+    type: Boolean,
+    default: false, // This will represent final approval by admin
+  },
 });
 
 module.exports = mongoose.model('Article', articleSchema);
