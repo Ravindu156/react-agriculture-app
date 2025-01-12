@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
-import './StoreAssets/Inorganic.css';
+import './StoreAssets/Seller.css';
 import BarChart from './StoreCom/BarChart';
 import axios from 'axios';
 import Seller from './StoreCom/Seller';
@@ -10,14 +10,24 @@ import Seller from './StoreCom/Seller';
 const BuyProducts = () => {
     const [name, setName] = useState('');
   const [category, setCategory] = useState('');
+  const [buyerid, setBuyerid] = useState('');
   const [chartData, setChartData] = useState([]);
-     
+  const [productList, setProductList] = useState([]); // State to store the list of products
+
      // Fetch chart data whenever name, category, or place changes
   useEffect(() => {
     if (name && category) {
       fetchChartData(name, category);
     }
   }, [name, category]);
+
+  // Fetch product list whenever name changes
+  useEffect(() => {
+    if (name) {
+      fetchProductList(name);
+    }
+  }, [name]);
+
 
   // Function to fetch chart data from the backend
   const fetchChartData = async (name, category) => {
@@ -32,6 +42,21 @@ const BuyProducts = () => {
     }
   };
   
+  // Function to fetch product list from the backend
+  const fetchProductList = async (name) => {
+    try {
+      const response = await axios.get('http://localhost:5000/ecom/seller-products/products-by-name', {
+        params: { name },
+      });
+      setProductList(response.data); // Update product list
+    } catch (error) {
+      console.error('Error fetching product list:', error);
+      setProductList([]); // Reset product list if there's an error
+    }
+  };
+
+
+
   const formatChartData = () => {
     if (chartData.length > 0) {
       const labels = chartData.map((data) => data.date);
@@ -43,14 +68,33 @@ const BuyProducts = () => {
     }
   };
 
+  const handleSelect = (productId) => {
+    console.log(`Selected product ID: ${productId}`);
+    // Add your logic here to handle the selected product
+  };
+
+
   return (
     <div>
       <NavigationBar />
       <div className="inorganic-products-container">
         {/* Dropdown for Name */}
+        <div className="charts-display">
+
+        <div  className="search-bar">
+          <p>Buyer ID   :</p>
+          <input
+            type="number"
+            placeholder="Enter ID"
+            value={buyerid}
+            onChange={(e) => setBuyerid(e.target.value)}
+            className="search-barin"
+          />
+        </div>
+
         <div className="search-bar">
           <p>Name of the product</p>
-          <select value={name} onChange={(e) => setName(e.target.value)}>
+          <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
             <option value="">Select Product</option>
             <option value="Carrot">Carrot</option>
             <option value="Apple">Apple</option>
@@ -61,13 +105,13 @@ const BuyProducts = () => {
         {/* Dropdown for Category */}
         <div className="search-bar">
           <p>Select the category</p>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="">Select Category</option>
             <option value="Inorganic Product">Inorganic Product</option>
             <option value="Organic Product">Organic Product</option>
           </select>
         </div>
-
+        </div>
       
 
         {/* Chart Display */}
@@ -83,6 +127,23 @@ const BuyProducts = () => {
             )}
           </div>
         </div>
+
+        <div className="list-display">
+          <h3>Available Products</h3>
+          <ul>
+            {productList.length > 0 ? (
+              productList.map((product) => (
+                <li key={product._id}>
+                  <span>ID: {product._id}, Quantity: {product.quantity}</span>
+                  <button onClick={() => handleSelect(product._id)}>Select</button>
+                </li>
+              ))
+            ) : (
+              <p>No products available for the selected name.</p>
+            )}
+          </ul>
+        </div>
+
       </div>
     </div>
     

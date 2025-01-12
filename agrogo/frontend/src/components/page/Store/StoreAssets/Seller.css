@@ -13,7 +13,8 @@ body {
     
     width: 50%; /* Maximum width of the form */
     height: 50%;
-
+    color: #fcfafa;
+    float: right; 
 }
 .seller-form {
     max-width: 1600px; /* Maximum width of the form */
@@ -21,16 +22,16 @@ body {
 
     margin: 20px auto; /* Center the form */
     padding: 20px; /* Padding inside the form */
-    border: 1px solid #ccc; /* Light border */
+    border: 1px solid #161616; /* Light border */
     border-radius: 8px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
 }
 
 .seller-form h2 {
     text-align: center; /* Center the heading */
     margin-bottom: 20px; /* Space below the heading */
-    color: #333; /* Darker text color */
+    color: #fcfafa; /* Darker text color */
 }
 
 .seller-form input[type="text"],
@@ -41,9 +42,10 @@ body {
     width: 100%; /* Full width */
     padding: 10px; /* Padding inside inputs */
     margin: 10px 0; /* Space above and below inputs */
-    border: 1px solid #ccc; /* Light border */
+    border: 1px solid #190202; /* Light border */
     border-radius: 4px; /* Rounded corners */
     font-size: 16px; /* Font size */
+    background-color: hsla(0, 5%, 15%, 0.7);
 }
 
 .seller-form textarea {
@@ -54,7 +56,7 @@ body {
 .seller-form button {
     width: 100%; /* Full width */
     padding: 10px; /* Padding inside button */
-    background-color: #28a745; /* Green background */
+    background-color: #bb2929; /* Green background */
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
@@ -72,4 +74,15 @@ body {
     font-size: 14px; /* Font size for error messages */
     margin-top: -10px; /* Space above error messages */
     margin-bottom: 10px; /* Space below error messages */
+}
+
+.list-display {
+    color: #fdfdfd;
+    width:50%;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgb(32, 33, 33);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }

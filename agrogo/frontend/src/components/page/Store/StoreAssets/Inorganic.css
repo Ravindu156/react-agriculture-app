@@ -25,7 +25,21 @@
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #f8f4f4;
+    
+}
+.search-barin {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #140101;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: hsla(0, 5%, 15%, 0.7);
+}
 /* Products display grid */
 .products-display {
     display: grid;

@@ -47,6 +47,28 @@ router.get('/chart-data', (req, res) => {
     });
 });
 
+router.get('/products-by-name', (req, res) => {
+  const { name } = req.query;
+
+  SellerProduct.find({ product: name })
+    .then((products) => {
+      if (products.length > 0) {
+        // Extract _id and quantity from the products
+        const productList = products.map((product) => ({
+          _id: product._id,
+          quantity: product.quantity,
+        }));
+
+        res.status(200).json(productList); // Send the list of products
+      } else {
+        res.status(404).json({ message: 'No products found for the selected name' });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Error fetching products', error: err });
+    });
+});
+
 
 
 

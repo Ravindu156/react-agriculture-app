@@ -1,0 +1,62 @@
+/* Main container for the InorganicProducts component */
+.container {
+    background-color: hsla(0, 5%, 15%, 0.7);
+    padding: 20px;
+    margin: 0 auto;
+    color:#f8f4f4;
+    float: right;
+}
+
+/* Search bar styling */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+ h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #f8f4f4;
+    
+}
+.search-barin {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: hsla(0, 5%, 15%, 0.7);
+}
+
+.search-bar input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside button */
+    background-color: #bb2929; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 80%;
+    }
+
+    .products-display {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
