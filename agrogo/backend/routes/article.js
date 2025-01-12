@@ -51,8 +51,8 @@ router.post('/addArticle', upload.single('image'),verify, async (req, res) => {
 // Get approved articles
 router.get('/approved', async (req, res) => {
   try {
-    // Find all articles where isApproved is true
-    const approvedArticles = await Article.find({ isApproved: true });
+    // Find all articles where adminApproval is true
+    const approvedArticles = await Article.find({ adminApproval: true });
 
     // If no approved articles are found
     if (!approvedArticles || approvedArticles.length === 0) {

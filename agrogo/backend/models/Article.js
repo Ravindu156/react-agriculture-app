@@ -22,11 +22,11 @@ const articleSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String, // Path to the uploaded image
+    type: String,
   },
   adminApproval: {
     type: Boolean,
-    default: false, // This will represent final approval by admin
+    default: false, // Default value set to false
   },
 });
 

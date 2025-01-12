@@ -26,18 +26,21 @@ const Article = () => {
   // }, []);
 
 //Fetch admin aproved articles from the backend
-  useEffect(() => {
-    const fetchApprovedArticles = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/articles/approved');
-        setArticles(response.data); // Set the approved articles in state
-      } catch (error) {
-        console.error('Error fetching approved articles:', error);
-      }
-    };
-  
-    fetchApprovedArticles();
-  }, []);
+useEffect(() => {
+  const fetchApprovedArticles = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/articles/approved');
+      setArticles(response.data); // Set the approved articles in state
+    } catch (error) {
+      console.error('Error fetching approved articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchApprovedArticles();
+}, []); // Get approved articles
+
 
   // // Get admin aprove articles
   // useEffect(() => {
