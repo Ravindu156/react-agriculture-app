@@ -37,7 +37,11 @@ router.get('/chart-data', (req, res) => {
           price: product.price, // Price from the product
         }));
 
-        res.status(200).json(chartData); // Send chart data
+        // Get the last price and date
+        const lastPrice = chartData[chartData.length - 1].price;
+        const lastDate = chartData[chartData.length - 1].date;
+
+        res.status(200).json({ chartData, lastPrice, lastDate }); // Send chart data, last price, and last date
       } else {
         res.status(404).json({ message: 'No matching products found' });
       }
@@ -46,6 +50,7 @@ router.get('/chart-data', (req, res) => {
       res.status(500).json({ message: 'Error fetching chart data', error: err });
     });
 });
+
 
 router.get('/products-by-name', (req, res) => {
   const { name } = req.query;

@@ -86,3 +86,24 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     
 }
+.receipt {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .receipt h3 {
+    margin-bottom: 10px;
+  }
+  
+  .receipt ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .receipt ul li {
+    margin-bottom: 5px;
+  }
+  

@@ -13,7 +13,13 @@ const BuyProducts = () => {
   const [buyerid, setBuyerid] = useState('');
   const [chartData, setChartData] = useState([]);
   const [productList, setProductList] = useState([]); // State to store the list of products
-
+  const [receipt, setReceipt] = useState({
+    currentPrice: 0, // Current price from the database
+    date: '', // Date from the database
+    selectedProducts: [], // List of selected products
+    totalQuantity: 0, // Total quantity of selected products
+    totalPrice: 0, // Total price (currentPrice * totalQuantity)
+  });
      // Fetch chart data whenever name, category, or place changes
   useEffect(() => {
     if (name && category) {
@@ -33,9 +39,14 @@ const BuyProducts = () => {
   const fetchChartData = async (name, category) => {
     try {
       const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-data', {
-        params: { name, category},
+        params: { name, category },
       });
-      setChartData(response.data); // Update chart data
+      setChartData(response.data.chartData); // Update chart data
+      setReceipt((prev) => ({
+        ...prev,
+        currentPrice: response.data.lastPrice,
+        date: response.data.lastDate,
+      }));
     } catch (error) {
       console.error('Error fetching chart data:', error);
       setChartData([]); // Reset chart data if there's an error
@@ -69,11 +80,24 @@ const BuyProducts = () => {
   };
 
   const handleSelect = (productId) => {
-    console.log(`Selected product ID: ${productId}`);
-    // Add your logic here to handle the selected product
+    // Find the selected product
+    const selectedProduct = productList.find((product) => product._id === productId);
+  
+    if (selectedProduct) {
+      // Remove the selected product from the available list
+      const updatedProductList = productList.filter((product) => product._id !== productId);
+      setProductList(updatedProductList);
+  
+      // Add the selected product to the receipt list
+      setReceipt((prev) => ({
+        ...prev,
+        selectedProducts: [...prev.selectedProducts, selectedProduct],
+        totalQuantity: prev.totalQuantity + selectedProduct.quantity,
+        totalPrice: (prev.totalQuantity + selectedProduct.quantity) * prev.currentPrice,
+      }));
+    }
   };
-
-
+  const availableProducts = productList.filter((product) => product.quantity > 0);
   return (
     <div>
       <NavigationBar />
@@ -131,18 +155,38 @@ const BuyProducts = () => {
         <div className="list-display">
           <h3>Available Products</h3>
           <ul>
-            {productList.length > 0 ? (
-              productList.map((product) => (
+            {availableProducts.length > 0 ? (
+              availableProducts.map((product) => (
                 <li key={product._id}>
                   <span>ID: {product._id}, Quantity: {product.quantity}</span>
                   <button onClick={() => handleSelect(product._id)}>Select</button>
                 </li>
               ))
             ) : (
-              <p>No products available for the selected name.</p>
+              <p>No products available with quantity greater than 0.</p>
             )}
           </ul>
         </div>
+
+
+        <div className="receipt">
+  <h3>Receipt</h3>
+  <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
+  <p><strong>Date:</strong> {receipt.date}</p>
+
+  <h4>Selected Products:</h4>
+  <ul>
+    {receipt.selectedProducts.map((product) => (
+      <li key={product._id}>
+        ID: {product._id}, Quantity: {product.quantity}
+      </li>
+    ))}
+  </ul>
+
+  <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
+  <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
+</div>
+
 
       </div>
     </div>
