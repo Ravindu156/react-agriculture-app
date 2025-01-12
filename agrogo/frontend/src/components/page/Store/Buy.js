@@ -1,11 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
 import './StoreAssets/Seller.css';
 import BarChart from './StoreCom/BarChart';
 import axios from 'axios';
-import Seller from './StoreCom/Seller';
+
 
 const BuyProducts = () => {
     const [name, setName] = useState('');
@@ -98,11 +96,45 @@ const BuyProducts = () => {
     }
   };
   const availableProducts = productList.filter((product) => product.quantity > 0);
+  
+  const handleRemove = (productId) => {
+    const updatedSelectedProducts = receipt.selectedProducts.filter((product) => product._id !== productId);
+    const updatedTotalQuantity = receipt.totalQuantity - receipt.selectedProducts.find((product) => product._id === productId).quantity;
+    const updatedTotalPrice = updatedTotalQuantity * receipt.currentPrice;
+  
+    setReceipt((prev) => ({
+      ...prev,
+      selectedProducts: updatedSelectedProducts,
+      totalQuantity: updatedTotalQuantity,
+      totalPrice: updatedTotalPrice,
+    }));
+  };
+  
+  
+  
   return (
     <div>
       <NavigationBar />
-      <div className="inorganic-products-container">
-        {/* Dropdown for Name */}
+
+    <div  className="inorganic-products-container"> 
+      <div className="receipt">
+  <h3>Receipt</h3>
+  <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
+  <p><strong>Date:</strong> {receipt.date}</p>
+
+  <h4>Selected Products:</h4>
+  <ul>
+    {receipt.selectedProducts.map((product) => (
+      <li key={product._id}>
+        ID: {product._id}, Quantity: {product.quantity}
+        <button onClick={() => handleRemove(product._id)}>Remove</button>
+      </li>
+    ))}
+  </ul>
+
+  <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
+  <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
+</div>
         <div className="charts-display">
 
         <div  className="search-bar">
@@ -168,29 +200,9 @@ const BuyProducts = () => {
           </ul>
         </div>
 
-
-        <div className="receipt">
-  <h3>Receipt</h3>
-  <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
-  <p><strong>Date:</strong> {receipt.date}</p>
-
-  <h4>Selected Products:</h4>
-  <ul>
-    {receipt.selectedProducts.map((product) => (
-      <li key={product._id}>
-        ID: {product._id}, Quantity: {product.quantity}
-      </li>
-    ))}
-  </ul>
-
-  <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
-  <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
-</div>
-
-
+        </div> 
       </div>
-    </div>
-    
+   
   );
 };
 

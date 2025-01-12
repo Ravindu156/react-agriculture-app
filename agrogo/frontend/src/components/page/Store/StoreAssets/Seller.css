@@ -1,5 +1,9 @@
 /* Seller.css */
-
+.inorganic-products-container {
+    background-color: hsla(0, 5%, 15%, 0.7);
+    padding: 20px;
+    margin: 0 auto;
+}
 body { 
     background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
     background-repeat: no-repeat;
@@ -14,7 +18,8 @@ body {
     width: 50%; /* Maximum width of the form */
     height: 50%;
     color: #fcfafa;
-    float: right; 
+    float: right;
+    
 }
 .seller-form {
     max-width: 1600px; /* Maximum width of the form */
@@ -84,14 +89,20 @@ body {
     background-color: rgb(32, 33, 33);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    float: left;
     
 }
 .receipt {
+    width: 40%;
     margin-top: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: rgb(32, 33, 33);
+    color: white; /* White text */
+    float: right;
+    clear: both;
+    display: table;
   }
   
   .receipt h3 {

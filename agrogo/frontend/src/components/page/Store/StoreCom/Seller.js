@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../StoreAssets/Seller.css'
-import BarChart from '../StoreCom/BarChart';
+
 import NavigationBar from './NavigationBar';
-import axios from 'axios';
+
 
 
 const Seller = () => {
@@ -11,7 +11,8 @@ const Seller = () => {
     const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [place, setPlace] = useState("");
-    const [chartData, setChartData] = useState([]);
+    const [lastUpdatedPrice, setLastUpdatedPrice] = useState(0);
+    
      const [description, setDescription] = useState('');
     const navigate = useNavigate();
 
@@ -38,36 +39,8 @@ const Seller = () => {
           .catch((error) => console.error('Error:', error));
       };
 
-      useEffect(() => {
-        if (name && category) {
-          fetchChartData(name, category);
-        }
-      }, [name, category]);
-    
-      // Function to fetch chart data from the backend
-      const fetchChartData = async (name, category) => {
-        try {
-          const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-data', {
-            params: { name, category},
-          });
-          setChartData(response.data); // Update chart data
-        } catch (error) {
-          console.error('Error fetching chart data:', error);
-          setChartData([]); // Reset chart data if there's an error
-        }
-      };
-      
-      const formatChartData = () => {
-        if (chartData.length > 0) {
-          const labels = chartData.map((data) => data.date);
-          const prices = chartData.map((data) => data.price);
-    
-          return { labels, prices };
-        } else {
-          return { labels: [], prices: [] };
-        }
-      };
 
+      
     return (
 
        <div>
@@ -110,24 +83,14 @@ const Seller = () => {
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 />
-                <button type="submit">SELL</button>
+                <button type="submit">Add Product</button>
             </form>
             
         </div>
-        <div className="charts-display">
-          <div style={{ flex: 1, padding: '20px' }}>
-            <h2>Product Sales Charts</h2>
-          </div>
-          <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
-            {chartData.length > 0 ? (
-              <BarChart data={formatChartData()} />
-            ) : (
-              <p >Select a product to see the price chart.</p>
-            )}
-          </div>
+        <div className="seller-form">
+        <h1>Last Updated Price: <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedPrice}</span></h1>
         </div>
         </div>
-
         
 
     );
