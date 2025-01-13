@@ -24,7 +24,8 @@ export default function UserForm(){
   const [currentStep, setCurrentStep] = useState(1);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState(""); 
-  
+  const [errors, setErrors] = useState({ step1: {}, step2: {}, step3: {} });
+
 
   const navigate = useNavigate();
 
@@ -119,6 +120,20 @@ export default function UserForm(){
     if (currentStep === 1) {
       if (!formData.username || !formData.email || !formData.username || !formData.email ||!formData.gender || !formData.mobile ) {
         setStatusMessage("Please fill all the required fields in Step 1.");
+        setStatusType("error");
+        return;
+      }
+    }
+    if (currentStep === 2) {
+      if (!formData.region || !formData.nic || !formData.password || !formData.confirmPassword  ) {
+        setStatusMessage("Please fill all the required fields in Step 2.");
+        setStatusType("error");
+        return;
+      }
+    }
+    if (currentStep === 3) {
+      if (!formData.education || !formData.occupation || !formData.experience  ) {
+        setStatusMessage("Please fill all the required fields in Step 3.");
         setStatusType("error");
         return;
       }
@@ -383,9 +398,12 @@ const handleNextStep = () => {
                 <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
+                <>
+                <button type = "button" onClick = {handlePrevious} className="px-4 py-2 bg-blue-800 text-white rounded-lg">Previous</button>
                 <button type="button" onClick={handleNextStep} className="px-4 py-2 bg-blue-800 text-white rounded-lg">
                   Next
                 </button>
+                </>
               )}
               {currentStep === 3 && (
                 <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button>

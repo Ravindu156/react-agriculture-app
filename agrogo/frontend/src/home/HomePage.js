@@ -73,10 +73,10 @@ export default function HomePage(){
           <header className="header">
             <div className="logo">AgroGo</div>
             <nav className="nav">
-              <a href="#about-us" onClick={(e)=>navigateToSection(e, 'about-us')}>About us</a>
-              <a href="#farmer" onClick={(e)=>navigateToSection(e, 'farmer')}>Farmer</a>
-              <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
-              <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
+              <a href="#about-us" onClick={(e)=>navigateToSection(e, 'about-us')}>Who we are</a>
+              <a href="#farmer" onClick={(e)=>navigateToSection(e, 'farmer')}>What we do for you</a>
+              {/* <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a> */}
+              <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Are you an Executive officer</a>
               <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
               {/* <Link to="/store">E-Store</Link> */}
             </nav>
@@ -112,12 +112,12 @@ export default function HomePage(){
   <p>
     We are a group of passionate students from the University of Vavuniya, dedicated to 
     transforming the agricultural industry through innovative technology. Our platform, AgroGo, 
-    is designed to empower farmers, sellers, and agricultural officers by providing them with a 
+    is designed to empower users by providing them with a 
     seamless digital experience to manage, trade, and optimize agricultural processes.
     <br/><br/>
     Our mission is to bridge the gap between farmers, suppliers, and the broader agricultural 
     community, enabling more efficient, sustainable, and profitable practices. With the help of
-    AI-powered tools, an intuitive user interface, and multilingual support, we aim to make 
+    advisory service, an intuitive user interface, we aim to make 
     agricultural solutions accessible to everyone, from small-scale farmers to large commercial 
     enterprises.
   </p>
@@ -125,7 +125,7 @@ export default function HomePage(){
 
 <section id="farmer" className="section farmer">
 <img src={farmer} alt="Group of students working on agricultural projects"/>
-  <h2>ARE YOU A FARMER?</h2>
+  <h2></h2>
   <p>
     As part of AgroGo, farmers have access to a range of tools designed to help them manage their crops, optimize yield, and connect with the right buyers and suppliers. Our platform allows farmers to:
     <ul>
@@ -140,7 +140,7 @@ export default function HomePage(){
 
 <section id="seller" className="section seller">
 <img src={seller} alt="Group of students working on agricultural projects"/>
-<h2>ARE YOU A SELLER?</h2>
+<h2></h2>
   <p>
     AgroGo provides a dedicated platform for sellers to manage and expand their agricultural business by offering a range of features:
     <ul>
@@ -155,7 +155,7 @@ export default function HomePage(){
 
 <section id="executive-officer" className="section executive-officer">
 <img src={officer} alt="Group of students working on agricultural projects"/>
-<h2>ARE YOU AN EXECUTIVE OFFICER?</h2>
+<h2></h2>
   <p>
     Executive officers play a critical role in managing the agricultural sector and ensuring the efficiency of the entire supply chain. AgroGo provides executive officers with the tools and resources to:
     <ul>
