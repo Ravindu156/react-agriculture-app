@@ -18,6 +18,7 @@ import Register from './home/Register';
 import Advisory from './home/Advisory';
 import CropCalendar from'./components/cropcalendar/cropApp';
 
+
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
 import Inorganic from'./components/page/Store/InorganicProducts'; 
@@ -65,7 +66,7 @@ function App() {
         <Route path="/ecom/cart" element={<Cart/>} />
         <Route path='/ecom/contact' element={<Contact/>}/>
         <Route path='/ecom/products' element={<Products/>}/>
-     
+        <Route path='/advisory' element={<Advisory/>}/>
 
 
      
