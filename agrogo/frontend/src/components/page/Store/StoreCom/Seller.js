@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../StoreAssets/Seller.css'
 
@@ -12,9 +12,33 @@ const Seller = () => {
     const [quantity, setQuantity] = useState(1);
     const [place, setPlace] = useState("");
     const [lastUpdatedPrice, setLastUpdatedPrice] = useState(0);
-    
+    const [lastUpdatedDate, setLastUpdatedDate] = useState("");
      const [description, setDescription] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (name && category) {
+            fetch(`http://localhost:5000/ecom/seller-products/chart-data?name=${name}&category=${category}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.chartData && data.chartData.length > 0) {
+                        const lastPrice = data.chartData[data.chartData.length - 1].price;
+                        const lastDate = data.chartData[data.chartData.length - 1].date;
+                        setLastUpdatedPrice(lastPrice);
+                        setLastUpdatedDate(lastDate);
+                    } else {
+                        setLastUpdatedPrice(0);
+                        setLastUpdatedDate("");
+                    }
+                })
+                .catch((error) => console.error('Error:', error));
+        } else {
+            setLastUpdatedPrice(0);
+            setLastUpdatedDate("");
+        }
+    }, [name, category]);
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -88,7 +112,7 @@ const Seller = () => {
             
         </div>
         <div className="seller-form">
-        <h1>Last Updated Price: <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedPrice}</span></h1>
+        <h1>Last Updated Price: <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedPrice}</span> on {lastUpdatedDate}</h1>
         </div>
         </div>
         
