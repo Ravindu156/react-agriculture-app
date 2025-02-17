@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json({ limit: '60mb' }));
 app.use(express.urlencoded({ extended: true, limit: '60mb' }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'backend', 'uploads')));
 
 // Routers
 const cropsRouters = require('./routes/crops');

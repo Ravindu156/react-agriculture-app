@@ -7,7 +7,7 @@ const router = express.Router();
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, 'backend/uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
@@ -15,26 +15,33 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Add an article
-router.post('/addArticle', upload.single('image'),verify, async (req, res) => {
+// Add an article (with image upload and adminApproval set to false)
+router.post('/addArticle', upload.single('image'), verify, async (req, res) => {
   try {
+    // Destructure article data from the request body
     const { title, author, date, category, content } = req.body;
+
+    // Create a new article
     const newArticle = new Article({
       title,
       author,
       date,
       category,
       content,
-      image: req.file ? `/uploads/${req.file.filename}` : null,
+      image: req.file ? `/uploads/${req.file.filename}` : null,  // Save the image path
+      adminApproval: false,  // Set adminApproval to false by default
     });
+
+    // Save the article to the database
     await newArticle.save();
+
+    // Send a response with success message and the article
     res.status(201).json({ message: 'Article added successfully', article: newArticle });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error adding article' });
+    res.status(500).json({ message: 'Error adding article' });  // Handle error
   }
 });
-
 
 // // Get all articles
 // router.get('/getArticles', async (req, res) => {
@@ -66,6 +73,8 @@ router.get('/approved', async (req, res) => {
     res.status(500).json({ message: 'Error fetching approved articles' });
   }
 });
+
+
 
 
 module.exports = router;
