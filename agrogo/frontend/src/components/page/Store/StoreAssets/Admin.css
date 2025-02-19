@@ -1,62 +1,64 @@
-/* Main container for the InorganicProducts component */
 .container {
-    background-color: hsla(0, 5%, 15%, 0.7);
-    padding: 20px;
-    margin: 0 auto;
-    color:#f8f4f4;
-    float: right;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Search bar styling */
 .search-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
- h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #f8f4f4;
-    
-}
-.search-barin {
-    width: 60%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    background-color: hsla(0, 5%, 15%, 0.7);
+  margin-bottom: 20px;
 }
 
-.search-bar input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.search-barin {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
 }
 
 button {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding inside button */
-    background-color: #bb2929; /* Green background */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Font size */
-    transition: background-color 0.3s; /* Smooth transition */
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838; /* Darker green on hover */
+  background-color: #45a049;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .search-bar input {
-        width: 80%;
-    }
+.price-history-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
 
-    .products-display {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+.price-history-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.price-history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.price-value {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.price-date {
+  color: #7f8c8d;
+}
+
+h2, h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
 }
