@@ -52,7 +52,9 @@ const Admin = () => {
 
   return (
     <div>
-        <NavigationBar />
+      <NavigationBar />
+      <div className="admin-form">
+        
       
       <div className="container">
       <h2>Admin Panel</h2>
@@ -94,7 +96,7 @@ const Admin = () => {
 
         {/* Button to Update Price */}
         <button onClick={handleSubmit}>Update Price</button>
-
+        </div>
        {/* Product List */}
        <h3>Product List</h3>
         <div className="product-list">
