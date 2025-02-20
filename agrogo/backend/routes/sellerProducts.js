@@ -74,7 +74,11 @@ router.get('/products-by-name', (req, res) => {
     });
 });
 
-
+router.get('/all', (req, res) => {
+  SellerProduct.find({})
+    .then((products) => res.status(200).json(products))
+    .catch((err) => res.status(500).json({ message: 'Error fetching products', error: err }));
+});
 
 
 module.exports = router;

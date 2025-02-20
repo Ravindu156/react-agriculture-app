@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
 import './StoreAssets/Admin.css'
@@ -7,7 +7,23 @@ const Admin = () => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
-  const [message, setMessage] = useState('');
+  const [productList, setProductList] = useState([]);
+
+  // Fetch existing products
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = () => {
+    fetch('http://localhost:5000/ecom/seller-products/all')
+      .then((response) => response.json())
+      .then((data) => {
+        setProductList(data);
+      })
+      .catch((error) => console.error('Error:', error));
+  };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,8 +95,15 @@ const Admin = () => {
         {/* Button to Update Price */}
         <button onClick={handleSubmit}>Update Price</button>
 
-        {/* Display Message */}
-        {message && <p>{message}</p>}
+       {/* Product List */}
+       <h3>Product List</h3>
+        <div className="product-list">
+          {productList.map((item, index) => (
+            <div key={index} className="product-item">
+              {item.product} - {item.category} - ${item.price}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
