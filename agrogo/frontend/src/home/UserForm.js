@@ -115,7 +115,6 @@ export default function UserForm(){
       setStatusMessage("");
     }
   };
-
   const handleNext = () => {
     if (currentStep === 1) {
       if (!formData.username || !formData.email || !formData.username || !formData.email ||!formData.gender || !formData.mobile ) {
