@@ -315,7 +315,7 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               /> 
-             
+             <div className="relative">
               <input
                 type={isPasswordVisible ? 'text' : 'password'}
                 name="password"
@@ -331,8 +331,10 @@ const handleNextStep = () => {
         >
           {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
         </span>
+        </div>
+        <div className="relative">
               <input
-                type="password"
+                type={isPasswordVisible ? 'text' : 'password'}
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
@@ -340,6 +342,13 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+              <span
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          className="absolute right-4 top-2 cursor-pointer"
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </span>
+              </div>
 
 <div>
                   <label className="inline-flex items-center">

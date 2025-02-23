@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate ,useLocation} from 'react-router-dom';
 import Image from '../Images/Reg (2).jpg';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function ResetPassword() {
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ export default function ResetPassword() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   // Retrieve email from passed state
   useEffect(() => {
@@ -65,25 +67,37 @@ export default function ResetPassword() {
               />
             </div>
             
-            <div>
+            <div className="relative">
               <label className="block text-gray-700">New Password:</label>
               <input 
-                type="password" 
+                type={isPasswordVisible ? 'text' : 'password'} 
                 value={newPassword} 
                 onChange={(e) => setNewPassword(e.target.value)} 
                 required 
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md"
               />
+              <span
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="absolute right-4 top-2/3 transform -translate-y-1/2 cursor-pointer"
+              >
+                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
-            <div>
+            <div className='relative'>
               <label className="block text-gray-700">Confirm New Password:</label>
               <input 
-                type="password" 
+                 type={isPasswordVisible ? 'text' : 'password'}
                 value={confirmPassword} 
                 onChange={(e) => setConfirmPassword(e.target.value)} 
                 required 
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md"
               />
+              <span
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="absolute right-4 top-2/3 transform -translate-y-1/2 cursor-pointer"
+              >
+                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
             <button type="submit" className="w-full p-3 mt-4 bg-green-600 text-white rounded-md hover:bg-green-700">Reset Password</button>
           </form>
