@@ -92,8 +92,21 @@ export default function Login () {
         <button type="submit" className="w-full p-3 mt-4 bg-green-600 text-white rounded-md hover:bg-green-700">Login</button>
       </form>
       <div>
-                    <a className="text-stone-500 hover:text-blue-700 cursor-pointer" style={{cursor:"pointer"}}onClick={() => navigate("/forgot")}>Forogt password</a>
-                  </div>
+  <a
+    className="text-stone-500 hover:text-blue-700 cursor-pointer"
+    style={{ cursor: "pointer" }}
+    onClick={() => {
+      if (email) {
+        navigate('/forgot', { state: { email } });
+      } else {
+        alert("Please provide an email address before proceeding.");
+      }
+    }}
+  >
+    Forgot password
+  </a>
+</div>
+
     </div>
     </div>
     </div>

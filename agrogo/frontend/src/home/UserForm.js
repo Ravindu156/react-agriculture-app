@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Image from '../Images/Reg (2).jpg';
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function UserForm(){
   const [formData, setFormData] = useState({
@@ -82,6 +83,10 @@ export default function UserForm(){
       "6-10 Years",
      " More than 10 Years"
   ]
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
 
   const handleCheckboxChange = (e) => {
     const isExecutiveOfficer = e.target.checked;
@@ -312,7 +317,7 @@ const handleNextStep = () => {
               /> 
              
               <input
-                type="password"
+                type={isPasswordVisible ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
                 value={formData.password}
@@ -320,6 +325,12 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+              <span
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          className="absolute right-4 top-2 cursor-pointer"
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </span>
               <input
                 type="password"
                 name="confirmPassword"

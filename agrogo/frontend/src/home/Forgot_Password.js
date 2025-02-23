@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 import Image from '../Images/Reg (2).jpg';
 
 export default function ResetPassword() {
@@ -11,12 +11,20 @@ export default function ResetPassword() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Retrieve email from passed state
+  useEffect(() => {
+    if (location.state?.email) {
+      setEmail(location.state.email);
+    }
+  }, [location.state]);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/users/reset-password', { 
-        email, oldPassword, newPassword, confirmPassword 
+        email, newPassword, confirmPassword 
       });
       setMessage(response.data.message);
       setError('');
@@ -53,18 +61,10 @@ export default function ResetPassword() {
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+                disabled
               />
             </div>
-            <div>
-              <label className="block text-gray-700">Old Password:</label>
-              <input 
-                type="password" 
-                value={oldPassword} 
-                onChange={(e) => setOldPassword(e.target.value)} 
-                required 
-                className="w-full p-3 mt-2 border border-gray-300 rounded-md"
-              />
-            </div>
+            
             <div>
               <label className="block text-gray-700">New Password:</label>
               <input 
@@ -87,9 +87,7 @@ export default function ResetPassword() {
             </div>
             <button type="submit" className="w-full p-3 mt-4 bg-green-600 text-white rounded-md hover:bg-green-700">Reset Password</button>
           </form>
-          <div className="text-center mt-4">
-            <a className="text-stone-500 hover:text-blue-700 cursor-pointer" onClick={() => navigate('/login')}>Back to Login</a>
-          </div>
+          
         </div>
       </div>
     </div>
