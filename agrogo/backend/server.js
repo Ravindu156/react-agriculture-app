@@ -17,12 +17,13 @@ const cropsRouters = require('./routes/crops');
 const productsRouters = require('./routes/products');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
+const profileRoutes = require("./routes/profile"); // Import profile route
 
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
-
+app.use("/api/profile", profileRoutes); // New profile route
 // MongoDB Connection
 mongoose
     .connect('mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo', {
