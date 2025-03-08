@@ -177,7 +177,7 @@ const BuyProducts = () => {
           </div>
           <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
             {chartData.length > 0 ? (
-              <BarChart data={formatChartData()} />
+              <BarChart data={formatChartData()} chartType="price" />
             ) : (
               <p >Select a product to see the price chart.</p>
             )}

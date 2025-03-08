@@ -80,5 +80,44 @@ router.get('/all', (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Error fetching products', error: err }));
 });
 
+router.get('/qnt', (req, res) => {
+  SellerProduct.aggregate([
+    {
+      $group: {
+        _id: "$product",
+        totalQuantity: { $sum: "$quantity" }
+      }
+    }
+  ])
+
+    .then((products) => res.status(200).json(products))
+    .catch((err) => res.status(500).json({ message: 'Error fetching products', error: err }));
+});
+
+router.get('/chart-quantity-data', (req, res) => {
+  SellerProduct.aggregate([
+    {
+      $group: {
+        _id: "$product",
+        totalQuantity: { $sum: "$quantity" }
+      }
+    }
+  ])
+    .then((products) => {
+      if (products.length > 0) {
+        // Format data for the chart
+        const chartData = products.map((product) => ({
+          product: product._id, // Product name
+          quantity: product.totalQuantity // Total quantity sold
+        }));
+
+        res.status(200).json({ chartData }); // Send formatted chart data
+      } else {
+        res.status(404).json({ message: 'No products found' });
+      }
+    })
+    .catch((err) => res.status(500).json({ message: 'Error fetching chart data', error: err }));
+});
+
 
 module.exports = router;
