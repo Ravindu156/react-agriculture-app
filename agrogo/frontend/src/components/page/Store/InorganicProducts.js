@@ -68,11 +68,21 @@ const BuyProducts = () => {
       <NavigationBar />
 
     <div  className="inorganic-products-container"> 
-    
+    <div className="seller-form">
+       {/* Product List */}
+       <h3>Product List</h3>
+        <div className="product-list">
+          {productList.map((item, index) => (
+            <div key={index} className="product-item">
+              {item.product} - {item.category} - ${item.price}
+            </div>
+          ))}
+        </div>
+          </div>
         <div className="charts-display">
 
        
-
+        <div className="seller-form">
         <div className="search-bar">
           <p>Name of the product</p>
           <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
@@ -92,7 +102,7 @@ const BuyProducts = () => {
             <option value="Organic Product">Organic Product</option>
           </select>
         </div>
-        </div>
+        
       
 
         {/* Chart Display */}
@@ -108,21 +118,13 @@ const BuyProducts = () => {
             )}
           </div>
         </div>
-
+        </div>
        
 
         </div> 
-        {/* Product List */}
-       <h3>Product List</h3>
-        <div className="product-list">
-          {productList.map((item, index) => (
-            <div key={index} className="product-item">
-              {item.product} - {item.category} - ${item.price}
-            </div>
-          ))}
-        </div>
+       
       </div>
-   
+      </div>
   );
 };
 
