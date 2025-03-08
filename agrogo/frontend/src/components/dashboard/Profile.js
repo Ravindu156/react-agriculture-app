@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // To Navigate Back
 
 function Profile() {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate(); // Navigation Hook
 
   useEffect(() => {
     fetchUserData();
@@ -11,6 +13,11 @@ function Profile() {
 
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      alert("No token found, please login");
+      navigate("/login");
+      return;
+    }
     try {
       const res = await fetch("http://localhost:5000/api/profile", {
         headers: {
@@ -18,10 +25,15 @@ function Profile() {
         },
       });
       const data = await res.json();
-      setUser(data);
-      setFormData(data);
+      if (res.ok) {
+        setUser(data);
+        setFormData(data);
+      } else {
+        alert(data.message);
+      }
     } catch (error) {
       console.log("Fetch Error:", error);
+      alert("Failed to fetch user data");
     }
   };
 
@@ -32,6 +44,11 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+    if (!token) {
+      alert("No token found, please login");
+      navigate("/login");
+      return;
+    }
     try {
       const res = await fetch("http://localhost:5000/api/profile/update", {
         method: "PUT",
@@ -45,14 +62,15 @@ function Profile() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Profile Updated Successfully 🔥🥳");
+        alert("✅ Profile Updated Successfully!");
         setIsEditing(false);
-        fetchUserData(); // 👉 Re-fetch User Data here 🔥
+        fetchUserData();
       } else {
         alert(data.message);
       }
     } catch (error) {
       console.log("Update Error:", error);
+      alert("Failed to update profile");
     }
   };
 
@@ -107,6 +125,7 @@ function Profile() {
                   borderRadius: "5px",
                   cursor: "pointer",
                   width: "100%",
+                  marginBottom: "10px",
                 }}
               >
                 Save Changes
@@ -123,11 +142,28 @@ function Profile() {
                   borderRadius: "5px",
                   cursor: "pointer",
                   width: "100%",
+                  marginBottom: "10px",
                 }}
               >
                 Edit Profile
               </button>
             )}
+
+            <button
+              type="button"
+              onClick={() => navigate("/dashboard")}
+              style={{
+                backgroundColor: "orange",
+                color: "white",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                width: "100%",
+              }}
+            >
+              Go Back to Dashboard
+            </button>
           </form>
         </div>
       </div>
