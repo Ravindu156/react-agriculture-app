@@ -62,7 +62,7 @@ function Profile() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Profile Updated Successfully!");
+        alert("Profile Updated Successfully!");
         setIsEditing(false);
         fetchUserData();
       } else {
