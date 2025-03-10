@@ -36,6 +36,7 @@ const AddArticleForm = () => {
       const response = await axios.post('http://localhost:5000/api/articles/addArticle', newArticle, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, // Pass the token
         },
       });
       console.log('Article added:', response.data);
