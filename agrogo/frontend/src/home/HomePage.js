@@ -77,7 +77,7 @@ export default function HomePage() {
           </nav>
         </header>
 
-        <main className="flex justify-center items-center h-[calc(100vh-80px)] text-[#e8f5e9]">
+        {/* <main className="flex justify-center items-center h-[calc(100vh-80px)] text-[#e8f5e9]">
           <div className="bg-black bg-opacity-50 p-8 text-center max-w-lg rounded-lg">
             <h2 className="text-3xl mb-2 text-shadow-md">Empowering Agriculture</h2>
             <p className="text-lg mb-6 text-shadow-md">A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
@@ -86,7 +86,30 @@ export default function HomePage() {
               <button className="px-8 py-3 bg-[#5a845c] text-white rounded hover:bg-[#5b912b]" onClick={handleLoginClick}>Login</button>
             </div>
           </div>
-        </main>
+        </main> */}
+        <main className="flex justify-center items-center w-full h-[calc(100vh-80px)] text-[#e8f5e9]">
+  <div className="bg-black bg-opacity-50 p-8 text-center max-w-lg rounded-lg">
+    <h2 className="text-3xl mb-2 text-shadow-md">Empowering Agriculture</h2>
+    <p className="text-lg mb-6 text-shadow-md">
+      A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together
+    </p>
+    <div className="flex justify-center gap-4">
+      <button
+        className="px-8 py-3 bg-[#5a845c] text-white rounded hover:bg-[#5b912b]"
+        onClick={handleRegisterClick}
+      >
+        Register
+      </button>
+      <button
+        className="px-8 py-3 bg-[#5a845c] text-white rounded hover:bg-[#5b912b]"
+        onClick={handleLoginClick}
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</main>
+
       </div>
       <div className="absolute top-1/2 w-full flex justify-between z-10">
         <button className="bg-black bg-opacity-50 text-white text-2xl p-2 opacity-70 hover:opacity-100" onClick={handlePrevSlide}>❮</button>
