@@ -29,8 +29,8 @@ app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
-app.use("/api/profile", profileRoutes); // New profile route
 
+app.use("/api/profile", profileRoutes); // New profile route
 
 
 // MongoDB Connection

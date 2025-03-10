@@ -107,7 +107,7 @@ router.post('/', async (req, res) => {
 
     router.put('/reset-password', async (req, res) => {
       const { email, newPassword, confirmPassword } = req.body;
-    
+
       // Check if passwords match
       if (newPassword !== confirmPassword) {
         return res.status(400).json({ message: 'Passwords do not match' });
@@ -135,6 +135,8 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Server error', error: error.message });
       }
     });
+    
+
 
 
 
@@ -147,5 +149,6 @@ router.get('/getusers', async (req, res) => {
     res.status(500).json({ message: 'Error fetching users' });
   }
 });
+
 
 module.exports = router;
