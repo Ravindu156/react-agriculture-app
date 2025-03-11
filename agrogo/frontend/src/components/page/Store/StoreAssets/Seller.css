@@ -12,7 +12,15 @@ body {
     background-size: 100% 100%;
   }
 
-
+  .search-barin {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #140101;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: hsla(0, 5%, 15%, 0.7);
+}
 .seller-form {
     
     width: 50%; /* Maximum width of the form */
@@ -22,9 +30,9 @@ body {
     
 }
 .seller-form {
-    max-width: 1600px; /* Maximum width of the form */
+    max-width: 1300; /* Maximum width of the form */
     height: 1000px;
-
+    float: right;
     margin: 20px auto; /* Center the form */
     padding: 20px; /* Padding inside the form */
     border: 1px solid #161616; /* Light border */
@@ -118,3 +126,55 @@ body {
     margin-bottom: 5px;
   }
   
+  .product-list {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .product-item {
+    padding: 5px;
+    border-bottom: 1px solid white;
+  }
+  
+  .order-book {
+    width: 33%; /* Maximum width of the form */
+    height: 1000px;
+    overflow: auto;
+    float: right;
+    font-size: 16px;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.chart-book {
+    width: 47%; /* Maximum width of the form */
+    height: 1000px;
+    float: right;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.select-book {
+    width: 20%; /* Maximum width of the form */
+    height: 800px;
+    overflow: auto;
+    float: right;
+    color: #fcfafa;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}

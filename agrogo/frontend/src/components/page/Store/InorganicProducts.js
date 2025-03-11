@@ -81,7 +81,7 @@ const BuyProducts = () => {
         <div>
             <NavigationBar />
             <div className="inorganic-products-container">
-                <div className="seller-form">
+                <div className="order-book">
                     {/* Product List */}
                     <h3>Product List</h3>
                     <div className="product-list">
@@ -93,27 +93,10 @@ const BuyProducts = () => {
                     </div>
                 </div>
                 <div className="charts-display">
-                    <div className="seller-form">
-                        <div className="search-bar">
-                            <p>Name of the product</p>
-                            <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
-                                <option value="">Select Product</option>
-                                <option value="Carrot">Carrot</option>
-                                <option value="Apple">Apple</option>
-                                <option value="Pineapple">Pineapple</option>
-                            </select>
-                        </div>
-                        {/* Dropdown for Category */}
-                        <div className="search-bar">
-                            <p>Select the category</p>
-                            <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
-                                <option value="">Select Category</option>
-                                <option value="Inorganic Product">Inorganic Product</option>
-                                <option value="Organic Product">Organic Product</option>
-                            </select>
-                        </div>
+                    
                         {/* Chart Display */}
                         <div className="charts-display">
+                        <div className="chart-book">
                             <div style={{ flex: 1, padding: '20px' }}>
                                 <h2>Product Sales Charts</h2>
                             </div>
@@ -133,6 +116,26 @@ const BuyProducts = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="select-book">
+                        <div className="search-bar">
+                            <p>Name of the product</p>
+                            <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
+                                <option value="">Select Product</option>
+                                <option value="Carrot">Carrot</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Pineapple">Pineapple</option>
+                            </select>
+                        </div>
+                        {/* Dropdown for Category */}
+                        <div className="search-bar">
+                            <p>Select the category</p>
+                            <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                <option value="">Select Category</option>
+                                <option value="Inorganic Product">Inorganic Product</option>
+                                <option value="Organic Product">Organic Product</option>
+                            </select>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
