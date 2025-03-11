@@ -2,16 +2,30 @@ import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
 import './StoreAssets/Admin.css';
 
+
 const Admin = () => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [productList, setProductList] = useState([]);
+  const [receiptsList, setReceiptsList] = useState([]);
 
   // Fetch existing products
   useEffect(() => {
     fetchProducts();
+    fetchReceipts();
   }, []);
+
+
+  const fetchReceipts = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/ecom/recipts/allrec');
+      const data = await response.json();
+      setReceiptsList(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
@@ -46,6 +60,9 @@ const Admin = () => {
       console.error('Error:', error);
     }
   };
+
+  
+
 
   return (
     <div>
@@ -90,13 +107,25 @@ const Admin = () => {
           <button onClick={handleSubmit}>Update Price</button>
         </div>
 
+        {/* Product List */}
+        <h3>Product List</h3>
+                    <div className="product-list">
+                        {productList.map((item, index) => (
+                            <div key={index} className="product-item">
+                                {item.product} - {item.category} - ${item.price}
+                            </div>
+                        ))}
+                    </div>
+
         {/* Posted Receipts */}
         <h3>Posted Receipts</h3>
         <div className="product-list">
-          {productList.map((receipt, index) => (
+          {receiptsList.map((receipts, index) => (
             <div key={index} className="product-item">
-              ID: {receipt._id}, Quantity: {receipt.totalQuantity}, Total Price: ${receipt.totalPrice}
+              ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
+              
             </div>
+            
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Receipt = require('../models/Receipts');
+const SellerProduct = require('../models/sellerProduct');
 
 
 router.post('/receipts',  (req, res) => {
@@ -26,15 +27,24 @@ router.post('/receipts',  (req, res) => {
           });
   });
   
+  router.get('/allrec', (req, res) => {
+    Receipt.find({})
+      .then((receipts) => res.status(200).json(receipts))
+      .catch((err) => res.status(500).json({ message: 'Error fetching products', error: err }));
+  });
+
   // Route to delete existing queries based on selected IDs
   router.delete('/receipts/:id',  async (req, res) => {
     try {
         const { id } = req.params;
-        await sellerProductModel.deleteMany({ _id: { $in: id } });
+        await SellerProduct.deleteMany({ _id: { $in: id } });
         res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
   });
+
+ 
+
 
   module.exports = router;
