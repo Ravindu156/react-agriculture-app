@@ -7,7 +7,7 @@ const router = express.Router();
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'backend/uploads/');
+    cb(null, 'agrogo/backend/uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
@@ -75,6 +75,6 @@ router.get('/approved', async (req, res) => {
 });
 
 
-
+router.use('/uploads', express.static('agrogo/backend/uploads'));
 
 module.exports = router;
