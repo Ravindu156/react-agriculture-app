@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
 import './StoreAssets/Admin.css';
 
-
 const Admin = () => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -15,7 +14,6 @@ const Admin = () => {
     fetchProducts();
     fetchReceipts();
   }, []);
-
 
   const fetchReceipts = async () => {
     try {
@@ -61,8 +59,20 @@ const Admin = () => {
     }
   };
 
-  
-
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/ecom/recipts/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setReceiptsList(receiptsList.filter(receipt => receipt._id !== id));
+      } else {
+        console.error('Failed to delete receipt');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div>
@@ -109,13 +119,13 @@ const Admin = () => {
 
         {/* Product List */}
         <h3>Product List</h3>
-                    <div className="product-list">
-                        {productList.map((item, index) => (
-                            <div key={index} className="product-item">
-                                {item.product} - {item.category} - ${item.price}
-                            </div>
-                        ))}
-                    </div>
+        <div className="product-list">
+          {productList.map((item, index) => (
+            <div key={index} className="product-item">
+              {item.product} - {item.category} - ${item.price}
+            </div>
+          ))}
+        </div>
 
         {/* Posted Receipts */}
         <h3>Posted Receipts</h3>
@@ -123,9 +133,8 @@ const Admin = () => {
           {receiptsList.map((receipts, index) => (
             <div key={index} className="product-item">
               ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
-              
+              <button onClick={() => handleDelete(receipts._id)}>Delete</button>
             </div>
-            
           ))}
         </div>
       </div>

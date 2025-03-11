@@ -34,10 +34,15 @@ router.post('/receipts',  (req, res) => {
   });
 
   // Route to delete existing queries based on selected IDs
-  router.delete('/receipts/:id',  async (req, res) => {
+  router.delete('/:id',  async (req, res) => {
     try {
-        const { id } = req.params;
-        await SellerProduct.deleteMany({ _id: { $in: id } });
+        
+       const { id } = req.params;
+       await Receipt.findByIdAndDelete(id);
+       const receipt = await Receipt.findById(id);
+       await SellerProduct.deleteMany({ _id: { $in: receipt.selectedProducts } });
+       await Receipt.findByIdAndDelete(id);
+  
         res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
