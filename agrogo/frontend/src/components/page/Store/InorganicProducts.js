@@ -150,7 +150,7 @@ const BuyProducts = () => {
                         <div className="product-list">
                         {productListon.map((item, index) => (
                             <div key={index} className="product-item">
-                                {item.product} - {item.category} - ${item.quantity}
+                                {item.product} - {item.category} - {item.quantity}kg
                             </div>
                         ))}
                         </div>
