@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const sellerProductsRouters = require('./routes/sellerProducts');
+const receiptRoutes = require('./routes/receipts');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/ecom/seller-products', sellerProductsRouters);
-
+app.use('/ecom/recipts', receiptRoutes);
 
 // MongoDB Connection
 mongoose

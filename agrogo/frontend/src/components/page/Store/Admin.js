@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import NavigationBar from '../Store/StoreCom/NavigationBar';
-import './StoreAssets/Admin.css'
+import './StoreAssets/Admin.css';
 
 const Admin = () => {
   const [name, setName] = useState('');
@@ -14,20 +13,18 @@ const Admin = () => {
     fetchProducts();
   }, []);
 
-  const fetchProducts = () => {
-    fetch('http://localhost:5000/ecom/seller-products/all')
-      .then((response) => response.json())
-      .then((data) => {
-        setProductList(data);
-      })
-      .catch((error) => console.error('Error:', error));
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/ecom/seller-products/all');
+      const data = await response.json();
+      setProductList(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const currentDate = new Date().toLocaleDateString();
     const productData = {
       product: name,
@@ -36,73 +33,69 @@ const Admin = () => {
       date: currentDate,
     };
 
-    fetch('http://localhost:5000/ecom/seller-products/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-       
-      })
-      .catch((error) => console.error('Error:', error));
+    try {
+      const response = await fetch('http://localhost:5000/ecom/seller-products/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productData),
+      });
+      const data = await response.json();
+      console.log(data);
+      fetchProducts(); // Refresh the product list after adding a new product
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
-
 
   return (
     <div>
       <NavigationBar />
       <div className="admin-form">
-        
-      
-      <div className="container">
-      <h2>Admin Panel</h2>
-        {/* Dropdown for Name */}
-        <div className="search-bar" >
-          <p>Name of the product   :</p>
-          <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)} >
-            <option value="">Select Product</option>
-            <option value="Carrot">Carrot</option>
-            <option value="Apple">Apple</option>
-            <option value="Pineapple">Pineapple</option>
-          </select>
+        <div className="container">
+          <h2>Admin Panel</h2>
+          {/* Dropdown for Name */}
+          <div className="search-bar">
+            <p>Name of the product:</p>
+            <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
+              <option value="">Select Product</option>
+              <option value="Carrot">Carrot</option>
+              <option value="Apple">Apple</option>
+              <option value="Pineapple">Pineapple</option>
+            </select>
+          </div>
+
+          {/* Dropdown for Category */}
+          <div className="search-bar">
+            <p>Select the category:</p>
+            <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="">Select Category</option>
+              <option value="Inorganic Product">Inorganic Product</option>
+              <option value="Organic Product">Organic Product</option>
+            </select>
+          </div>
+
+          {/* Input for Price */}
+          <div className="search-bar">
+            <p>Set New Price:</p>
+            <input
+              type="number"
+              placeholder="Enter new price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="search-barin"
+            />
+          </div>
+
+          {/* Button to Update Price */}
+          <button onClick={handleSubmit}>Update Price</button>
         </div>
 
-        {/* Dropdown for Category */}
-        <div  className="search-bar">
-          <p>Select the category   :</p>
-          <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select Category</option>
-            <option value="Inorganic Product">Inorganic Product</option>
-            <option value="Organic Product">Organic Product</option>
-          </select>
-        </div>
-
-        
-        
-
-        {/* Input for Price */}
-        <div  className="search-bar">
-          <p>Set New Price   :</p>
-          <input
-            type="number"
-            placeholder="Enter new price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="search-barin"
-          />
-        </div>
-
-        {/* Button to Update Price */}
-        <button onClick={handleSubmit}>Update Price</button>
-        </div>
-       {/* Product List */}
-       <h3>Product List</h3>
+        {/* Posted Receipts */}
+        <h3>Posted Receipts</h3>
         <div className="product-list">
-          {productList.map((item, index) => (
+          {productList.map((receipt, index) => (
             <div key={index} className="product-item">
-              {item.product} - {item.category} - ${item.price}
+              ID: {receipt._id}, Quantity: {receipt.totalQuantity}, Total Price: ${receipt.totalPrice}
             </div>
           ))}
         </div>

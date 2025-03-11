@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SellerProduct = require('../models/sellerProduct');
 
+
 // Route to create a new product
 router.post('/create', (req, res) => {
   const { product, category, place,price , quantity, description, date } = req.body;
@@ -118,6 +119,7 @@ router.get('/chart-quantity-data', (req, res) => {
     })
     .catch((err) => res.status(500).json({ message: 'Error fetching chart data', error: err }));
 });
+
 
 
 module.exports = router;
