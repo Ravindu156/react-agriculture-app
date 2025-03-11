@@ -103,7 +103,7 @@ useEffect(() => {
 
       {/* Modal for AddArticleForm */}
       {showForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-10">
           <div className="bg-white p-6 rounded relative max-h-[80%] overflow-y-auto">
             <div className="flex justify-between items-center p-2 rounded-t">
               <button
