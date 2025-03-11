@@ -34,7 +34,7 @@ const BuyProducts = () => {
 
     const fetchChartData = async (name, category) => {
         try {
-            const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-data', {
+            const response = await axios.get('http://localhost:5000/ecom/price/chart-data', {
                 params: { name, category },
             });
             setChartData(response.data.chartData);

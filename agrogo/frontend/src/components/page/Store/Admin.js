@@ -27,7 +27,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/ecom/seller-products/all');
+      const response = await fetch('http://localhost:5000/ecom/price/all');
       const data = await response.json();
       setProductList(data);
     } catch (error) {
@@ -46,7 +46,7 @@ const Admin = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/ecom/seller-products/create', {
+      const response = await fetch('http://localhost:5000/ecom/price/setprice', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),

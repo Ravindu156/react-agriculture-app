@@ -18,7 +18,7 @@ const Seller = () => {
 
     useEffect(() => {
         if (name && category) {
-            fetch(`http://localhost:5000/ecom/seller-products/chart-data?name=${name}&category=${category}`)
+            fetch(`http://localhost:5000/ecom/price/chart-data?name=${name}&category=${category}`)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.chartData && data.chartData.length > 0) {

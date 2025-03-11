@@ -7,6 +7,6 @@ const PriceSchema = new mongoose.Schema({
   date: String,
 });
 
-const Priceset = mongoose.model('SellerProduct', PriceSchema);
+const Priceset = mongoose.model('Priceset', PriceSchema);
 
 module.exports = Priceset;

@@ -25,7 +25,7 @@ const BuyProducts = () => {
     }, []);
 
     const fetchProducts = () => {
-        fetch('http://localhost:5000/ecom/seller-products/all')
+        fetch('http://localhost:5000/ecom/price/all')
             .then((response) => response.json())
             .then((data) => {
                 setProductList(data);
@@ -36,7 +36,7 @@ const BuyProducts = () => {
     // Function to fetch price chart data from the backend
     const fetchChartData = async (name, category) => {
         try {
-            const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-data', {
+            const response = await axios.get('http://localhost:5000/ecom/price/chart-data', {
                 params: { name, category },
             });
             setChartData(response.data.chartData);
