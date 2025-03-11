@@ -10,6 +10,7 @@ const BuyProducts = () => {
     const [chartData, setChartData] = useState([]);
     const [quantityChartData, setQuantityChartData] = useState([]);
     const [productList, setProductList] = useState([]);
+    const [productListon, setProductListon] = useState([]);
   
     // Fetch chart data whenever name, category changes
     useEffect(() => {
@@ -21,6 +22,7 @@ const BuyProducts = () => {
     // Fetch existing products
     useEffect(() => {
         fetchProducts();
+        fetchOnProducts();
         fetchQuantityChartData();
     }, []);
 
@@ -29,6 +31,15 @@ const BuyProducts = () => {
             .then((response) => response.json())
             .then((data) => {
                 setProductList(data);
+            })
+            .catch((error) => console.error('Error:', error));
+    };
+
+    const fetchOnProducts = () => {
+        fetch('http://localhost:5000/ecom/seller-products/all')
+            .then((response) => response.json())
+            .then((data) => {
+                setProductListon(data);
             })
             .catch((error) => console.error('Error:', error));
     };
@@ -125,6 +136,7 @@ const BuyProducts = () => {
                                 <option value="Apple">Apple</option>
                                 <option value="Pineapple">Pineapple</option>
                             </select>
+                            
                         </div>
                         {/* Dropdown for Category */}
                         <div className="search-bar">
@@ -135,7 +147,15 @@ const BuyProducts = () => {
                                 <option value="Organic Product">Organic Product</option>
                             </select>
                         </div>
+                        <div className="product-list">
+                        {productListon.map((item, index) => (
+                            <div key={index} className="product-item">
+                                {item.product} - {item.category} - ${item.quantity}
+                            </div>
+                        ))}
                         </div>
+                        </div>
+                        
                 </div>
             </div>
         </div>
