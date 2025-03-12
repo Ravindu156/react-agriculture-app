@@ -24,6 +24,7 @@ app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
 app.use("/api/profile", profileRoutes); // New profile route
+
 // MongoDB Connection
 mongoose
     .connect('mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo', {

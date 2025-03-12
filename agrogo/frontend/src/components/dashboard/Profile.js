@@ -1,56 +1,73 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // To Navigate Back
+import { useNavigate } from "react-router-dom";
+import profileImage from "../../Images/profilepage.jpg"; // Correct image path
 
 function Profile() {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
-  const navigate = useNavigate(); // Navigation Hook
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const fetchUserData = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("No token found, please login");
-      navigate("/login");
-      return;
-    }
-    try {
-      const res = await fetch("http://localhost:5000/api/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setUser(data);
-        setFormData(data);
-      } else {
-        alert(data.message);
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("No token found, please login");
+        navigate("/login");
+        return;
       }
-    } catch (error) {
-      console.log("Fetch Error:", error);
-      alert("Failed to fetch user data");
-    }
-  };
+      try {
+        const res = await fetch("http://localhost:5000/api/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setUser(data);
+          setFormData(data);
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        console.error("Fetch Error:", error);
+        alert("Failed to fetch user data");
+      }
+    };
+    fetchUserData();
+  }, [navigate]); // Only include navigate as dependency
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setFormData(user);
+    setStatusMessage("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+
     const token = localStorage.getItem("token");
     if (!token) {
       alert("No token found, please login");
       navigate("/login");
+      setLoading(false);
       return;
     }
+
     try {
-      const res = await fetch("http://localhost:5000/api/profile/update", {
+      const res = await fetch("http://localhost:5000/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -60,23 +77,37 @@ function Profile() {
       });
 
       const data = await res.json();
-
       if (res.ok) {
-        alert("Profile Updated Successfully!");
+        setUser(data);
         setIsEditing(false);
-        fetchUserData();
+        setStatusMessage("Profile Updated Successfully!");
       } else {
-        alert(data.message);
+        setStatusMessage(data.message);
       }
     } catch (error) {
-      console.log("Update Error:", error);
-      alert("Failed to update profile");
+      console.error("Update Error:", error);
+      setStatusMessage("Failed to update profile");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h2 style={{ textAlign: "center" }}>User Profile</h2>
+    <div
+      style={{
+        padding: "20px",
+        fontFamily: "Arial",
+        backgroundImage: `url(${profileImage})`, // Correct image usage
+        backgroundSize: "cover", // Ensures it covers the entire screen
+        backgroundPosition: "center", // Centers the image
+        backgroundRepeat: "no-repeat", // Prevents repeating the image
+        minHeight: "100vh", // Ensures full screen coverage
+        backgroundAttachment: "fixed", // Optional: Keeps the background fixed during scrolling
+      }}
+    >
+      <h1 style={{ textAlign: "center", color: "black", fontWeight: "bold", fontSize: "3rem" }}>
+        User Profile
+      </h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
@@ -85,15 +116,12 @@ function Profile() {
             border: "1px solid #ccc",
             borderRadius: "10px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // Transparent background for form
           }}
         >
           <form onSubmit={handleSubmit}>
             {Object.entries(formData).map(([key, value]) =>
-              key !== "_id" &&
-              key !== "__v" &&
-              key !== "password" &&
-              key !== "createdAt" &&
-              key !== "updatedAt" ? (
+              !["_id", "__v", "password", "createdAt", "updatedAt"].includes(key) ? (
                 <div key={key} style={{ marginBottom: "15px" }}>
                   <label style={{ fontWeight: "bold" }}>{key.toUpperCase()}</label>
                   <input
@@ -108,32 +136,24 @@ function Profile() {
                       border: "1px solid #ccc",
                       borderRadius: "5px",
                       marginTop: "5px",
+                      backgroundColor: !isEditing ? "#f3f3f3" : "white",
+                      cursor: !isEditing ? "not-allowed" : "text",
                     }}
                   />
                 </div>
               ) : null
             )}
 
-            {isEditing ? (
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: "green",
-                  color: "white",
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  width: "100%",
-                  marginBottom: "10px",
-                }}
-              >
-                Save Changes
-              </button>
-            ) : (
+            {statusMessage && (
+              <p style={{ color: "green", fontWeight: "bold", textAlign: "center" }}>
+                {statusMessage}
+              </p>
+            )}
+
+            {!isEditing ? (
               <button
                 type="button"
-                onClick={() => setIsEditing(true)}
+                onClick={handleEditClick}
                 style={{
                   backgroundColor: "blue",
                   color: "white",
@@ -147,24 +167,58 @@ function Profile() {
               >
                 Edit Profile
               </button>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  style={{
+                    backgroundColor: loading ? "gray" : "green",
+                    color: "white",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    width: "100%",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {loading ? "Saving..." : "Save Changes"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    width: "100%",
+                  }}
+                >
+                  Cancel
+                </button>
+              </>
             )}
-
-            <button
-              type="button"
-              onClick={() => navigate("/dashboard")}
-              style={{
-                backgroundColor: "orange",
-                color: "white",
-                padding: "10px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-                width: "100%",
-              }}
-            >
-              Go Back to Dashboard
-            </button>
           </form>
+
+          <button
+            onClick={() => navigate("/dashboard")}
+            style={{
+              backgroundColor: "#333",
+              color: "white",
+              padding: "10px",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              width: "100%",
+              marginTop: "15px",
+            }}
+          >
+            Back to Dashboard
+          </button>
         </div>
       </div>
     </div>
