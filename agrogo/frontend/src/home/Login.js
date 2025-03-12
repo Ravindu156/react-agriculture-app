@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Image from '../Images/Reg (2).jpg';
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   // const handleLogin = async (e) => {
@@ -47,7 +48,7 @@ export default function Login () {
       setError(errorMessage); 
     }
     if (email === 'admin@gmail.com' && password === 'User@1234') {
-      navigate('/dashboard');
+      navigate('/admindashboard');
     } 
   };
   
@@ -79,18 +80,40 @@ export default function Login () {
             className="w-full p-3 mt-2 border border-gray-300 rounded-md"
           />
         </div>
-        <div>
+        <div className="relative"> 
           <label htmlFor="password" className="block text-gray-700">Password:</label>
           <input 
-            type="password" 
+             type={isPasswordVisible ? 'text' : 'password'} 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
             required 
             className="w-full p-3 mt-2 border border-gray-300 rounded-md"
           />
+          <span
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="absolute right-4 top-2/3 transform -translate-y-1/2 cursor-pointer"
+              >
+                {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+              </span>
         </div>
         <button type="submit" className="w-full p-3 mt-4 bg-green-600 text-white rounded-md hover:bg-green-700">Login</button>
       </form>
+      <div>
+  <a
+    className="text-stone-500 hover:text-blue-700 cursor-pointer"
+    style={{ cursor: "pointer" }}
+    onClick={() => {
+      if (email) {
+        navigate('/forgot', { state: { email } });
+      } else {
+        alert("Please provide an email address before proceeding.");
+      }
+    }}
+  >
+    Forgot password
+  </a>
+</div>
+
     </div>
     </div>
     </div>

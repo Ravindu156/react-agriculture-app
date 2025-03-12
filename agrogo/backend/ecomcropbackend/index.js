@@ -144,7 +144,27 @@ app.post("/uploadProduct",async(req,res)=>{
 app.get("/product",async(req,res)=>{
   const data = await productModel.find({})
   res.send(JSON.stringify(data))
+  //res.json(data);
+
 })
+
+app.post("/reduceQuantity", async (req, res) => {
+  try {
+    const { productId, quantity } = req.body;
+
+    // Find product by ID
+    const product = await productModel.findById(productId);
+
+    
+
+
+
+
+
+
+
+
+
  
 /*****payment getWay */
 // console.log(process.env.STRIPE_SECRET_KEY)

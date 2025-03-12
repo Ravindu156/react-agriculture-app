@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/', async (req, res) => {
-    const { firstname,lastname,username, email, mobile, region, nic,role, password, education, occupation, experience } = req.body;
+    const { firstname,lastname,username, email, mobile,gender, region, nic,role, password, education, occupation, experience } = req.body;
     
     if (mobile.length !== 10) {
       return res.status(400).json({ message: 'Mobile number must be 10 digits long' });
@@ -29,6 +29,7 @@ router.post('/', async (req, res) => {
         lastname,
         username,
         email,
+        gender,
         mobile,
         region,
         nic,
@@ -92,6 +93,46 @@ router.post('/', async (req, res) => {
         
         console.error('Error in login:', err.message);
         res.status(500).json({ message: 'Server error', error: err.message });
+      }
+    });
+
+    router.get('/aeos', async (req, res) => {
+      try {
+        const aeos = await User.find({ role: "Agricultural Executive Officer" });
+        res.json(aeos);
+      } catch (error) {
+        res.status(500).json({ message: "Error fetching AEOs" });
+      }
+    });
+
+    router.put('/reset-password', async (req, res) => {
+      const { email, newPassword, confirmPassword } = req.body;
+    
+      // Check if passwords match
+      if (newPassword !== confirmPassword) {
+        return res.status(400).json({ message: 'Passwords do not match' });
+      }
+    
+      try {
+        // Check if the user exists by email
+        const user = await User.findOne({ email });
+        if (!user) {
+          return res.status(404).json({ message: 'User not found with this email' });
+        }
+    
+        // Hash the new password (you should use bcrypt for hashing)
+        const bcrypt = require('bcryptjs');
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+    
+        // Update the password
+        user.password = hashedPassword;
+        await user.save();
+    
+        res.status(200).json({ message: 'Password updated successfully' });
+    
+      } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
       }
     });
     

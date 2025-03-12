@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Image from '../Images/Reg (2).jpg';
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function UserForm(){
   const [formData, setFormData] = useState({
@@ -11,7 +12,8 @@ export default function UserForm(){
     email: "",
     region: "",
     mobile:"",
-    role: "",
+    gender:"",
+    role: "user",
     nic:"",
     password: "",
     confirmPassword: "",
@@ -23,7 +25,8 @@ export default function UserForm(){
   const [currentStep, setCurrentStep] = useState(1);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState(""); 
-  
+  const [errors, setErrors] = useState({ step1: {}, step2: {}, step3: {} });
+
 
   const navigate = useNavigate();
 
@@ -57,12 +60,11 @@ export default function UserForm(){
     "Vavuniya",
   ];
 
-  const roles = [
-    "farmer",
-    "seller",
-    "Agricultural Executive Officer"
-  ];
-
+  const gender=[
+    "Male",
+    "Female",
+    "Other"
+  ]
   const education = [
    "High School Diploma",
    "Vocational Training/Certificate",
@@ -82,9 +84,13 @@ export default function UserForm(){
      " More than 10 Years"
   ]
 
-  const handleRoleSelect = (e) => {
-    const selectedRole = e.target.value;
-    setFormData({ ...formData, role: selectedRole });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+
+  const handleCheckboxChange = (e) => {
+    const isExecutiveOfficer = e.target.checked;
+    setFormData({ ...formData, role: isExecutiveOfficer ? "Agricultural Executive Officer" : "user" });
   };
 
   const handleEduSelect = (e) => {
@@ -95,6 +101,11 @@ export default function UserForm(){
   const handleExpSelect = (e) => {
     const selectedExp = e.target.value;
     setFormData({ ...formData, experience: selectedExp });
+  };
+
+  const handleGenderSelect = (e) => {
+    const selectedGender = e.target.value;
+    setFormData({ ...formData, gender: selectedGender });
   };
 
   const handleDistrictSelect = (e) => {
@@ -109,11 +120,24 @@ export default function UserForm(){
       setStatusMessage("");
     }
   };
-
   const handleNext = () => {
     if (currentStep === 1) {
-      if (!formData.username || !formData.email || !formData.username || !formData.email || !formData.mobile ) {
+      if (!formData.username || !formData.email || !formData.username || !formData.email ||!formData.gender || !formData.mobile ) {
         setStatusMessage("Please fill all the required fields in Step 1.");
+        setStatusType("error");
+        return;
+      }
+    }
+    if (currentStep === 2) {
+      if (!formData.region || !formData.nic || !formData.password || !formData.confirmPassword  ) {
+        setStatusMessage("Please fill all the required fields in Step 2.");
+        setStatusType("error");
+        return;
+      }
+    }
+    if (currentStep === 3) {
+      if (!formData.education || !formData.occupation || !formData.experience  ) {
+        setStatusMessage("Please fill all the required fields in Step 3.");
         setStatusType("error");
         return;
       }
@@ -140,6 +164,7 @@ export default function UserForm(){
       email: "",
       mobile:"",
       region: "",
+      gender:"",
       role: "",
       nic:"",
       password: "",
@@ -243,6 +268,21 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleGenderSelect}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+              required
+            >
+              <option value="">Select Your Gender</option>
+              {gender.map((g, index) => (
+                <option key={index} value={g}>
+                  {g}
+                </option>
+              ))}
+              </select>
              
                   <div>
                     <a className="text-stone-500 hover:text-blue-700 cursor-pointer" style={{cursor:"pointer"}}onClick={() => navigate("/login")}>You are already registered. Log in here</a>
@@ -274,23 +314,10 @@ const handleNextStep = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
-              /> <select
-              name="role"
-              value={formData.role}
-              onChange={handleRoleSelect}
-             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
-              required
-            >
-              <option value="">Select Your Role</option>
-              {roles.map((role, index) => (
-                <option key={index} value={role}>
-                  {role}
-                </option>
-              ))}
-              </select>
-              
+              /> 
+             <div className="relative">
               <input
-                type="password"
+                type={isPasswordVisible ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
                 value={formData.password}
@@ -298,8 +325,16 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+              <span
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          className="absolute right-4 top-2 cursor-pointer"
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </span>
+        </div>
+        <div className="relative">
               <input
-                type="password"
+                type={isPasswordVisible ? 'text' : 'password'}
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
@@ -307,6 +342,25 @@ const handleNextStep = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 required
               />
+              <span
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          className="absolute right-4 top-2 cursor-pointer"
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </span>
+              </div>
+
+<div>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      onChange={handleCheckboxChange}
+                      className="form-checkbox"
+                    />
+                    <span className="ml-2">Register as Agricultural Executive Officer</span>
+                  </label>
+                </div>
+              
             </div>)}
             {currentStep === 3 && (
               <div className="space-y-4">
@@ -363,12 +417,19 @@ const handleNextStep = () => {
                 <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button></>
               )}
               {currentStep === 2 && formData.role === "Agricultural Executive Officer" && (
+                <>
+                <button type = "button" onClick = {handlePrevious} className="px-4 py-2 bg-blue-800 text-white rounded-lg">Previous</button>
                 <button type="button" onClick={handleNextStep} className="px-4 py-2 bg-blue-800 text-white rounded-lg">
                   Next
                 </button>
+                </>
               )}
               {currentStep === 3 && (
+                <>
+                <button type = "button" onClick = {handlePrevious} className="px-4 py-2 bg-blue-800 text-white rounded-lg">Previous</button>
                 <button type="submit" className="px-4 py-2 bg-green-800 text-white rounded-lg">Submit</button>
+                </>
+                
               )}
           </div>
         </form>

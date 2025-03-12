@@ -1,4 +1,4 @@
-cdimport React from 'react'
+import React from 'react'
 
 function About() {
   return (

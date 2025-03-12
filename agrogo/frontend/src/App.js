@@ -15,8 +15,9 @@ import { Toaster } from 'react-hot-toast';
 import Login1 from './home/Login';
 import HomePage from './home/HomePage';
 import Register from './home/Register';
-
+import Advisory from './home/Advisory';
 import CropCalendar from'./components/cropcalendar/cropApp';
+import Forgot_Password from './home/Forgot_Password';
 
 import Store from './page/Store';
 import Seller from './components/page/Store/StoreCom/Seller';
@@ -67,7 +68,7 @@ function App() {
         <Route path="/ecom/cart" element={<Cart/>} />
         <Route path='/ecom/contact' element={<Contact/>}/>
         <Route path='/ecom/products' element={<Products/>}/>
-     
+        <Route path='/advisory' element={<Advisory/>}/>
 
 
      
@@ -77,6 +78,7 @@ function App() {
       
 
       {<Route path = '/login' element = {<Login/>}/> }
+      <Route path = '/forgot' element = {<Forgot_Password/>}/>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
@@ -101,6 +103,7 @@ function App() {
 
       <Route path="/cropcalendar" element={<CropCalendar/>}/>
 
+      <Route path="/advisory" element={<Advisory />} />
 
       <Route path="/Store" element={<Store />} />
       <Route path="/Seller" element={<Seller />} />
