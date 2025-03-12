@@ -1,16 +1,18 @@
-/* Seller.css */
+
 .inorganic-products-container {
     background-color: hsla(0, 5%, 15%, 0.7);
     padding: 20px;
     margin: 0 auto;
+    
+ 
 }
-.bodyimgi { 
-    background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: top left; 
-    background-size: 100% 100%;
-  }
+body { 
+  background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top left; 
+  background-size: 100% 100%;
+}
 
   .search-barini {
     width: 90%;

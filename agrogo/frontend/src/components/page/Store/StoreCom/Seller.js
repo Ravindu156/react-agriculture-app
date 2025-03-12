@@ -15,6 +15,7 @@ const Seller = () => {
     const [lastUpdatedDate, setLastUpdatedDate] = useState("");
      const [description, setDescription] = useState('');
     const navigate = useNavigate();
+    const [productListon, setProductListon] = useState([]);
 
     useEffect(() => {
         if (name && category) {
@@ -38,7 +39,20 @@ const Seller = () => {
         }
     }, [name, category]);
 
-
+    useEffect(() => {
+            
+            fetchOnProducts();
+            
+        }, []);
+    
+    const fetchOnProducts = () => {
+            fetch('http://localhost:5000/ecom/seller-products/all')
+                .then((response) => response.json())
+                .then((data) => {
+                    setProductListon(data);
+                })
+                .catch((error) => console.error('Error:', error));
+        };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -67,30 +81,31 @@ const Seller = () => {
       
     return (
 
-       <div>
+       <div >
         <NavigationBar />
         <div className="seller-form">
-             <h2>Add a New Product</h2>
+            <div  className="grid-container">
+             <h2 className="font1">ADD ORDER</h2>
             <form onSubmit={handleSubmit}>
-            <p>Name of the product</p>
+            <p className="font3">Name of the product</p>
                 <select value={name} onChange={(e) => setName(e.target.value)}>
             <option value="Carrot">Carrot</option>
             <option value="Apple">Apple</option>
             <option value="Pineapple">Pineapple</option>
                 </select>
-             <p>Select the category</p>    
+             <p className="font3">Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="Inorganic Product">Inorganic Product</option>
                     <option value="Organic Product">Organic Product</option>
                 </select>
 
-            <p>Select the place</p>    
+            <p className="font3">Select the place</p>    
                 <select value={place} onChange={(e) => setPlace(e.target.value)}>
                     <option value="Nuwaraeliya">Nuwaraeliya</option>
                     <option value="jaffna">Jaffna</option>
                 </select>   
               
-             <p>Quantity (in Kg)</p>
+             <p className="font3">Quantity (in Kg)</p>
                 <input
                     
                     type="number"
@@ -100,19 +115,36 @@ const Seller = () => {
                     min="1"
                     required
                 />
-                 <p>give a description</p>
+                 <p className="font3">give a description</p>
                 <textarea
                     placeholder="Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 />
-                <button type="submit">Add Product</button>
+                <button type="submit">Add Order</button>
             </form>
-            
+            </div>
         </div>
         <div className="seller-form">
-        <h1>Last Updated Price: <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedPrice}</span> on {lastUpdatedDate}</h1>
+        <div className="grid-container">
+            <h1 className="font2"> Last Updated Price   : <span style={{ fontSize: 36, fontWeight: 'bold' }}>
+                {lastUpdatedPrice}</span> <br />
+                Date   : <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedDate}</span> </h1>
+        </div>
+
+       
+                        <div className="order-bookII">
+                        <h2 className="font1">ORDER BOOK</h2>
+                        <div className="order-list">
+                            
+                        {productListon.map((item, index) => (
+                            <div key={index} className="order-item">
+                                {item.product} --- {item.category} --- {item.quantity}kg
+                            </div>
+                        ))}
+                        </div>
+                        </div>
         </div>
         </div>
         

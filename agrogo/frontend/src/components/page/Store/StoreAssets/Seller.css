@@ -4,13 +4,7 @@
     padding: 20px;
     margin: 0 auto;
 }
-body { 
-    background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: top left; 
-    background-size: 100% 100%;
-  }
+
 
   .search-barin {
     width: 60%;
@@ -139,4 +133,32 @@ body {
     border-bottom: 1px solid white;
   }
   
+  .order-bookII {
+    width: 83%; /* Maximum width of the form */
+    height: 80%;
+    overflow: auto;
+    float: left;
+    font-size: 16px;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.font2 {
   
+  left: 100px;
+  top: 150px;
+  font-size: 30px;
+  color: rgb(234, 207, 4);
+}
+
+.font3 {
+  
+  left: 100px;
+  top: 150px;
+  font-size: 20px;
+  color: rgb(78, 132, 176);
+}
