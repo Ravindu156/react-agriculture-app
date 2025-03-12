@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
+    "@shadcn/ui": "^0.0.4",
     "@stripe/stripe-js": "^5.3.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +12,7 @@
     "axios": "^1.7.9",
     "chart": "^0.1.2",
     "chart.js": "^4.4.7",
+    "classnames": "^2.5.1",
     "dotenv": "^16.4.7",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
@@ -24,6 +26,7 @@
     "react-scripts": "5.0.1",
     "react-select-async-paginate": "^0.7.9",
     "redux": "^5.0.1",
+    "tailwind-merge": "^3.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
