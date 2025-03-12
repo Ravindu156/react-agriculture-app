@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
+const sellerProductsRouters = require('./routes/sellerProducts');
+const receiptRoutes = require('./routes/receipts');
+const priceRoutes = require('./routes/Priceset');
 
 const app = express();
 
@@ -19,11 +22,15 @@ const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
 const profileRoutes = require("./routes/profile"); // Import profile route
 
+app.use('/ecom/seller-products', sellerProductsRouters);
+app.use('/ecom/recipts', receiptRoutes);
+app.use('/ecom/price', priceRoutes);
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
 app.use("/api/profile", profileRoutes); // New profile route
+
 
 // MongoDB Connection
 mongoose

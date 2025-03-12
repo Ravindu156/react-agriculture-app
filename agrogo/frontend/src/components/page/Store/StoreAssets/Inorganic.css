@@ -1,0 +1,127 @@
+
+.inorganic-products-container {
+    background-color: hsla(0, 5%, 15%, 0.7);
+    padding: 20px;
+    margin: 0 auto;
+    
+ 
+}
+.body { 
+  background-image: url('./Img/Vietnam\ Wallpaper.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top left; 
+  background-size: 100% 100%;
+}
+
+  .search-barini {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #140101;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: hsla(0, 5%, 15%, 0.7);
+}
+
+    .search-div {
+        padding: 10px;
+        font-size: 19px;
+        margin-bottom: 20px;
+    }
+
+
+  
+  .order-list {
+    background-color: rgba(9, 4, 49, 0.897);
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .order-item {
+    padding: 5px;
+    border-bottom: 1px solid rgb(94, 90, 90);
+  }
+
+  .font1 {
+    text-align: center;
+    left: 100px;
+    top: 150px;
+    font-size: 35px;
+    color: white;
+  }
+  
+  .product-listI {
+    background-color: rgba(9, 4, 49, 0.897);
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .product-itemI {
+    padding: 5px;
+    border-bottom: 1px solid white;
+  }
+
+  .order-bookI {
+    width: 33%; /* Maximum width of the form */
+    height: 1000px;
+    overflow: auto;
+    float: right;
+    font-size: 16px;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.chart-bookI {
+    width: 47%; /* Maximum width of the form */
+    height: 1000px;
+    float: right;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.select-bookI {
+    width: 20%; /* Maximum width of the form */
+    height: 1000px;
+    overflow: auto;
+    float: right;
+    color: #fcfafa;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+    background-color: #0c0a11b5;
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(34, 33, 34, 0.992);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 18px;
+    color: rgb(220, 235, 224);
+  }
+  
+  .item1 {
+    grid-column: 1 ;
+  }

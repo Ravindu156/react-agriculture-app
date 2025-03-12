@@ -1,6 +1,13 @@
 /* Seller.css */
 
-body { 
+.inorganic-products-container {
+    background-color: hsla(0, 5%, 15%, 0.7);
+    padding: 20px;
+    margin: 0 auto;
+}
+
+
+.body { 
     /*background-image: url('./Img/Vietnam\ Wallpaper.jpeg');*/
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -9,28 +16,40 @@ body {
   }
 
 
+
+  .search-barin {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #140101;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: hsla(0, 5%, 15%, 0.7);
+}
 .seller-form {
     
     width: 50%; /* Maximum width of the form */
     height: 50%;
-
+    color: #fcfafa;
+    float: right;
+    
 }
 .seller-form {
-    max-width: 1600px; /* Maximum width of the form */
+    max-width: 1300; /* Maximum width of the form */
     height: 1000px;
-
+    float: right;
     margin: 20px auto; /* Center the form */
     padding: 20px; /* Padding inside the form */
-    border: 1px solid #ccc; /* Light border */
+    border: 1px solid #161616; /* Light border */
     border-radius: 8px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
 }
 
 .seller-form h2 {
     text-align: center; /* Center the heading */
     margin-bottom: 20px; /* Space below the heading */
-    color: #333; /* Darker text color */
+    color: #fcfafa; /* Darker text color */
 }
 
 .seller-form input[type="text"],
@@ -41,9 +60,10 @@ body {
     width: 100%; /* Full width */
     padding: 10px; /* Padding inside inputs */
     margin: 10px 0; /* Space above and below inputs */
-    border: 1px solid #ccc; /* Light border */
+    border: 1px solid #190202; /* Light border */
     border-radius: 4px; /* Rounded corners */
     font-size: 16px; /* Font size */
+    background-color: hsla(0, 5%, 15%, 0.7);
 }
 
 .seller-form textarea {
@@ -54,7 +74,7 @@ body {
 .seller-form button {
     width: 100%; /* Full width */
     padding: 10px; /* Padding inside button */
-    background-color: #28a745; /* Green background */
+    background-color: #bb2929; /* Green background */
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
@@ -72,4 +92,84 @@ body {
     font-size: 14px; /* Font size for error messages */
     margin-top: -10px; /* Space above error messages */
     margin-bottom: 10px; /* Space below error messages */
+}
+
+.list-display {
+    color: #fdfdfd;
+    width:50%;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgb(32, 33, 33);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    float: left;
+    
+}
+.receipt {
+    width: 40%;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(32, 33, 33);
+    color: white; /* White text */
+    float: right;
+    clear: both;
+    display: table;
+  }
+  
+  .receipt h3 {
+    margin-bottom: 10px;
+  }
+  
+  .receipt ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .receipt ul li {
+    margin-bottom: 5px;
+  }
+  
+  .product-list {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .product-item {
+    padding: 5px;
+    border-bottom: 1px solid white;
+  }
+  
+  .order-bookII {
+    width: 83%; /* Maximum width of the form */
+    height: 80%;
+    overflow: auto;
+    float: left;
+    font-size: 16px;
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #161616; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: hsla(0, 5%, 15%, 0.7);
+    box-shadow: 0 2px 5px rgba(20, 19, 19, 0.1); /* Subtle shadow */
+}
+
+.font2 {
+  
+  left: 100px;
+  top: 150px;
+  font-size: 30px;
+  color: rgb(234, 207, 4);
+}
+
+.font3 {
+  
+  left: 100px;
+  top: 150px;
+  font-size: 20px;
+  color: rgb(78, 132, 176);
 }

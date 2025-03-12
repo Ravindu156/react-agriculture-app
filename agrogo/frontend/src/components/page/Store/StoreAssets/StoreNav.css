@@ -38,6 +38,29 @@
     text-decoration: none; /* No underline */
 }
 
+.buy-button {
+  background-color: #3fe961; /* Red background */
+  color: white; /* White text */
+  padding: 10px 15px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* No underline */
+}
+.ex-button {
+  background-color: #bfbc0b; /* Red background */
+  color: white; /* White text */
+  padding: 10px 15px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* No underline */
+}
+.admin-button {
+  background-color: #673fe9; /* Red background */
+  color: white; /* White text */
+  padding: 10px 15px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* No underline */
+  
+}
+
 .sell-button:hover {
     background-color: darkred; /* Darker red on hover */
 }

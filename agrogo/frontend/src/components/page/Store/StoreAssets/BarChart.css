@@ -4,7 +4,7 @@
 
 .bar-chart-container {
     
-    background-color: #e4d9d9; /* Light background for the chart container */
+    background-color: #090909a3; /* Light background for the chart container */
     border-radius: 8px; /* Rounded corners */
     padding: 20px; /* Padding around the chart */
     box-shadow: 0 2px 10px rgba(230, 7, 7, 0.1); /* Subtle shadow for depth */
@@ -15,7 +15,7 @@
     text-align: center; /* Center the title */
     font-size: 1.5rem; /* Font size for the title */
     margin-bottom: 15px; /* Space below the title */
-    color: #202020; /* Dark color for the title */
+    color: #e2dada; /* Dark color for the title */
 }
 
 .chart {

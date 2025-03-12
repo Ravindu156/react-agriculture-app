@@ -56,6 +56,41 @@ export default function HomePage() {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
   };
 
+
+  
+
+    return (
+      
+      <div className="carousel-container">
+        <div
+          className="carousel-slide"
+          style={{
+            backgroundImage: `url(${images[currentSlide]})`,
+            transition: 'background-image 1s ease-in-out',
+          }}
+        >
+          <header className="header">
+            <div className="logo">AgroGo</div>
+            <nav className="nav">
+              <a href="#about-us" onClick={(e)=>navigateToSection(e, 'about-us')}>About us</a>
+              <a href="#farmer" onClick={(e)=>navigateToSection(e, 'farmer')}>Farmer</a>
+              <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
+              <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
+              <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
+              <Link to="/store">E-Store</Link> 
+              <Link to="/inorganic">Exchange</Link> 
+            </nav>
+          </header>
+    
+          <main className="main">
+            <div className="overlay">
+              <h2>Empowering Agriculture</h2>
+              <p>A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
+              <div className="buttons">
+                <button className="register-button" onClick={handleRegisterClick}>Register</button>
+                <button className="login-button" onClick={handleLoginClick}>Login</button>
+              </div>
+
   return (
     <div className="relative">
       <div
@@ -84,6 +119,7 @@ export default function HomePage() {
             <div className="flex justify-center gap-4">
               <button className="px-8 py-3 bg-[#5a845c] text-white rounded hover:bg-[#5b912b]" onClick={handleRegisterClick}>Register</button>
               <button className="px-8 py-3 bg-[#5a845c] text-white rounded hover:bg-[#5b912b]" onClick={handleLoginClick}>Login</button>
+
             </div>
           </div>
         </main> */}

@@ -1,107 +1,170 @@
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
-import AgroCard from '../Store/StoreCom/AgroCard';
 import './StoreAssets/Inorganic.css';
 import BarChart from './StoreCom/BarChart';
+import axios from 'axios';
 
-const InorganicProducts = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedProductData, setSelectedProductData] = useState(null);
-  //chart
-  const chartData = [
-    { day: 'Day 1', price: 20 },
-    { day: 'Day 2', price: 30 },
-    { day: 'Day 3', price: 25 },
-    { day: 'Day 4', price: 35 },
-    { day: 'Day 5', price: 40 },
-    { day: 'Day 6', price: 30 },
-    { day: 'Day 7', price: 50 },
-];
+const BuyProducts = () => {
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+    const [chartData, setChartData] = useState([]);
+    const [quantityChartData, setQuantityChartData] = useState([]);
+    const [productList, setProductList] = useState([]);
+    const [productListon, setProductListon] = useState([]);
+  
+    // Fetch chart data whenever name, category changes
+    useEffect(() => {
+        if (name && category) {
+            fetchChartData(name, category);
+        }
+    }, [name, category]);
 
+    // Fetch existing products
+    useEffect(() => {
+        fetchProducts();
+        fetchOnProducts();
+        fetchQuantityChartData();
+    }, []);
 
-  // Sample products data (you can replace this with your actual data)
-  const products = [
-    { id: 1, name: 'Carrot', price: 19.99,chartData: [
-      { day: 'Day 1', price: 20 }, 
-      { day: 'Day 2', price: 30 },
-      { day: 'Day 3', price: 55 },
-      { day: 'Day 4', price: 65 },
-      { day: 'Day 5', price: 40 },] },
-    { id: 2, name: 'Apple', price: 29.99, chartData: [
-      { day: 'Day 1', price: 25 }, 
-      { day: 'Day 2', price: 35 },
-      { day: 'Day 3', price: 35 },
-      { day: 'Day 4', price: 55 },
-      { day: 'Day 5', price: 20 },] },
-    { id: 3, name: 'Pinapple', price: 15.99,chartData: [
-      { day: 'Day 1', price: 15 }, 
-      { day: 'Day 2', price: 60 },
-      { day: 'Day 3', price: 25 },
-      { day: 'Day 4', price: 35 },
-      { day: 'Day 5', price: 60 },] },
-    // Add more products as needed
-  ];
+    const fetchProducts = () => {
+        fetch('http://localhost:5000/ecom/price/all')
+            .then((response) => response.json())
+            .then((data) => {
+                setProductList(data);
+            })
+            .catch((error) => console.error('Error:', error));
+    };
 
-   // Function to handle search input change
-   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    const fetchOnProducts = () => {
+        fetch('http://localhost:5000/ecom/seller-products/all')
+            .then((response) => response.json())
+            .then((data) => {
+                setProductListon(data);
+            })
+            .catch((error) => console.error('Error:', error));
+    };
 
-  // Function to handle product selection
-  const handleProductSelect = (product) => {
-    setSelectedProductData(product.chartData); // Update the chart data based on the selected product
-  };
+    // Function to fetch price chart data from the backend
+    const fetchChartData = async (name, category) => {
+        try {
+            const response = await axios.get('http://localhost:5000/ecom/price/chart-data', {
+                params: { name, category },
+            });
+            setChartData(response.data.chartData);
+        } catch (error) {
+            console.error('Error fetching chart data:', error);
+            setChartData([]);
+        }
+    };
 
+    // Function to fetch quantity chart data
+    const fetchQuantityChartData = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/ecom/seller-products/chart-quantity-data');
+            setQuantityChartData(response.data.chartData);
+        } catch (error) {
+            console.error('Error fetching quantity chart data:', error);
+            setQuantityChartData([]);
+        }
+    };
 
-// Filter products based on search term
-const filteredProducts = products.filter(product =>
-  product.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
+    const formatChartData = () => {
+        if (chartData.length > 0) {
+            const labels = chartData.map((data) => data.date);
+            const prices = chartData.map((data) => data.price);
+            return { labels, prices };
+        } else {
+            return { labels: [], prices: [] };
+        }
+    };
 
+    const formatQuantityChartData = () => {
+        if (quantityChartData.length > 0) {
+            const labels = quantityChartData.map((data) => data.product);
+            const quantities = quantityChartData.map((data) => data.quantity);
+            return { labels, quantities };
+        } else {
+            return { labels: [], quantities: [] };
+        }
+    };
 
-  return (
-   <div>
-    <NavigationBar />
-    <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for Inorganic Products..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="search-input"
-        />
-      </div>
-      <div className="product-list">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
-            <AgroCard key={product.id} 
-            product={product} 
-            onSelect={() => handleProductSelect(product)}
-            />
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
-      </div>
-      <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1, padding: '20px' }}>
-                
-            </div>
-            <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
-                <h2>Inorganic Products</h2>
-                {selectedProductData ? (
-                    <BarChart data={selectedProductData} />
-                ) : (
-                    <p>Select a product to see the price chart.</p>
-                )}
+    return (
+        <div>
+            <NavigationBar />
+            <div className="inorganic-products-container">
+                <div className="order-bookI">
+                    {/* Product List */}
+                    
+                    <div className="grid-container">
+                    <h2 className="font1">PRICE LIST</h2>
+                        {productList.map((item, index) => (
+                            <div key={index} className="item1">
+                               
+                                {item.product} ---- {item.category} ---- Rs: {item.price}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="charts-display">
+                    
+                        {/* Chart Display */}
+                        <div className="charts-display">
+                        <div className="chart-bookI">
+                            <div style={{ flex: 1, padding: '20px' }}>
+                                <h2 className="font1">PRICE VOLUME INDEX</h2>
+                            </div>
+                            <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
+                                {chartData.length > 0 ? (
+                                    <BarChart data={formatChartData()} chartType="price" />
+                                ) : (
+                                    <p>Select a product to see the price chart.</p>
+                                )}
+                            </div>
+                            <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
+                                {quantityChartData.length > 0 ? (
+                                    <BarChart data={formatQuantityChartData()} />
+                                ) : (
+                                    <p>Quantity data is not available.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="select-bookI">
+                        <div className="search-div">
+                            <p>Select the product </p>
+                            <select className="search-barini" value={name} onChange={(e) => setName(e.target.value)}>
+                                <option value="">Select Product</option>
+                                <option value="Carrot">Carrot</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Pineapple">Pineapple</option>
+                            </select>
+                            
+                        </div>
+                        
+                        {/* Dropdown for Category */}
+                        <div className="search-div">
+                            <p>Select the Category</p>
+                            <select className="search-barini" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                <option value="">Select Category</option>
+                                <option value="Inorganic Product">Inorganic Product</option>
+                                <option value="Organic Product">Organic Product</option>
+                            </select>
+                        </div>
+                        <h2 className="font1">ORDER BOOK</h2>
+                        <div className="order-list">
+                            
+                        {productListon.map((item, index) => (
+                            <div key={index} className="order-item">
+                                {item.product} --- {item.category} --- {item.quantity}kg
+                            </div>
+                        ))}
+                        </div>
+                        </div>
+                        
+                </div>
             </div>
         </div>
-
-    </div> 
-
-  );
+    );
 };
 
-export default InorganicProducts;
+export default BuyProducts;
