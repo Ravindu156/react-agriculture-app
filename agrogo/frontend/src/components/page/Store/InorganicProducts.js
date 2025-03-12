@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Store/StoreCom/NavigationBar';
-import './StoreAssets/Seller.css';
+import './StoreAssets/Inorganic.css';
 import BarChart from './StoreCom/BarChart';
 import axios from 'axios';
 
@@ -92,13 +92,15 @@ const BuyProducts = () => {
         <div>
             <NavigationBar />
             <div className="inorganic-products-container">
-                <div className="order-book">
+                <div className="order-bookI">
                     {/* Product List */}
-                    <h3>Product List</h3>
-                    <div className="product-list">
+                    
+                    <div className="grid-container">
+                    <h2 className="font1">PRICE LIST</h2>
                         {productList.map((item, index) => (
-                            <div key={index} className="product-item">
-                                {item.product} - {item.category} - ${item.price}
+                            <div key={index} className="item1">
+                               
+                                {item.product} ---- {item.category} ---- Rs: {item.price}
                             </div>
                         ))}
                     </div>
@@ -107,9 +109,9 @@ const BuyProducts = () => {
                     
                         {/* Chart Display */}
                         <div className="charts-display">
-                        <div className="chart-book">
+                        <div className="chart-bookI">
                             <div style={{ flex: 1, padding: '20px' }}>
-                                <h2>Product Sales Charts</h2>
+                                <h2 className="font1">PRICE VOLUME INDEX</h2>
                             </div>
                             <div style={{ flex: 2, padding: '20px', marginRight: '20px' }}>
                                 {chartData.length > 0 ? (
@@ -127,10 +129,10 @@ const BuyProducts = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="select-book">
-                        <div className="search-bar">
-                            <p>Name of the product</p>
-                            <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
+                    <div className="select-bookI">
+                        <div className="search-div">
+                            <p>Select the product </p>
+                            <select className="search-barini" value={name} onChange={(e) => setName(e.target.value)}>
                                 <option value="">Select Product</option>
                                 <option value="Carrot">Carrot</option>
                                 <option value="Apple">Apple</option>
@@ -138,19 +140,22 @@ const BuyProducts = () => {
                             </select>
                             
                         </div>
+                        
                         {/* Dropdown for Category */}
-                        <div className="search-bar">
-                            <p>Select the category</p>
-                            <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <div className="search-div">
+                            <p>Select the Category</p>
+                            <select className="search-barini" value={category} onChange={(e) => setCategory(e.target.value)}>
                                 <option value="">Select Category</option>
                                 <option value="Inorganic Product">Inorganic Product</option>
                                 <option value="Organic Product">Organic Product</option>
                             </select>
                         </div>
-                        <div className="product-list">
+                        <h2 className="font1">ORDER BOOK</h2>
+                        <div className="order-list">
+                            
                         {productListon.map((item, index) => (
-                            <div key={index} className="product-item">
-                                {item.product} - {item.category} - {item.quantity}kg
+                            <div key={index} className="order-item">
+                                {item.product} --- {item.category} --- {item.quantity}kg
                             </div>
                         ))}
                         </div>

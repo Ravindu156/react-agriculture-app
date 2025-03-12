@@ -35,7 +35,7 @@ const BarChart = ({ data, chartType }) => {
 
     return (
         <div className="bar-chart-container">
-            <h2 className="bar-chart-title">{chartType === 'price' ? 'Monthly Price Chart' : 'Product Quantity Chart'}</h2>
+            <h2 className="bar-chart-title">{chartType === 'price' ? 'Daily Price Chart(Rs.)' : 'Product Volume Demand Chart(Kg.)'}</h2>
             <div className="chart">
                 <Bar data={chartData} options={options} />
             </div>
