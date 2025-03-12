@@ -48,7 +48,7 @@ export default function Login () {
       setError(errorMessage); 
     }
     if (email === 'admin@gmail.com' && password === 'User@1234') {
-      navigate('/dashboard');
+      navigate('/admindashboard');
     } 
   };
   
