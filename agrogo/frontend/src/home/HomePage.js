@@ -59,37 +59,7 @@ export default function HomePage() {
 
   
 
-    return (
-      
-      <div className="carousel-container">
-        <div
-          className="carousel-slide"
-          style={{
-            backgroundImage: `url(${images[currentSlide]})`,
-            transition: 'background-image 1s ease-in-out',
-          }}
-        >
-          <header className="header">
-            <div className="logo">AgroGo</div>
-            <nav className="nav">
-              <a href="#about-us" onClick={(e)=>navigateToSection(e, 'about-us')}>About us</a>
-              <a href="#farmer" onClick={(e)=>navigateToSection(e, 'farmer')}>Farmer</a>
-              <a href="#seller" onClick={(e)=>navigateToSection(e, 'seller')}>Seller</a>
-              <a href="#executive-officer" onClick={(e)=>navigateToSection(e, 'executive-officer')}>Executive officer</a>
-              <a href="#contact-us" onClick={(e)=>navigateToSection(e, 'contact-us')}>Contact Us</a>
-              <Link to="/store">E-Store</Link> 
-              <Link to="/inorganic">Exchange</Link> 
-            </nav>
-          </header>
     
-          <main className="main">
-            <div className="overlay">
-              <h2>Empowering Agriculture</h2>
-              <p>A Hub for Farmers, Sellers, and Agricultural Officers to Thrive Together</p>
-              <div className="buttons">
-                <button className="register-button" onClick={handleRegisterClick}>Register</button>
-                <button className="login-button" onClick={handleLoginClick}>Login</button>
-              </div>
 
   return (
     <div className="relative">
@@ -109,6 +79,7 @@ export default function HomePage() {
             <a href="#farmer" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'farmer')}>What we do for you</a>
             <a href="#executive-officer" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'executive-officer')}>Are you an Executive officer</a>
             <a href="#contact-us" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'contact-us')}>Contact Us</a>
+            <Link to="/inorganic">Exchange</Link>
           </nav>
         </header>
 
@@ -283,7 +254,8 @@ export default function HomePage() {
 
       <div className="text-center text-white">
         <p>&copy; 2024 AgroGo. All Rights Reserved.</p>
-      </div>
-    </div>
-  );
+              </div>
+              </div>
+          
+    );
 }
