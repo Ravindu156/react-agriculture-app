@@ -89,8 +89,25 @@ const Admin = () => {
             <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
               <option value="">Select Product</option>
               <option value="Carrot">Carrot</option>
-              <option value="Apple">Apple</option>
-              <option value="Pineapple">Pineapple</option>
+                                <option value="Pumpkin">Pumpkin</option>
+                                <option value="Brinjal">Brinjal</option>
+                                <option value="Cabbage">Cabbage</option>
+                                <option value="Beans">Beans</option>
+                                <option value="Drumsticks">Drumsticks</option>
+                                <option value="Bitter Gourd">Bitter Gourd</option>
+                                <option value="Snake Gourd">Snake Gourd</option>
+                                <option value="Ridge Gourd">Ridge Gourd</option>
+                                <option value="Ladies' Fingers">Ladies' Fingers</option>
+                                <option value="Leeks">Leeks</option>
+                                <option value="Spinach">Spinach</option>
+                                <option value="Ash Plantain">Ash Plantain</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Green Chilli">Green Chilli</option>
+                                <option value="Capsicum">Capsicum</option>
+                                <option value="Cucumber">Cucumber</option>
+                                <option value="Radish">Radish</option>
+                                <option value="Turnip">Turnip</option>
+                                <option value="Winged Beans">Winged Beans</option>
             </select>
           </div>
 
