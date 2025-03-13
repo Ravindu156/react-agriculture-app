@@ -82,6 +82,26 @@ router.get('/getArticles', async (req, res) => {
 
 
 
+// Toggle admin approval status for an article
+router.put('/toggleApproval/:id', verify, async (req, res) => {
+  try {
+    const article = await Article.findById(req.params.id);
+    if (!article) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+
+    // Toggle the adminApproval status
+    article.adminApproval = !article.adminApproval;
+    await article.save();
+
+    res.status(200).json({ message: 'Approval status updated', article });
+  } catch (error) {
+    console.error('Error toggling approval status:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // Serve static files from the 'uploads' directory
 router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

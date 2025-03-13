@@ -27,6 +27,7 @@ const ContentManagement = () => {
         });
     
         setArticles(response.data); // Set the fetched articles in state
+        
       } catch (error) {
         console.error('Error fetching articles:', error.response?.data || error.message); // Improved error handling
       } finally {
@@ -36,6 +37,33 @@ const ContentManagement = () => {
     
     fetchArticles();
   }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+
+  // Toggle admin approval status
+  const toggleApproval = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found, authorization denied');
+      return;
+    }
+
+    try {
+      const response = await axios.put(`http://localhost:5000/api/articles/toggleApproval/${id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Update article state
+      setArticles((prevArticles) =>
+        prevArticles.map((article) =>
+          article._id === id ? { ...article, adminApproval: !article.adminApproval } : article
+        )
+      );
+
+      
+    } catch (error) {
+      console.error('Error toggling approval:', error.response?.data || error.message);
+    }
+  };
 
 
   return (
@@ -60,7 +88,14 @@ const ContentManagement = () => {
               <p className="text-gray-700">{article.content}</p>
               <p className="text-gray-500 mt-3">By {article.author} | {article.date}</p>
               <p className="category">Category: {article.category}</p>
-              
+              <button
+                className={`mt-3 p-2 rounded ${
+                  article.adminApproval ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+                }`}
+                onClick={() => toggleApproval(article._id)}
+              >
+                {article.adminApproval ? 'Approved ✅' : 'Not Approved ❌'}
+              </button>
             </div>
           ))}
         </div>
