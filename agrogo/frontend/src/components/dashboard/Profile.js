@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
-import profileImage from "../../Images/profilepage.jpg"; // Correct image path
+import profileImage from "../../Images/profilepage.jpg"; 
 
 function Profile() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null); // Initially set to null
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -14,30 +14,46 @@ function Profile() {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("No token found, please login");
-        navigate("/login");
+        navigate("/login"); // Redirect to login if no token
         return;
       }
+
       try {
         const res = await fetch("http://localhost:5000/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+
         const data = await res.json();
         if (res.ok) {
-          setUser(data);
-          setFormData(data);
+          if (!data || Object.keys(data).length === 0) {
+            // If user data is empty, force logout
+            localStorage.removeItem("token");
+            navigate("/login");
+          } else {
+            setUser(data);
+            setFormData(data);
+          }
         } else {
           alert(data.message);
+          localStorage.removeItem("token");
+          navigate("/login");
         }
       } catch (error) {
         console.error("Fetch Error:", error);
         alert("Failed to fetch user data");
+        localStorage.removeItem("token");
+        navigate("/login");
       }
     };
+
     fetchUserData();
-  }, [navigate]); // Only include navigate as dependency
+  }, [navigate]); 
+
+  if (!user) {
+    return null; // Prevent rendering until user is verified
+  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -97,12 +113,12 @@ function Profile() {
       style={{
         padding: "20px",
         fontFamily: "Arial",
-        backgroundImage: `url(${profileImage})`, // Correct image usage
-        backgroundSize: "cover", // Ensures it covers the entire screen
-        backgroundPosition: "center", // Centers the image
-        backgroundRepeat: "no-repeat", // Prevents repeating the image
-        minHeight: "100vh", // Ensures full screen coverage
-        backgroundAttachment: "fixed", // Optional: Keeps the background fixed during scrolling
+        backgroundImage: `url(${profileImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        backgroundAttachment: "fixed",
       }}
     >
       <h1 style={{ textAlign: "center", color: "black", fontWeight: "bold", fontSize: "3rem" }}>
@@ -116,7 +132,7 @@ function Profile() {
             border: "1px solid #ccc",
             borderRadius: "10px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Transparent background for form
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
         >
           <form onSubmit={handleSubmit}>
