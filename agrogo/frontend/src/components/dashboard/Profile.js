@@ -3,49 +3,48 @@ import { useNavigate } from "react-router-dom";
 import profileImage from "../../Images/profilepage.jpg";
 
 function Profile() {
-  const [user, setUser] = useState(null); // Initially set to null
+  const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
-  // Fetch user profile data
+  // ✅ Ensure only the correct user profile is shown
   useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setUser(null); // Clear old data
-        navigate("/login");
-        return;
-      }
+    const token = localStorage.getItem("token");
 
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    const fetchUserData = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Cache-Control": "no-cache", // ✅ Force fresh data
           },
         });
 
-        const data = await res.json();
-        if (res.ok) {
-          if (!data || Object.keys(data).length === 0) {
-            localStorage.removeItem("token");
-            setUser(null);
-            navigate("/login");
-          } else {
-            setUser(data);
-            setFormData(data);
-          }
-        } else {
+        if (!res.ok) {
           localStorage.removeItem("token");
-          setUser(null);
           navigate("/login");
+          return;
         }
+
+        const data = await res.json();
+
+        // ✅ Ensure new login always fetches fresh data
+        setUser(null);
+        setTimeout(() => {
+          setUser(data);
+          setFormData(data);
+        }, 500);
       } catch (error) {
         console.error("Fetch Error:", error);
         localStorage.removeItem("token");
-        setUser(null);
         navigate("/login");
       }
     };
@@ -53,12 +52,12 @@ function Profile() {
     fetchUserData();
   }, [navigate]);
 
-  // If no user data is available, prevent rendering
+  // If user is not loaded yet, show nothing
   if (!user) {
     return null;
   }
 
-  // Handle form input changes
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -68,7 +67,7 @@ function Profile() {
     setIsEditing(true);
   };
 
-  // Cancel editing and revert changes
+  // Cancel editing
   const handleCancel = () => {
     setIsEditing(false);
     setFormData(user);
@@ -113,13 +112,6 @@ function Profile() {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Logout function (clears all user data)
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    navigate("/login");
   };
 
   return (
@@ -248,22 +240,6 @@ function Profile() {
             }}
           >
             Back to Dashboard
-          </button>
-
-          <button
-            onClick={handleLogout}
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              padding: "10px",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              width: "100%",
-              marginTop: "10px",
-            }}
-          >
-            Logout
           </button>
         </div>
       </div>
