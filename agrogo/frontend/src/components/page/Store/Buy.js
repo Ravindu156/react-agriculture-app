@@ -130,26 +130,12 @@ const BuyProducts = () => {
         <div>
             <NavigationBar />
             <div className="inorganic-products-container">
-                <div className="receipt">
-                    <h3>Receipt</h3>
-                    <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
-                    <p><strong>Date:</strong> {receipt.date}</p>
-                    <h4>Selected Products:</h4>
-                    <ul>
-                        {receipt.selectedProducts.map((product) => (
-                            <li key={product._id}>
-                                ID: {product._id}, Quantity: {product.quantity}
-                                <button onClick={() => handleRemove(product._id)}>Remove</button>
-                            </li>
-                        ))}
-                    </ul>
-                    <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
-                    <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
-                    <button onClick={handleSubmit}>Submit Receipt</button>
-                </div>
+            <div className="chart-bookI">
                 <div className="charts-display">
+                    <div className="grid-container">
+                    <h2 className="font1">FILL ORDER</h2>
                     <div className="search-bar">
-                        <p>Buyer ID:</p>
+                        <p>Supplier ID:</p>
                         <input
                             type="number"
                             placeholder="Enter ID"
@@ -188,20 +174,49 @@ const BuyProducts = () => {
                         )}
                     </div>
                 </div>
-                <div className="list-display">
-                    <h3>Available Products</h3>
+                </div>
+                </div>
+
+                <div className="order-bookI">
+                <div className="receipt">
+                  <h2 className="font1">Supplier Receipt</h2>
+                    <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
+                    <p><strong>Date:</strong> {receipt.date}</p>
+                    <p><strong>Selected Products:</strong></p>
                     <ul>
+                        {receipt.selectedProducts.map((product) => (
+                            <li key={product._id}>
+                                ID: {product._id}, Quantity: {product.quantity}
+                                <button className="button3" onClick={() => handleRemove(product._id)}>Remove</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
+                    <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
+                    <button className="button" onClick={handleSubmit}>Submit Receipt</button>
+                </div>
+                </div> 
+                
+                <div className="select-bookI">
+                <div className="list-display">
+                <h2 className="font1">AVAILABLE ORDERS</h2>
+                    <div className="grid-container">
+                   
                         {productList.length > 0 ? (
                             productList.map((product) => (
-                                <li key={product._id}>
-                                    <span>ID: {product._id}, Quantity: {product.quantity}</span>
-                                    <button onClick={() => handleSelect(product._id)}>Select</button>
+                                <div className="item1">
+                                <li  key={product._id}>
+                                    <span>ID: {product._id}, <br />Ask Quantity: {product.quantity}.Kg</span>
+                                    <button className="button2" onClick={() => handleSelect(product._id)}>Select</button>
                                 </li>
+                                </div>
                             ))
                         ) : (
                             <p>No products available with quantity greater than 0.</p>
                         )}
-                    </ul>
+                    
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
