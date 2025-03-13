@@ -155,6 +155,10 @@ app.post("/reduceQuantity", async (req, res) => {
     // Find product by ID
     const product = await productModel.findById(productId);
 
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
     
 
 
