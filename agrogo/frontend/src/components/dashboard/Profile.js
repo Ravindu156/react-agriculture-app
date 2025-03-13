@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import profileImage from "../../Images/profilepage.jpg"; 
+import profileImage from "../../Images/profilepage.jpg";
 
 function Profile() {
   const [user, setUser] = useState(null); // Initially set to null
@@ -10,11 +10,13 @@ function Profile() {
   const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
+  // Fetch user profile data
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        navigate("/login"); // Redirect to login if no token
+        setUser(null); // Clear old data
+        navigate("/login");
         return;
       }
 
@@ -28,47 +30,52 @@ function Profile() {
         const data = await res.json();
         if (res.ok) {
           if (!data || Object.keys(data).length === 0) {
-            // If user data is empty, force logout
             localStorage.removeItem("token");
+            setUser(null);
             navigate("/login");
           } else {
             setUser(data);
             setFormData(data);
           }
         } else {
-          alert(data.message);
           localStorage.removeItem("token");
+          setUser(null);
           navigate("/login");
         }
       } catch (error) {
         console.error("Fetch Error:", error);
-        alert("Failed to fetch user data");
         localStorage.removeItem("token");
+        setUser(null);
         navigate("/login");
       }
     };
 
     fetchUserData();
-  }, [navigate]); 
+  }, [navigate]);
 
+  // If no user data is available, prevent rendering
   if (!user) {
-    return null; // Prevent rendering until user is verified
+    return null;
   }
 
+  // Handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Enable edit mode
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  // Cancel editing and revert changes
   const handleCancel = () => {
     setIsEditing(false);
     setFormData(user);
     setStatusMessage("");
   };
 
+  // Submit updated profile data
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -76,7 +83,7 @@ function Profile() {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("No token found, please login");
+      alert("No token found, please login.");
       navigate("/login");
       setLoading(false);
       return;
@@ -106,6 +113,13 @@ function Profile() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Logout function (clears all user data)
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
   };
 
   return (
@@ -234,6 +248,22 @@ function Profile() {
             }}
           >
             Back to Dashboard
+          </button>
+
+          <button
+            onClick={handleLogout}
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              padding: "10px",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            Logout
           </button>
         </div>
       </div>
