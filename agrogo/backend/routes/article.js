@@ -48,6 +48,27 @@ router.post('/addArticle', upload.single('image'), verify, async (req, res) => {
   }
 });
 
+
+// Get approved articles
+router.get('/approved', async (req, res) => {
+  try {
+    // Find all articles where adminApproval is true
+    const approvedArticles = await Article.find({ adminApproval: true });
+
+    // If no approved articles are found
+    if (!approvedArticles || approvedArticles.length === 0) {
+      return res.status(404).json({ message: 'No approved articles found' });
+    }
+
+    // Return the list of approved articles
+    res.status(200).json(approvedArticles);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching approved articles' });
+  }
+});
+
+
 // Serve static files from the 'uploads' directory
 router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
