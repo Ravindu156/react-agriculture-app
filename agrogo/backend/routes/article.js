@@ -69,6 +69,19 @@ router.get('/approved', async (req, res) => {
 });
 
 
+// Get all articles
+router.get('/getArticles', async (req, res) => {
+  try {
+    const articles = await Article.find(); // Fetch all articles from the database
+    res.status(200).json(articles); // Return the articles in the response
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching articles' });
+  }
+});
+
+
+
 // Serve static files from the 'uploads' directory
 router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

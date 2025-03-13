@@ -6,24 +6,41 @@ const ContentManagement = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch all articles from the backend
   useEffect(() => {
-    const fetchApprovedArticles = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/articles/approved');
-        setArticles(response.data); // Set the approved articles in state
-      } catch (error) {
-        console.error('Error fetching approved articles:', error);
-      } finally {
+    const fetchArticles = async () => {
+      const token = localStorage.getItem('token'); // Get token from localStorage
+    
+      if (!token) {
+        console.error('No token found, authorization denied'); // Improved error message
         setLoading(false);
+        return;
+      }
+    
+      try {
+        console.log('Token being sent:', token); // Debugging - Check token value
+    
+        const response = await axios.get('http://localhost:5000/api/articles/getArticles', {
+          headers: {
+            Authorization: `Bearer ${token.trim()}`, // Ensure no spaces in token
+          },
+        });
+    
+        setArticles(response.data); // Set the fetched articles in state
+      } catch (error) {
+        console.error('Error fetching articles:', error.response?.data || error.message); // Improved error handling
+      } finally {
+        setLoading(false); // Set loading to false after the request is done
       }
     };
+    
+    fetchArticles();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-    fetchApprovedArticles();
-  }, []);
 
   return (
     <div id="ContentManagement" className="mt-20">
-      <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center">Content Management</h2>
+      <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center">Article Management</h2>
 
       {loading ? (
         <p className="text-center mt-5">Loading articles...</p>
@@ -34,7 +51,7 @@ const ContentManagement = () => {
               {/* Check if article has an image and ensure the path is correctly formatted */}
               {article.image && (
                 <img
-                  src={`http://localhost:5000/${article.image}`} // Ensure image URL is correct, considering backend setup
+                  src={`http://localhost:5000${article.image}`} // Ensure image URL is correct, considering backend setup
                   alt={article.title} // Set alt text dynamically
                   className="article-image mb-4"
                 />
@@ -43,11 +60,12 @@ const ContentManagement = () => {
               <p className="text-gray-700">{article.content}</p>
               <p className="text-gray-500 mt-3">By {article.author} | {article.date}</p>
               <p className="category">Category: {article.category}</p>
+              
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-center mt-5">No approved articles available.</p>
+        <p className="text-center mt-5">No  articles available.</p>
       )}
     </div>
   );
