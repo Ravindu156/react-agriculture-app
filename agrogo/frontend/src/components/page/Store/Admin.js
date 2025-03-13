@@ -78,16 +78,36 @@ const Admin = () => {
     <div>
       <NavigationBar />
       <div className="admin-form">
-        <div className="container">
-          <h2>Admin Panel</h2>
+      <h2 className="font1">Exchange Admin Panel</h2>
+      <div className="seller-form">
+          
+          <div className="grid-container">
+          <h2 className="font1">SET PRICE</h2>
           {/* Dropdown for Name */}
           <div className="search-bar">
             <p>Name of the product:</p>
             <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
               <option value="">Select Product</option>
               <option value="Carrot">Carrot</option>
-              <option value="Apple">Apple</option>
-              <option value="Pineapple">Pineapple</option>
+                                <option value="Pumpkin">Pumpkin</option>
+                                <option value="Brinjal">Brinjal</option>
+                                <option value="Cabbage">Cabbage</option>
+                                <option value="Beans">Beans</option>
+                                <option value="Drumsticks">Drumsticks</option>
+                                <option value="Bitter Gourd">Bitter Gourd</option>
+                                <option value="Snake Gourd">Snake Gourd</option>
+                                <option value="Ridge Gourd">Ridge Gourd</option>
+                                <option value="Ladies' Fingers">Ladies' Fingers</option>
+                                <option value="Leeks">Leeks</option>
+                                <option value="Spinach">Spinach</option>
+                                <option value="Ash Plantain">Ash Plantain</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Green Chilli">Green Chilli</option>
+                                <option value="Capsicum">Capsicum</option>
+                                <option value="Cucumber">Cucumber</option>
+                                <option value="Radish">Radish</option>
+                                <option value="Turnip">Turnip</option>
+                                <option value="Winged Beans">Winged Beans</option>
             </select>
           </div>
 
@@ -116,9 +136,9 @@ const Admin = () => {
           {/* Button to Update Price */}
           <button onClick={handleSubmit}>Update Price</button>
         </div>
-
+      
         {/* Product List */}
-        <h3>Product List</h3>
+        <h2 className="font1">PRICE LIST</h2>
         <div className="product-list">
           {productList.map((item, index) => (
             <div key={index} className="product-item">
@@ -126,18 +146,21 @@ const Admin = () => {
             </div>
           ))}
         </div>
-
+        </div>
+        <div className="seller-form">
         {/* Posted Receipts */}
-        <h3>Posted Receipts</h3>
+        <h2 className="font1">COMPLETED ORDERS</h2>
         <div className="product-list">
           {receiptsList.map((receipts, index) => (
             <div key={index} className="product-item">
               ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
-              <button onClick={() => handleDelete(receipts._id)}>Delete</button>
+              <button className="button3" onClick={() => handleDelete(receipts._id)}>Confirm Order Fill</button>
             </div>
           ))}
         </div>
+        </div>
       </div>
+      
     </div>
   );
 };

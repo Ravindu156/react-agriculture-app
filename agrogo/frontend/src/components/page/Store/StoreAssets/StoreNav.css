@@ -64,3 +64,12 @@
 .sell-button:hover {
     background-color: darkred; /* Darker red on hover */
 }
+
+.home-button {
+  background-color: #7a1391; /* Red background */
+  color: white; /* White text */
+  padding: 10px 15px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* No underline */
+  
+}

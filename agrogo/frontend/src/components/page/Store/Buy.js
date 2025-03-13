@@ -130,26 +130,12 @@ const BuyProducts = () => {
         <div>
             <NavigationBar />
             <div className="inorganic-products-container">
-                <div className="receipt">
-                    <h3>Receipt</h3>
-                    <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
-                    <p><strong>Date:</strong> {receipt.date}</p>
-                    <h4>Selected Products:</h4>
-                    <ul>
-                        {receipt.selectedProducts.map((product) => (
-                            <li key={product._id}>
-                                ID: {product._id}, Quantity: {product.quantity}
-                                <button onClick={() => handleRemove(product._id)}>Remove</button>
-                            </li>
-                        ))}
-                    </ul>
-                    <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
-                    <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
-                    <button onClick={handleSubmit}>Submit Receipt</button>
-                </div>
+            <div className="chart-bookI">
                 <div className="charts-display">
+                    <div className="grid-container">
+                    <h2 className="font1">FILL ORDER</h2>
                     <div className="search-bar">
-                        <p>Buyer ID:</p>
+                        <p>Supplier ID:</p>
                         <input
                             type="number"
                             placeholder="Enter ID"
@@ -163,8 +149,25 @@ const BuyProducts = () => {
                         <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
                             <option value="">Select Product</option>
                             <option value="Carrot">Carrot</option>
-                            <option value="Apple">Apple</option>
-                            <option value="Pineapple">Pineapple</option>
+                                <option value="Pumpkin">Pumpkin</option>
+                                <option value="Brinjal">Brinjal</option>
+                                <option value="Cabbage">Cabbage</option>
+                                <option value="Beans">Beans</option>
+                                <option value="Drumsticks">Drumsticks</option>
+                                <option value="Bitter Gourd">Bitter Gourd</option>
+                                <option value="Snake Gourd">Snake Gourd</option>
+                                <option value="Ridge Gourd">Ridge Gourd</option>
+                                <option value="Ladies' Fingers">Ladies' Fingers</option>
+                                <option value="Leeks">Leeks</option>
+                                <option value="Spinach">Spinach</option>
+                                <option value="Ash Plantain">Ash Plantain</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Green Chilli">Green Chilli</option>
+                                <option value="Capsicum">Capsicum</option>
+                                <option value="Cucumber">Cucumber</option>
+                                <option value="Radish">Radish</option>
+                                <option value="Turnip">Turnip</option>
+                                <option value="Winged Beans">Winged Beans</option>
                         </select>
                     </div>
                     <div className="search-bar">
@@ -188,20 +191,49 @@ const BuyProducts = () => {
                         )}
                     </div>
                 </div>
-                <div className="list-display">
-                    <h3>Available Products</h3>
+                </div>
+                </div>
+
+                <div className="order-bookI">
+                <div className="receipt">
+                  <h2 className="font1">Supplier Receipt</h2>
+                    <p><strong>Current Price:</strong> {receipt.currentPrice}</p>
+                    <p><strong>Date:</strong> {receipt.date}</p>
+                    <p><strong>Selected Products:</strong></p>
                     <ul>
+                        {receipt.selectedProducts.map((product) => (
+                            <li key={product._id}>
+                                ID: {product._id}, Quantity: {product.quantity}
+                                <button className="button3" onClick={() => handleRemove(product._id)}>Remove</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <p><strong>Total Quantity:</strong> {receipt.totalQuantity}</p>
+                    <p><strong>Total Price:</strong> {receipt.totalPrice}</p>
+                    <button className="button" onClick={handleSubmit}>Submit Receipt</button>
+                </div>
+                </div> 
+                
+                <div className="select-bookI">
+                <div className="list-display">
+                <h2 className="font1">AVAILABLE ORDERS</h2>
+                    <div className="grid-container">
+                   
                         {productList.length > 0 ? (
                             productList.map((product) => (
-                                <li key={product._id}>
-                                    <span>ID: {product._id}, Quantity: {product.quantity}</span>
-                                    <button onClick={() => handleSelect(product._id)}>Select</button>
+                                <div className="item1">
+                                <li  key={product._id}>
+                                    <span>ID: {product._id}, <br />Ask Quantity: {product.quantity}.Kg</span>
+                                    <button className="button2" onClick={() => handleSelect(product._id)}>Select</button>
                                 </li>
+                                </div>
                             ))
                         ) : (
                             <p>No products available with quantity greater than 0.</p>
                         )}
-                    </ul>
+                    
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

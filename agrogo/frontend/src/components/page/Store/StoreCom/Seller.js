@@ -89,9 +89,26 @@ const Seller = () => {
             <form onSubmit={handleSubmit}>
             <p className="font3">Name of the product</p>
                 <select value={name} onChange={(e) => setName(e.target.value)}>
-            <option value="Carrot">Carrot</option>
-            <option value="Apple">Apple</option>
-            <option value="Pineapple">Pineapple</option>
+                <option value="Carrot">Carrot</option>
+                                <option value="Pumpkin">Pumpkin</option>
+                                <option value="Brinjal">Brinjal</option>
+                                <option value="Cabbage">Cabbage</option>
+                                <option value="Beans">Beans</option>
+                                <option value="Drumsticks">Drumsticks</option>
+                                <option value="Bitter Gourd">Bitter Gourd</option>
+                                <option value="Snake Gourd">Snake Gourd</option>
+                                <option value="Ridge Gourd">Ridge Gourd</option>
+                                <option value="Ladies' Fingers">Ladies' Fingers</option>
+                                <option value="Leeks">Leeks</option>
+                                <option value="Spinach">Spinach</option>
+                                <option value="Ash Plantain">Ash Plantain</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Green Chilli">Green Chilli</option>
+                                <option value="Capsicum">Capsicum</option>
+                                <option value="Cucumber">Cucumber</option>
+                                <option value="Radish">Radish</option>
+                                <option value="Turnip">Turnip</option>
+                                <option value="Winged Beans">Winged Beans</option>
                 </select>
              <p className="font3">Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -101,8 +118,31 @@ const Seller = () => {
 
             <p className="font3">Select the place</p>    
                 <select value={place} onChange={(e) => setPlace(e.target.value)}>
-                    <option value="Nuwaraeliya">Nuwaraeliya</option>
-                    <option value="jaffna">Jaffna</option>
+                <option value="Ampara">Ampara</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Monaragala">Monaragala</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
                 </select>   
               
              <p className="font3">Quantity (in Kg)</p>

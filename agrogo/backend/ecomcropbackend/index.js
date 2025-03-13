@@ -155,7 +155,37 @@ app.post("/reduceQuantity", async (req, res) => {
     // Find product by ID
     const product = await productModel.findById(productId);
 
-    
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    //check if enough stock is available 
+    if (product.quantity < quantity) {
+      return res.status(400).json({ message: "Insufficient stock" });
+    }
+
+
+  // Reduce the quantity
+    product.quantity -= quantity;
+    await product.save();
+
+
+   res.json({ message: "Stock updated", product });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating stock", error });
+  }
+  
+
+});
+
+
+
+
+
+
+
+
+
 
 
 
