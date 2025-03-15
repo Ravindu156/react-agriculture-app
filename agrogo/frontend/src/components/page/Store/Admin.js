@@ -8,11 +8,13 @@ const Admin = () => {
   const [price, setPrice] = useState('');
   const [productList, setProductList] = useState([]);
   const [receiptsList, setReceiptsList] = useState([]);
+  const [productListex, setProductListex] = useState([]);
 
   // Fetch existing products
   useEffect(() => {
     fetchProducts();
     fetchReceipts();
+    fetchExProducts();
   }, []);
 
   const fetchReceipts = async () => {
@@ -74,6 +76,15 @@ const Admin = () => {
     }
   };
 
+  const fetchExProducts = () => {
+    fetch('http://localhost:5000/ecom/exproduct/eall')
+        .then((response) => response.json())
+        .then((data) => {
+            setProductListex(data);
+        })
+        .catch((error) => console.error('Error:', error));
+};    
+
   return (
     <div>
       <NavigationBar />
@@ -108,6 +119,11 @@ const Admin = () => {
                                 <option value="Radish">Radish</option>
                                 <option value="Turnip">Turnip</option>
                                 <option value="Winged Beans">Winged Beans</option>
+                                {productListex.map((item) => (
+                                <option value={item.product} >
+                                {item.product}
+                                 </option>
+                        ))}
             </select>
           </div>
 

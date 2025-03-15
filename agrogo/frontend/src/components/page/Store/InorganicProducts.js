@@ -11,7 +11,7 @@ const BuyProducts = () => {
     const [quantityChartData, setQuantityChartData] = useState([]);
     const [productList, setProductList] = useState([]);
     const [productListon, setProductListon] = useState([]);
-  
+    const [productListex, setProductListex] = useState([]);
     // Fetch chart data whenever name, category changes
     useEffect(() => {
         if (name && category) {
@@ -24,6 +24,7 @@ const BuyProducts = () => {
         fetchProducts();
         fetchOnProducts();
         fetchQuantityChartData();
+        fetchExProducts();
     }, []);
 
     const fetchProducts = () => {
@@ -87,6 +88,15 @@ const BuyProducts = () => {
             return { labels: [], quantities: [] };
         }
     };
+
+    const fetchExProducts = () => {
+        fetch('http://localhost:5000/ecom/exproduct/eall')
+            .then((response) => response.json())
+            .then((data) => {
+                setProductListex(data);
+            })
+            .catch((error) => console.error('Error:', error));
+    };    
 
     return (
         <div>
@@ -154,6 +164,11 @@ const BuyProducts = () => {
                                 <option value="Radish">Radish</option>
                                 <option value="Turnip">Turnip</option>
                                 <option value="Winged Beans">Winged Beans</option>
+                                {productListex.map((item) => (
+                                <option value={item.product} >
+                                {item.product}
+                                 </option>
+                        ))}
                             </select>
                             
                         </div>

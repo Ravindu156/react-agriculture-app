@@ -10,12 +10,14 @@ const Seller = () => {
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState(1);
+    const [product, setProduct] = useState("");
     const [place, setPlace] = useState("");
     const [lastUpdatedPrice, setLastUpdatedPrice] = useState(0);
     const [lastUpdatedDate, setLastUpdatedDate] = useState("");
      const [description, setDescription] = useState('');
     const navigate = useNavigate();
     const [productListon, setProductListon] = useState([]);
+    const [productListex, setProductListex] = useState([]);
 
     useEffect(() => {
         if (name && category) {
@@ -42,6 +44,7 @@ const Seller = () => {
     useEffect(() => {
             
             fetchOnProducts();
+            fetchExProducts();
             
         }, []);
     
@@ -53,6 +56,15 @@ const Seller = () => {
                 })
                 .catch((error) => console.error('Error:', error));
         };
+
+        const fetchExProducts = () => {
+            fetch('http://localhost:5000/ecom/exproduct/eall')
+                .then((response) => response.json())
+                .then((data) => {
+                    setProductListex(data);
+                })
+                .catch((error) => console.error('Error:', error));
+        };    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,9 +87,30 @@ const Seller = () => {
             navigate('/inorganic'); // Redirect to the store page after successful submission
           })
           .catch((error) => console.error('Error:', error));
+
       };
 
 
+      const ehandleSubmit = (e) => {
+        e.preventDefault();
+        const eproductData = {product};
+      
+        fetch('http://localhost:5000/ecom/exproduct/ecreate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eproductData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert('Product submitted successfully!');
+            fetchExProducts();
+
+          })
+          .catch((error) => console.error('Error:', error)
+        );
+          
+      };
       
     return (
 
@@ -89,7 +122,7 @@ const Seller = () => {
             <form onSubmit={handleSubmit}>
             <p className="font3">Name of the product</p>
                 <select value={name} onChange={(e) => setName(e.target.value)}>
-                <option value="Carrot">Carrot</option>
+                                 <option value="Carrot">Carrot</option>
                                 <option value="Pumpkin">Pumpkin</option>
                                 <option value="Brinjal">Brinjal</option>
                                 <option value="Cabbage">Cabbage</option>
@@ -109,6 +142,11 @@ const Seller = () => {
                                 <option value="Radish">Radish</option>
                                 <option value="Turnip">Turnip</option>
                                 <option value="Winged Beans">Winged Beans</option>
+                                {productListex.map((item) => (
+                                <option value={item.product} >
+                                {item.product}
+                                 </option>
+                        ))}
                 </select>
              <p className="font3">Select the category</p>    
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -172,8 +210,25 @@ const Seller = () => {
                 {lastUpdatedPrice}</span> <br />
                 Date   : <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedDate}</span> </h1>
         </div>
-
-       
+        <br />
+        <div className="grid-container">
+        <form onSubmit={ehandleSubmit}>
+        <p className="font1">ADD PRODUCT</p>
+        
+        <p className="font3">Product Name</p>
+        <input
+                    
+                    type="String"
+                    placeholder="New product"
+                    value={product}
+                    onChange={(e) => setProduct(e.target.value)}
+                    
+                    required
+                />
+            <button type="submit">Add Product to the List</button>
+          </form>        
+        </div>
+        
                         <div className="order-bookII">
                         <h2 className="font1">ORDER BOOK</h2>
                         <div className="order-list">
