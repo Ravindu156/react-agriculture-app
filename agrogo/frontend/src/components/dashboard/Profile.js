@@ -1,58 +1,80 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import profileImage from "../../Images/profilepage.jpg"; // Correct image path
+import profileImage from "../../Images/profilepage.jpg";
 
 function Profile() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
+  // ✅ Ensure only the correct user profile is shown
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("No token found, please login");
-        navigate("/login");
-        return;
-      }
       try {
         const res = await fetch("http://localhost:5000/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Cache-Control": "no-cache", // ✅ Force fresh data
           },
         });
+
+        if (!res.ok) {
+          localStorage.removeItem("token");
+          navigate("/login");
+          return;
+        }
+
         const data = await res.json();
-        if (res.ok) {
+
+        // ✅ Ensure new login always fetches fresh data
+        setUser(null);
+        setTimeout(() => {
           setUser(data);
           setFormData(data);
-        } else {
-          alert(data.message);
-        }
+        }, 500);
       } catch (error) {
         console.error("Fetch Error:", error);
-        alert("Failed to fetch user data");
+        localStorage.removeItem("token");
+        navigate("/login");
       }
     };
-    fetchUserData();
-  }, [navigate]); // Only include navigate as dependency
 
+    fetchUserData();
+  }, [navigate]);
+
+  // If user is not loaded yet, show nothing
+  if (!user) {
+    return null;
+  }
+
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Enable edit mode
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  // Cancel editing
   const handleCancel = () => {
     setIsEditing(false);
     setFormData(user);
     setStatusMessage("");
   };
 
+  // Submit updated profile data
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
@@ -60,7 +82,7 @@ function Profile() {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("No token found, please login");
+      alert("No token found, please login.");
       navigate("/login");
       setLoading(false);
       return;
@@ -97,12 +119,12 @@ function Profile() {
       style={{
         padding: "20px",
         fontFamily: "Arial",
-        backgroundImage: `url(${profileImage})`, // Correct image usage
-        backgroundSize: "cover", // Ensures it covers the entire screen
-        backgroundPosition: "center", // Centers the image
-        backgroundRepeat: "no-repeat", // Prevents repeating the image
-        minHeight: "100vh", // Ensures full screen coverage
-        backgroundAttachment: "fixed", // Optional: Keeps the background fixed during scrolling
+        backgroundImage: `url(${profileImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        backgroundAttachment: "fixed",
       }}
     >
       <h1 style={{ textAlign: "center", color: "black", fontWeight: "bold", fontSize: "3rem" }}>
@@ -116,7 +138,7 @@ function Profile() {
             border: "1px solid #ccc",
             borderRadius: "10px",
             boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Transparent background for form
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
         >
           <form onSubmit={handleSubmit}>

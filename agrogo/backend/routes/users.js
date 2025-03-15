@@ -107,7 +107,7 @@ router.post('/', async (req, res) => {
 
     router.put('/reset-password', async (req, res) => {
       const { email, newPassword, confirmPassword } = req.body;
-    
+
       // Check if passwords match
       if (newPassword !== confirmPassword) {
         return res.status(400).json({ message: 'Passwords do not match' });
@@ -136,4 +136,19 @@ router.post('/', async (req, res) => {
       }
     });
     
+
+
+
+
+// Display all users
+router.get('/getusers', async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users from MongoDB
+    res.json(users); // Send the user data as JSON
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching users' });
+  }
+});
+
+
 module.exports = router;

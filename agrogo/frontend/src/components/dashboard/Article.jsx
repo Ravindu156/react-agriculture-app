@@ -6,28 +6,83 @@ import './Article.css'; // Import the CSS file
 const Article = () => {
   const [articles, setArticles] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  
   const user = JSON.parse(localStorage.getItem('user')); // Replace with your auth mechanism
   const role = user?.role || 'guest';
 
-  // Fetch all articles from the backend
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/articles/getArticles');
-        setArticles(response.data); // Set the fetched articles in state
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-      }
-    };
+  // //Fetch all articles from the backend
+  // useEffect(() => {
+  //   const fetchArticles = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:5000/api/articles/getArticles');
+  //       setArticles(response.data); // Set the fetched articles in state
+  //     } catch (error) {
+  //       console.error('Error fetching articles:', error);
+  //     }
+  //   };
 
-    fetchArticles();
-  }, []);
+  //   fetchArticles();
+  // }, []);
+
+//Fetch admin aproved articles from the backend
+useEffect(() => {
+  const fetchApprovedArticles = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/articles/approved');
+      setArticles(response.data); // Set the approved articles in state
+    } catch (error) {
+      console.error('Error fetching approved articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchApprovedArticles();
+}, []); // Get approved articles
+
+
+  // // Get admin aprove articles
+  // useEffect(() => {
+  //   const fetchApprovedArticles = async () => {
+  //     try {
+  //       // Fetch approved articles from the backend
+  //       const response = await axios.get('http://localhost:5000/api/articles/approved');
+  //       setArticles(response.data); // Set the approved articles in the state
+  //     } catch (error) {
+  //       console.error('Error fetching approved articles:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchApprovedArticles();
+  // }, []);
+
+
+  const handleApproveArticle = async (id) => {
+    try {
+      // Make PUT request to approve the article
+      const response = await axios.put(`http://localhost:5000/api/articles/approve/${id}`);
+      // Update the article list to reflect the approval
+      setArticles(articles.map(article => 
+        article._id === id ? { ...article, isApproved: true } : article
+      ));
+    } catch (error) {
+      console.error('Error approving article:', error);
+    }
+  };
+
+
 
   const handleAddArticle = (newArticle) => {
     setArticles([...articles, newArticle]);
     setShowForm(false); // Close the form after submission
   };
+
+
+  
+
 
   return (
     <div id="articles" className="mt-20 hide-scrollbar custom-padding" >
@@ -48,7 +103,7 @@ const Article = () => {
 
       {/* Modal for AddArticleForm */}
       {showForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-10">
           <div className="bg-white p-6 rounded relative max-h-[80%] overflow-y-auto">
             <div className="flex justify-between items-center p-2 rounded-t">
               <button
