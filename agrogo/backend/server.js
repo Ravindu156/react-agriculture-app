@@ -6,7 +6,7 @@ const multer = require('multer');
 const sellerProductsRouters = require('./routes/sellerProducts');
 const receiptRoutes = require('./routes/receipts');
 const priceRoutes = require('./routes/Priceset');
-
+const reviewRoutes = require('./routes/reviews')
 const app = express();
 
 // Middleware
@@ -31,7 +31,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
 
 app.use("/api/profile", profileRoutes); // New profile route
-
+app.use("/api/reviews",reviewRoutes);
 
 // MongoDB Connection
 mongoose

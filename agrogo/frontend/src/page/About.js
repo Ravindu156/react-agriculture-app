@@ -1,7 +1,6 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Header from '../components/Header'
-import { useState } from "react";
-
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -10,89 +9,105 @@ const ReviewPage = () => {
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState("");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    // Fetch reviews from backend
+    axios.get("http://localhost:5000/api/reviews")
+      .then((response) => setReviews(response.data))
+      .catch((error) => console.error("Error fetching reviews:", error));
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (name && comment) {
-      const newReview = { id: Date.now(), name, rating, comment };
-      setReviews([newReview, ...reviews]); // Add new review at the top
-      setName("");
-      setRating(5);
-      setHover(0);
-      setComment("");
+      const newReview = { name, rating, comment };
+
+      try {
+        const response = await axios.post("http://localhost:5000/api/reviews", newReview);
+        setReviews([response.data, ...reviews]); // Update state
+        setName("");
+        setRating(5);
+        setHover(0);
+        setComment("");
+      } catch (error) {
+        console.error("Error submitting review:", error);
+      }
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Leave a Review</h2>
-      
-      {/* Review Form */}
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <input
-          type="text"
-          className="w-full p-2 border rounded"
-          placeholder="Your Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+    <>
+      <Header />
+      <div className="max-w-3xl mx-auto p-10  rounded-xl shadow-lg">
+        <div className="mt-12">
+          <h2 className="text-4xl font-semibold text-center text-brown-800 mb-6">Share Your Thoughts</h2>
+          <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
+            <input
+              type="text"
+              className="w-full p-4 border-2 border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
 
-        {/* Star Rating */}
-        <div className="flex space-x-1">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span
-              key={star}
-              className={`cursor-pointer text-2xl ${
-                (hover || rating) >= star ? "text-yellow-500" : "text-gray-300"
-              }`}
-              onClick={() => setRating(star)}
-              onMouseEnter={() => setHover(star)}
-              onMouseLeave={() => setHover(0)}
-            >
-              ★
-            </span>
-          ))}
-        </div>
-
-        <textarea
-          className="w-full p-2 border rounded"
-          placeholder="Your Review"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          required
-        ></textarea>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Submit Review
-        </button>
-      </form>
-
-      {/* Display Reviews */}
-      <div className="mt-6">
-        <h3 className="text-lg font-semibold">Customer Reviews</h3>
-        {reviews.length === 0 ? (
-          <p>No reviews yet. Be the first to leave one!</p>
-        ) : (
-          <ul className="mt-3 space-y-3">
-            {reviews.map((review) => (
-              <li key={review.id} className="p-3 border rounded">
-                <strong>{review.name}</strong> -{" "}
-                <span className="text-yellow-500">
-                  {"★".repeat(review.rating)}
-                  <span className="text-gray-300">
-                    {"★".repeat(5 - review.rating)}
-                  </span>
+            {/* Star Rating */}
+            <div className="flex justify-left space-x-2">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  className={`cursor-pointer text-3xl ${ (hover || rating) >= star ? "text-yellow-600" : "text-gray-400" }`}
+                  onClick={() => setRating(star)}
+                  onMouseEnter={() => setHover(star)}
+                  onMouseLeave={() => setHover(0)}
+                >
+                  ★
                 </span>
-                <p>{review.comment}</p>
-              </li>
-            ))}
-          </ul>
-        )}
+              ))}
+            </div>
+
+            <textarea
+              className="w-full p-4 border-2 border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Your Review"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              required
+            ></textarea>
+
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300"
+            >
+              Submit Review
+            </button>
+          </form>
+
+          {/* Display Reviews */}
+          <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-2xl font-semibold text-brown-800">What Customers Are Saying</h3>
+            {reviews.length === 0 ? (
+              <p className="text-gray-500 mt-4">No reviews yet. Be the first to share your experience!</p>
+            ) : (
+              <ul className="mt-4 space-y-6">
+                {reviews.map((review) => (
+                  <li key={review._id} className="p-6 bg-gray-50 rounded-lg shadow-md border border-brown-200">
+                    <div className="flex items-center justify-between mb-2">
+                      <strong className="text-xl text-brown-700">{review.name}</strong>
+                      <span className="text-yellow-600">
+                        {"★".repeat(review.rating)}
+                        <span className="text-gray-400">
+                          {"★".repeat(5 - review.rating)}
+                        </span>
+                      </span>
+                    </div>
+                    <p className="text-gray-700">{review.comment}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
