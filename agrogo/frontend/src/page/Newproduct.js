@@ -43,7 +43,7 @@ const Newproduct = () => {
     e.preventDefault();
     console.log(data);
 
-    const { name, image, category, price } = data;
+    const { name, image, category, price, quantity} = data;
 
     if (name && image && category && price) {
       try {

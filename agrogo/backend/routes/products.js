@@ -3,6 +3,7 @@ const router = express.Router();
 const  productModel = require('../models/Product');
 const verify = require('../middleware/auth');
 const User = require('../models/User');
+const { default: mongoose } = require('mongoose');
 
 router.post("/uploadProduct", verify, async (req, res) => {
   try {
@@ -44,7 +45,59 @@ router.get("/product",async(req,res)=>{
   const data = await productModel.find({})
   res.send(JSON.stringify(data))
 })
- 
 
-module.exports = router;
 
+//Get Product by ID
+router.get("/product/:id", async (req, res) => {
+  const productId = req.params.id;
+
+  // Validate ObjectId
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(400).json({ success: false, message: "Invalid product ID" });
+  }
+
+  try {
+    const data = await productModel.findById(productId);
+
+    if (!data) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+
+    res.status(200).json({ success: true, data: data });
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+router.post("/reduceQuantity", async (req, res) => {
+  try {
+    const { productId, quantity } = req.body;
+
+    // Find product by ID
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    //check if enough stock is available 
+    if (product.quantity < quantity) {
+      return res.status(400).json({ message: "Insufficient stock" });
+    }
+
+
+  // Reduce the quantity
+    product.quantity -= quantity;
+    await product.save();
+
+
+   res.json({ message: "Stock updated", product });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating stock", error });
+  }
+  
+
+});
+
+module.exports = router;

@@ -1,30 +1,30 @@
-const express = require("express");
+/* const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const Stripe = require('stripe')
 const bodyParser = require('body-parser');
-const userRoutes = require('../routes/users');
+const userRoutes = require('../routes/users'); */
 //const articleRoutes = require('../routes/article');
 
-
+/* 
 
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
-
-const PORT = process.env.PORT || 8080;
+ */
+//const PORT = process.env.PORT || 8080;
 
 //app.use(cors({ origin: 'http://localhost:3000' }));
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 //mongodb connection
-mongoose.set("strictQuery", false);
+/* mongoose.set("strictQuery", false);
 mongoose
   .connect("mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo")
   .then(() => console.log("Connect to Databse...."))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err)); */
   // mongoose
   // .connect(
   //   "mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo?retryWrites=true&w=majority",
@@ -40,7 +40,7 @@ mongoose
   // });
 
 //schema ok
-const userSchema = mongoose.Schema({
+/* const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   email: {
@@ -50,20 +50,20 @@ const userSchema = mongoose.Schema({
   password: String,
   confirmPassword: String,
   image: String,
-});
+}); */
 
 //
-const userModel = mongoose.model("user", userSchema);
+//const userModel = mongoose.model("user", userSchema);
 
 //api ok
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.send("Server is running");
 });
-
+ */
 //sign up ok
-app.post("/signup", async (req, res) => {
-  const { email } = req.body;
-
+/* app.post("/signup", async (req, res) => {
+  const { email } = req.body; */
+  // Database Connected in Server.js
   /*userModel.findOne({ email: email }, (err, result) => {
     // console.log(result);
     console.log(err);
@@ -76,7 +76,7 @@ app.post("/signup", async (req, res) => {
     }
   });*/
 
-  const resultData = await  userModel.findOne({email : email})
+/*   const resultData = await  userModel.findOne({email : email})
      console.log(resultData)
      if(!resultData){
          const data = userModel(req.body)
@@ -88,11 +88,11 @@ app.post("/signup", async (req, res) => {
      }
 
 });
-
+ */
 //api login ok
-app.post("/login", (req, res) => {
+//app.post("/login", (req, res) => {
   // console.log(req.body);
-  const { email } = req.body;
+ /*  const { email } = req.body;
   userModel.findOne({ email: email }, (err, result) => {
     if (result) {
       const dataSend = {
@@ -115,40 +115,42 @@ app.post("/login", (req, res) => {
       });
     }
   });
-});
+}); */
 
 //product section
-
-const schemaProduct = mongoose.Schema({
+// Schema is in Models
+/* const schemaProduct = mongoose.Schema({
   name: String,
   category:String,
   image: String,
   price: String,
   description: String,
 });
-const productModel = mongoose.model("product",schemaProduct)
+const productModel = mongoose.model("product",schemaProduct) */
 
 
 
 //save product in data 
 //api
-app.post("/uploadProduct",async(req,res)=>{
+// Upload Product Router is in products Router
+/* app.post("/uploadProduct",async(req,res)=>{
     
     const data = await productModel(req.body)
     const datasave = await data.save()
     res.send({message : "Upload successfully", data: data});
    // console.log(data);
-})
+}) */
 
-//
-app.get("/product",async(req,res)=>{
+// In Products Router
+/* app.get("/product",async(req,res)=>{
   const data = await productModel.find({})
   res.send(JSON.stringify(data))
   //res.json(data);
 
-})
+}) */
 
-app.post("/reduceQuantity", async (req, res) => {
+  // In Products Router
+/* app.post("/reduceQuantity", async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
@@ -176,7 +178,7 @@ app.post("/reduceQuantity", async (req, res) => {
   }
   
 
-});
+}); */
 
 
 
@@ -256,5 +258,5 @@ app.post("/reduceQuantity", async (req, res) => {
 
 // Use article routes
 //app.use('/api/articles', articleRoutes);
-
-app.listen(PORT, () => console.log("server is running at port : " + PORT));
+/* 
+app.listen(PORT, () => console.log("server is running at port : " + PORT)); */
