@@ -6,6 +6,7 @@ const multer = require('multer');
 const sellerProductsRouters = require('./routes/sellerProducts');
 const receiptRoutes = require('./routes/receipts');
 const priceRoutes = require('./routes/Priceset');
+const exproductRoutes = require('./routes/Exproducts');
 
 const app = express();
 
@@ -25,6 +26,7 @@ const profileRoutes = require("./routes/profile"); // Import profile route
 app.use('/ecom/seller-products', sellerProductsRouters);
 app.use('/ecom/recipts', receiptRoutes);
 app.use('/ecom/price', priceRoutes);
+app.use('/ecom/exproduct',exproductRoutes);
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
 app.use('/api/users', userRoutes);
