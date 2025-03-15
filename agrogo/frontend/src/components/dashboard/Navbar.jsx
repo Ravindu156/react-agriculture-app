@@ -2,15 +2,46 @@ import { Bell, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import logo from "../dashboard/logo.png";  // Import logo, etc.
 import { navItems } from "./constants";  // Import navItems, etc.
-import { Link } from 'react-router-dom'; 
+import { Link , useNavigate } from 'react-router-dom'; 
 
 const Navbar = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user")); // Parse the user object
   const role = user?.role || "guest"; // Default to "guest" if no role is found
 
+  const handleLogout = async () => {
+    try {
+      // Get the token from localStorage or wherever you store it
+      const token = localStorage.getItem('token');
+      
+      // Call logout API
+      const response = await fetch('http://localhost:5000/api/users/logout/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        // Remove token and user info from localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        
+        // Redirect to login page
+        navigate('/login');
+      } else {
+        console.error('Logout failed:', data.message);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
   // Filter navItems based on role
   const filteredNavItems = navItems.filter(
     (item) => !item.roles || item.roles.includes(role)
@@ -92,10 +123,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="block py-1 px-3">Settings</a>
-              </li>
-              <li>
-                <a href="#" className="block py-1 px-3">Logout</a>
+              <a href="#" className="block py-1 px-3" onClick={(e) => {
+            e.preventDefault(); // Prevent default link behavior
+            handleLogout();
+          }}>Logout</a>
               </li>
             </ul>
           </div>

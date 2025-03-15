@@ -4,7 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const secretekey='vau@group14';
 const jwt = require('jsonwebtoken');
-
+const verify = require('../middleware/auth');
 
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile,gender, region, nic,role, password, education, occupation, experience } = req.body;
@@ -150,5 +150,15 @@ router.get('/getusers', async (req, res) => {
   }
 });
 
-
+router.post('/logout', verify, async (req, res) => {
+  try {
+    res.status(200).json({ 
+      success: true,
+      message: 'Logout successful. Please remove the token from your client storage.' 
+    });
+  } catch (error) {
+    console.error('Error in logout:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 module.exports = router;
