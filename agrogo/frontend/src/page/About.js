@@ -82,24 +82,40 @@ const ReviewPage = () => {
           </form>
 
           {/* Display Reviews */}
-          <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold text-brown-800">What Customers Are Saying</h3>
+          <div className="p-8">
+            <h3 className="text-3xl font-bold text-gray-800 mb-8 border-b-2 border-emerald-200 pb-4">
+              Customer Testimonials
+            </h3>
+            
             {reviews.length === 0 ? (
-              <p className="text-gray-500 mt-4">No reviews yet. Be the first to share your experience!</p>
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg italic">No reviews yet. Be the first to share your experience!</p>
+                <div className="mt-4 text-6xl">✏️</div>
+              </div>
             ) : (
-              <ul className="mt-4 space-y-6">
+              <ul className="space-y-8">
                 {reviews.map((review) => (
-                  <li key={review._id} className="p-6 bg-gray-50 rounded-lg shadow-md border border-brown-200">
-                    <div className="flex items-center justify-between mb-2">
-                      <strong className="text-xl text-brown-700">{review.name}</strong>
-                      <span className="text-yellow-600">
-                        {"★".repeat(review.rating)}
-                        <span className="text-gray-400">
-                          {"★".repeat(5 - review.rating)}
-                        </span>
-                      </span>
+                  <li key={review._id} className="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-xl shadow-md overflow-hidden">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="bg-emerald-600 text-white p-6 md:w-48 flex flex-col items-center justify-center">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-600 text-xl font-bold mb-2">
+                          {review.name.charAt(0)}
+                        </div>
+                        <strong className="text-lg">{review.name}</strong>
+                        <div className="mt-2 text-yellow-400 text-xl">
+                          {"★".repeat(review.rating)}
+                          <span className="text-gray-300">
+                            {"★".repeat(5 - review.rating)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-6 md:flex-1">
+                        <p className="text-gray-700 italic">{`"${review.comment}"`}</p>
+                        <div className="mt-4 text-xs text-gray-400">
+                          {new Date().toLocaleDateString()}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-gray-700">{review.comment}</p>
                   </li>
                 ))}
               </ul>
