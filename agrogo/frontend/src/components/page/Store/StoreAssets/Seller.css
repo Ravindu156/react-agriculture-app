@@ -351,3 +351,13 @@
   opacity: 1;
   right: 0;
 }
+
+.addproduct {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding inside inputs */
+  margin: 10px 0; /* Space above and below inputs */
+  border: 1px solid #190202; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  background-color: hsla(0, 5%, 15%, 0.7);
+}

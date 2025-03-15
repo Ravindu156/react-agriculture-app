@@ -55,6 +55,7 @@ const Admin = () => {
       });
       const data = await response.json();
       console.log(data);
+      alert('Price updated successfully!');
       fetchProducts(); // Refresh the product list after adding a new product
     } catch (error) {
       console.error('Error:', error);

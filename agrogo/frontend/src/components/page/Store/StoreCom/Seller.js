@@ -84,6 +84,7 @@ const Seller = () => {
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
+            alert('ORDER submitted successfully!');
             navigate('/inorganic'); // Redirect to the store page after successful submission
           })
           .catch((error) => console.error('Error:', error));
@@ -216,7 +217,7 @@ const Seller = () => {
         <p className="font1">ADD PRODUCT</p>
         
         <p className="font3">Product Name</p>
-        <input
+        <input className="addproduct"
                     
                     type="String"
                     placeholder="New product"

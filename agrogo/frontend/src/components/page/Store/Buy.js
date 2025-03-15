@@ -130,6 +130,7 @@ const BuyProducts = () => {
             .then((response) => response.json())
             .then((data) => {
               console.log(data);
+              alert('Recipt submitted to review !');
               navigate('/inorganic'); // Redirect to the store page after successful submission
             })
             .catch((error) => console.error('Error:', error));
