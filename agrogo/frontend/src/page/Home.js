@@ -84,7 +84,7 @@ const Home = () => {
         {/* Fresh Vegetables Section */}
         <div>
           <div className="flex w-full items-center">
-            <h2 className="font-bold text-2xl text-slate-800 mb-4">Fresh Vegetables</h2>
+            <h2 className="font-bold text-2xl text-slate-800 mb-4">Fresh Seeds</h2>
             <div className="ml-auto flex gap-4">
               <button onClick={preveProduct} className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded">
                 <GrPrevious />
