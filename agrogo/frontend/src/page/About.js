@@ -97,7 +97,7 @@ const ReviewPage = () => {
                 {reviews.map((review) => (
                   <li key={review._id} className="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-xl shadow-md overflow-hidden">
                     <div className="flex flex-col md:flex-row">
-                      <div className="bg-emerald-600 text-white p-6 md:w-48 flex flex-col items-center justify-center">
+                      <div className="bg-gradient-to-br from-emerald-100 to-emerald-600 text-white p-6 md:w-48 flex flex-col items-center justify-center">
                         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-600 text-xl font-bold mb-2">
                           {review.name.charAt(0)}
                         </div>
