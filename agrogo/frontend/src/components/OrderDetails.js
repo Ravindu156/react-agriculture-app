@@ -110,7 +110,7 @@ const OrderDetails = () => {
               required
             >
               <option value="Credit Card">Credit Card</option>
-              <option value="PayPal">PayPal</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
               <option value="Bank Transfer">Bank Transfer</option>
             </select>
           </div>
@@ -159,7 +159,7 @@ const OrderDetails = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="mt-4 w-full bg-blue-500 text-white py-2 text-lg font-bold"
+            className="mt-4 w-full bg-blue-600 text-white py-3 text-lg font-bold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 border-2 border-blue-700"
           >
             Place Order
           </button>
