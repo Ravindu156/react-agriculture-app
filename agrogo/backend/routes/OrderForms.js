@@ -6,7 +6,7 @@ const verify = require('../middleware/auth');
 
 // Create a new order
 router.post('/', verify, async (req, res) => {
-  const { products, shippingAddress, paymentMethod } = req.body;
+  const { user, products, shippingAddress, paymentMethod } = req.body;
   if (!products || products.length === 0) {
     return res.status(400).json({ message: 'At least one product must be ordered' });
   }
@@ -29,7 +29,7 @@ router.post('/', verify, async (req, res) => {
 
     // Create the order
     const newOrder = new Order({
-      user: req.userId, // Assuming req.userId is set by the verify middleware
+      user, // Assuming req.userId is set by the verify middleware
       products,
       totalPrice,
       orderStatus: 'Pending',
@@ -47,7 +47,7 @@ router.post('/', verify, async (req, res) => {
 });
 
 // Get all orders for a specific user
-router.get('/user/:userId', verify, async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -60,7 +60,7 @@ router.get('/user/:userId', verify, async (req, res) => {
 });
 
 // Get all orders (admin route)
-router.get('/', verify, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const orders = await Order.find().populate('user', 'firstname lastname email'); // Populate user details
     res.json(orders);
@@ -71,7 +71,7 @@ router.get('/', verify, async (req, res) => {
 });
 
 // Update order status (admin route)
-router.put('/status/:orderId', verify, async (req, res) => {
+router.put('/status/:orderId', async (req, res) => {
   const { orderId } = req.params;
   const { orderStatus } = req.body;
 
@@ -96,7 +96,7 @@ router.put('/status/:orderId', verify, async (req, res) => {
 });
 
 // Delete an order (admin route)
-router.delete('/:orderId', verify, async (req, res) => {
+router.delete('/:orderId', async (req, res) => {
   const { orderId } = req.params;
 
   try {

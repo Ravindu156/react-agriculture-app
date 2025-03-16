@@ -12,6 +12,9 @@ const Home = () => {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Reference for the filter section
+  const filterSectionRef = useRef(null);
+
   // Fetch products from backend
   useEffect(() => {
     const fetchProducts = async () => {
@@ -44,6 +47,11 @@ const Home = () => {
     slideProductRef.current.scrollLeft -= 200;
   };
 
+  // Handle the "Order Now" button click to scroll smoothly to the filter section
+  const scrollToFilter = () => {
+    filterSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Header />
@@ -51,20 +59,17 @@ const Home = () => {
         <div className="md:flex gap-4 py-2 mt-16">
           <div className="md:w-1/2">
             <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
-              <p className="text-sm font-medium text-slate-900">Natural Foods</p>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
-                className="h-7"
-                alt="Natural Foods"
-              />
             </div>
             <h2 className="text-4xl md:text-7xl font-bold py-3">
               Fresh Vegetable From Farmers in <span className="text-red-600">Sri Lanka</span>
             </h2>
             <p className="py-3 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <button className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md">
+            <button
+              onClick={scrollToFilter}  // Add this function to the "Order Now" button
+              className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md"
+            >
               Order Now
             </button>
           </div>
@@ -104,8 +109,9 @@ const Home = () => {
             )}
           </div>
         </div>
-        
-        <HomeProductFilter/>
+        <div className="filter" ref={filterSectionRef}> {/* Add the ref here */}
+          <HomeProductFilter />
+        </div>
         {/* All Products Section */}
         <AllProduct heading={"Best Sellers"} />
       </div>

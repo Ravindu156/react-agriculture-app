@@ -14,6 +14,7 @@ const reviewRoutes = require('./routes/reviews')
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json({ limit: '60mb' }));
 app.use(express.urlencoded({ extended: true, limit: '60mb' }));
@@ -40,6 +41,7 @@ app.use('/api/articles', articleRoutes);
 app.use("/api/profile", profileRoutes); // New profile route
 app.use("/api/reviews",reviewRoutes);
 
+//mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo
 // MongoDB Connection
 mongoose
     .connect('mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo', {

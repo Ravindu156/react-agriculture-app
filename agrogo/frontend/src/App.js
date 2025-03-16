@@ -32,6 +32,9 @@ import Products from './components/Products';
 import Dashboard from './components/dashboard/Dashboard';
 import AdminDashboard from './components/dashboard/AdminDashboard';
 import Profile from "./components/dashboard/Profile";
+import OrderDetails from './components/OrderDetails';
+import ProductTable from './components/AdminPanal/ProductTable';
+import AdminOrders from './components/AdminPanal/AdminOrders';
 
 
 function App() {
@@ -68,6 +71,7 @@ function App() {
         <Route path="/ecom/cart" element={<Cart/>} />
         <Route path='/ecom/contact' element={<Contact/>}/>
         <Route path='/ecom/products' element={<Products/>}/>
+        <Route path='/ecom/orders/:userid' element={<OrderDetails/>}/>
         <Route path='/advisory' element={<Advisory/>}/>
 
 
@@ -109,7 +113,9 @@ function App() {
       <Route path="/Seller" element={<Seller />} />
      {/* <Route path="/Inorganic" element={<Inorganic />} /> */}
 
-
+        {/* This is for Admin Products */}
+        <Route path='/admin/products' element={<ProductTable/>}/>
+        <Route path='/admin/orders' element={<AdminOrders/>}/>
 
       </Routes>
     </Router>

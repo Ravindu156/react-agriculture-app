@@ -4,6 +4,7 @@ const  productModel = require('../models/Product');
 const verify = require('../middleware/auth');
 const User = require('../models/User');
 const { default: mongoose } = require('mongoose');
+const { Mongoose } = require('mongoose');
 
 router.post("/uploadProduct", verify, async (req, res) => {
   try {
@@ -52,9 +53,9 @@ router.get("/product/:id", async (req, res) => {
   const productId = req.params.id;
 
   // Validate ObjectId
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
+ /*  if (!Mongoose.Types.ObjectId.isValid(productId)) {
     return res.status(400).json({ success: false, message: "Invalid product ID" });
-  }
+  } */
 
   try {
     const data = await productModel.findById(productId);
@@ -99,5 +100,29 @@ router.post("/reduceQuantity", async (req, res) => {
   
 
 });
+
+// Delete Product by ID
+router.delete("/product/delete/:id",  async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    // Find the product by ID
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Use deleteOne instead of remove
+    await product.deleteOne();  // This will delete the product
+
+    res.json({ message: "Product deleted successfully" });
+
+  } catch (error) {
+    console.error("Error deleting product:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
 
 module.exports = router;
