@@ -61,7 +61,7 @@ const Home = () => {
             <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
             </div>
             <h2 className="text-4xl md:text-7xl font-bold py-3">
-              Fresh Vegetable From Farmers in <span className="text-red-600">Sri Lanka</span>
+            Planting the seeds of a brighter <span className="text-red-600">Future</span>
             </h2>
             <p className="py-3 text-base">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

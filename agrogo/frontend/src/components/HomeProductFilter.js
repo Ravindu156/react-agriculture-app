@@ -82,7 +82,7 @@ const HomeProductFilter = () => {
             <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
             <p className="text-gray-700 mb-2">{product.description}</p>
             <div className="flex justify-between items-center">
-              <span className="text-xl font-bold text-green-600">${product.price}</span>
+              <span className="text-xl font-bold text-green-600">Rs.{product.price}</span>
               <span className="text-sm text-gray-500">In stock: {product.quantity}</span>
             </div>
           </Link>
