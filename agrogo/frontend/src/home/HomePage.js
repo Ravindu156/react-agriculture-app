@@ -79,7 +79,7 @@ export default function HomePage() {
             <a href="#farmer" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'farmer')}>What we do for you</a>
             <a href="#executive-officer" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'executive-officer')}>Are you an Executive officer</a>
             <a href="#contact-us" className="text-white hover:text-green-400" onClick={(e) => navigateToSection(e, 'contact-us')}>Contact Us</a>
-            <Link to="/inorganic">Exchange</Link>
+            {/* <Link to="/inorganic">Exchange</Link> */}
           </nav>
         </header>
 
