@@ -25,7 +25,7 @@ const NavigationBar = () => {
         </li>
         <li>
           {/* Use <a> for hash navigation */}
-          <a href="/#about-us" className="home-button">HOME</a>
+          <a href="/dashboard" className="home-button">HOME</a>
         </li>
       </ul>
     </nav>
