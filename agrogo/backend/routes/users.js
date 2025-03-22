@@ -231,8 +231,12 @@ router.post('/reset-password', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
     
-    // Update password (handle hashing according to your model)
-    user.password = newPassword; // Assuming your User model handles password hashing
+    // Hash the new password using bcrypt
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    
+    // Update the user's password with the hashed version
+    user.password = hashedPassword;
     await user.save();
     
     return res.status(200).json({ message: 'Password reset successfully' });
@@ -241,7 +245,6 @@ router.post('/reset-password', async (req, res) => {
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
-
 // Display all users
 router.get('/getusers', async (req, res) => {
   try {
