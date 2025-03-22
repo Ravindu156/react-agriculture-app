@@ -229,15 +229,7 @@ export default function ForgotPassword() {
                   {loading ? 'Verifying...' : 'Verify OTP'}
                 </button>
                 
-                <p className="text-center mt-4">
-                  <button 
-                    type="button" 
-                    onClick={() => setCurrentStep('email')} 
-                    className="text-green-600 hover:underline"
-                  >
-                    Use a different email
-                  </button>
-                </p>
+              
               </form>
             </>
           )}
