@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const secretekey='vau@group14';
 const jwt = require('jsonwebtoken');
 const verify = require('../middleware/auth');
-
+require('dotenv').config({ path: '../.env' });
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile,gender, region, nic,role, password, education, occupation, experience } = req.body;
     
@@ -97,6 +97,7 @@ router.post('/', async (req, res) => {
     });
 
     router.get('/aeos', async (req, res) => {
+     
       try {
         const aeos = await User.find({ role: "Agricultural Executive Officer" });
         res.json(aeos);
@@ -147,7 +148,7 @@ router.post('/request-otp', async (req, res) => {
     
     // Send email with OTP
     const mailOptions = {
-      from: process.env.EMAIL_PASSWORD,
+      from: process.env.EMAIL_USERNAME,
       to: email,
       subject: 'AgroGo Password Reset OTP',
       html: `
