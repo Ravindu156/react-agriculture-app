@@ -8,14 +8,12 @@ export default function ForgotPassword() {
   const navigate = useNavigate();
   const location = useLocation();
   const emailFromLogin = location.state?.email || '';
-  // States for all form inputs
   const [email, setEmail] = useState(emailFromLogin);
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  
-  // States for UI flow control
+
   const [currentStep, setCurrentStep] = useState('email'); // 'email', 'otp', 'reset'
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -160,7 +158,7 @@ export default function ForgotPassword() {
                 <input 
                   type="email" 
                   value={email} 
-                  onChange={(e) => setEmail(e.target.value)} 
+                  readOnly  
                   required 
                   className="w-full p-3 mt-2 border border-gray-300 rounded-md"
                   placeholder="Enter your registered email"
