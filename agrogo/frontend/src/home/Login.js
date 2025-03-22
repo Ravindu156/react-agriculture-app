@@ -102,11 +102,21 @@ export default function Login () {
   <a
     className="text-stone-500 hover:text-blue-700 cursor-pointer"
     style={{ cursor: "pointer" }}
-    onClick={() => {
-      if (email) {
-        navigate('/forgot', { state: { email } });
-      } else {
+    onClick={async() => {
+      if (!email) {
         alert("Please provide an email address before proceeding.");
+        return;
+      }
+      
+      try {
+        // Check if the email exists in the database
+        const response = await axios.post('http://localhost:5000/api/users/check-email', { email });
+        
+        // If email exists, navigate to forgot password page
+        navigate('/forgot', { state: { email } });
+      } catch (error) {
+        // If email doesn't exist or there's an error
+        alert("This email is not registered in our system.");
       }
     }}
   >

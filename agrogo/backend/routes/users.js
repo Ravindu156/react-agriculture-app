@@ -95,7 +95,25 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
       }
     });
-
+// Add this to your backend routes
+router.post('/check-email', async (req, res) => {
+  const { email } = req.body;
+  
+  try {
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+      // Email not found
+      return res.status(404).json({ message: 'Email not registered' });
+    }
+    
+    // Email exists
+    res.status(200).json({ message: 'Email exists' });
+  } catch (err) {
+    console.error('Error checking email:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
     router.get('/aeos', async (req, res) => {
      
       try {
