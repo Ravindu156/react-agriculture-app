@@ -115,8 +115,8 @@ const otpStore = {};
 const transporter = nodemailer.createTransport({
   service: 'gmail', // or your preferred email service
   auth: {
-    user: 'sanduni5398nisansala@gmail.com',
-    pass: 'ccdvqwtpxumbsyqk'
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
@@ -147,7 +147,7 @@ router.post('/request-otp', async (req, res) => {
     
     // Send email with OTP
     const mailOptions = {
-      from: 'sanduni5398nisansala@gmail.com',
+      from: process.env.EMAIL_PASSWORD,
       to: email,
       subject: 'AgroGo Password Reset OTP',
       html: `
