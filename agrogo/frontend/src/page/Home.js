@@ -64,7 +64,20 @@ const Home = () => {
             Planting the seeds of a brighter <span className="text-red-600">Future</span>
             </h2>
             <p className="py-3 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            ection Title: "Rooted in Quality, Growing with You"
+Content:
+At AgroGo, we’re passionate about helping gardeners of all levels grow thriving, sustainable gardens. Our seeds are carefully selected, tested, and packed with care to ensure your gardening success.
+
+Why Choose Us?
+
+🌿 100% Non-GMO: Naturally grown, always.
+
+🌎 Eco-Friendly Packaging: Better for you and the planet.
+
+🌟 Guaranteed Germination: Grow with confidence.
+
+Mission Statement:
+"To provide gardeners with the best seeds, so together, we can grow a greener, healthier world."
             </p>
             <button
               onClick={scrollToFilter}  // Add this function to the "Order Now" button
