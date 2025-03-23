@@ -35,6 +35,7 @@ import Profile from "./components/dashboard/Profile";
 import OrderDetails from './components/OrderDetails';
 import ProductTable from './components/AdminPanal/ProductTable';
 import AdminOrders from './components/AdminPanal/AdminOrders';
+import EcomUserProfile from './page/EcomUserProfile';
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
         <Route path="/ecom/cart" element={<Cart/>} />
         <Route path='/ecom/contact' element={<Contact/>}/>
         <Route path='/ecom/products' element={<Products/>}/>
+        <Route path='ecom/profile' element={<EcomUserProfile/>}/>
         <Route path='/ecom/orders/:userid' element={<OrderDetails/>}/>
         <Route path='/advisory' element={<Advisory/>}/>
 

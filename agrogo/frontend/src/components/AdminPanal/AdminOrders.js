@@ -70,7 +70,7 @@ const AdminOrders = () => {
             <th className="border px-4 py-2">Products</th>
             <th className="border px-4 py-2">Total Amount & Payment</th>
             <th className="border px-4 py-2">Order Status</th>
-            <th className="border px-4 py-2">Actions</th>
+            {/* <th className="border px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -136,7 +136,7 @@ const AdminOrders = () => {
                     </td>
                   )}
 
-                  {/* Delete Button - Only in first row for each order */}
+                  {/* Delete Button - Only in first row for each order
                   {index === 0 && (
                     <td rowSpan={order.products.length} className="border px-4 py-2 text-center">
                       <button
@@ -146,7 +146,7 @@ const AdminOrders = () => {
                         Delete
                       </button>
                     </td>
-                  )}
+                  )} */}
                 </tr>
               ))}
             </React.Fragment>

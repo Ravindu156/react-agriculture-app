@@ -6,6 +6,35 @@ const User = require('../models/User');
 const { default: mongoose } = require('mongoose');
 const { Mongoose } = require('mongoose');
 
+// Get Products by User ID (Author)
+router.get("/user/:id", async (req, res) => {
+  try {
+    console.log("Hello");
+    
+    const userId = req.params.id;
+    console.log(userId);
+    
+    // Find user vby ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Search for products where the author matches the user's full name
+    const products = await productModel.find({ author: `${user.firstname} ${user.lastname}` });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "No products found for this user" });
+    }
+
+    res.json({ success: true, data: products });
+  } catch (error) {
+    console.error("Error fetching products by user ID:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
 router.post("/uploadProduct", verify, async (req, res) => {
   try {
     // Get the logged-in user's details (author) from the request object
@@ -123,6 +152,8 @@ router.delete("/product/delete/:id",  async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+
 
 
 module.exports = router;
