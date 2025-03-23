@@ -6,7 +6,8 @@ const multer = require('multer');
 const sellerProductsRouters = require('./routes/sellerProducts');
 const receiptRoutes = require('./routes/receipts');
 const priceRoutes = require('./routes/Priceset');
-
+const dotenv = require('dotenv');
+dotenv.config({path:'./agrogo/.env'}); 
 const exproductRoutes = require('./routes/Exproducts');
 
 const reviewRoutes = require('./routes/reviews')
@@ -53,4 +54,5 @@ mongoose
 
 // Start Server
 const PORT = 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
