@@ -63,22 +63,34 @@ const Home = () => {
             <h2 className="text-4xl md:text-7xl font-bold py-3">
             Planting the seeds of a brighter <span className="text-red-600">Future</span>
             </h2>
-            <p className="py-3 text-base">
-            ection Title: "Rooted in Quality, Growing with You"
-Content:
-At AgroGo, we’re passionate about helping gardeners of all levels grow thriving, sustainable gardens. Our seeds are carefully selected, tested, and packed with care to ensure your gardening success.
+          
+            <p class="py-6 text-lg text-gray-700 leading-relaxed">
+  At AgroGo, we’re passionate about helping gardeners of all levels grow thriving, sustainable gardens. Our seeds are carefully selected, tested, and packed with care to ensure your gardening success.
+</p>
 
-Why Choose Us?
-
-🌿 100% Non-GMO: Naturally grown, always.
-
-🌎 Eco-Friendly Packaging: Better for you and the planet.
-
-🌟 Guaranteed Germination: Grow with confidence.
-
-Mission Statement:
-"To provide gardeners with the best seeds, so together, we can grow a greener, healthier world."
-            </p>
+<div class="mt-6">
+  <h3 class="text-2xl font-semibold text-green-800 mb-4">Why Choose Us?</h3>
+  <ul class="space-y-4">
+    <li class="flex items-start">
+      <span class="text-2xl mr-3">🌿</span>
+      <span class="text-gray-700">
+        <strong class="font-semibold text-green-800">100% Non-GMO:</strong> Naturally grown, always.
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-2xl mr-3">🌎</span>
+      <span class="text-gray-700">
+        <strong class="font-semibold text-green-800">Eco-Friendly Packaging:</strong> Better for you and the planet.
+      </span>
+    </li>
+    <li class="flex items-start">
+      <span class="text-2xl mr-3">🌟</span>
+      <span class="text-gray-700">
+        <strong class="font-semibold text-green-800">Guaranteed Germination:</strong> Grow with confidence.
+      </span>
+    </li>
+  </ul>
+</div>
             <button
               onClick={scrollToFilter}  // Add this function to the "Order Now" button
               className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md"
