@@ -68,6 +68,12 @@ const Seller = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!name || !category || !place || !quantity || !description) {
+            alert('All fields are required!');  // Show an alert if any field is empty
+            return;  // Stop submission if any field is missing
+        }
+
         const productData = {
           product: name,
           category,

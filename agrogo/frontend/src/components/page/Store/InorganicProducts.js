@@ -187,7 +187,11 @@ const BuyProducts = () => {
                             
                         {productListon.map((item, index) => (
                             <div key={index} className="order-item">
-                                {item.product} --- {item.category} --- {item.quantity}kg
+                                {item.product} --- {item.category} ---  {item.quantity === 0 ? (
+                    <span style={{ color: "red", fontWeight: "bold" }}>Filled</span>
+                ) : (
+                    `${item.quantity}`
+                )} Units
                             </div>
                         ))}
                         </div>
