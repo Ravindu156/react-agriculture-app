@@ -9,7 +9,7 @@ const Admin = () => {
   const [productList, setProductList] = useState([]);
   const [receiptsList, setReceiptsList] = useState([]);
   const [productListex, setProductListex] = useState([]);
-
+  const [product, setProduct] = useState("");
   // Fetch existing products
   useEffect(() => {
     fetchProducts();
@@ -84,6 +84,27 @@ const Admin = () => {
         setProductListex(data);
       })
       .catch((error) => console.error('Error:', error));
+  };
+
+  const ehandleSubmit = (e) => {
+    e.preventDefault();
+    const eproductData = {product};
+  
+    fetch('http://localhost:5000/ecom/exproduct/ecreate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(eproductData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        alert('Product submitted successfully!');
+        fetchExProducts();
+
+      })
+      .catch((error) => console.error('Error:', error)
+    );
+      
   };
 
   return (
@@ -173,7 +194,28 @@ const Admin = () => {
           </div>
         </div>
         <div className="seller-form">
+        <div className="grid-container">
+        <form onSubmit={ehandleSubmit}>
+        <p className="font1">ADD PRODUCT</p>
+        
+        <p className="font3">Product Name</p>
+        <input className="addproduct"
+                    
+                    type="String"
+                    placeholder="New product"
+                    value={product}
+                    onChange={(e) => setProduct(e.target.value)}
+                    
+                    required
+                />
+            <button type="submit">Add Product to the List</button>
+          </form>        
+        </div>
+         
+         
           {/* Posted Receipts */}
+          <br />
+
           <h2 className="font1">COMPLETED ORDERS</h2>
           <div className="product-list">
             {receiptsList.map((receipts, index) => (
@@ -183,6 +225,9 @@ const Admin = () => {
               </div>
             ))}
           </div>
+          
+        
+          
         </div>
       </div>
 

@@ -212,23 +212,7 @@ const Seller = () => {
                 Date   : <span style={{ fontSize: 36, fontWeight: 'bold' }}>{lastUpdatedDate}</span> </h1>
         </div>
         <br />
-        <div className="grid-container">
-        <form onSubmit={ehandleSubmit}>
-        <p className="font1">ADD PRODUCT</p>
         
-        <p className="font3">Product Name</p>
-        <input className="addproduct"
-                    
-                    type="String"
-                    placeholder="New product"
-                    value={product}
-                    onChange={(e) => setProduct(e.target.value)}
-                    
-                    required
-                />
-            <button type="submit">Add Product to the List</button>
-          </form>        
-        </div>
         
                         <div className="order-bookII">
                         <h2 className="font1">ORDER BOOK</h2>
