@@ -63,7 +63,12 @@ const BuyProducts = () => {
             const response = await axios.get('http://localhost:5000/ecom/seller-products/products-by-name', {
                 params: { name, category },
             });
-            setProductList(response.data);
+
+             // Filter out products with quantity 0
+             const filteredProducts = response.data.filter(product => product.quantity > 0);
+
+            setProductList(filteredProducts);
+           
         } catch (error) {
             console.error('Error fetching product list:', error);
             setProductList([]);
