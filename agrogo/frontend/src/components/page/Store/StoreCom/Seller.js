@@ -10,7 +10,7 @@ const Seller = () => {
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState(1);
-    const [product, setProduct] = useState("");
+   
     const [place, setPlace] = useState("");
     const [lastUpdatedPrice, setLastUpdatedPrice] = useState(0);
     const [lastUpdatedDate, setLastUpdatedDate] = useState("");
@@ -92,26 +92,6 @@ const Seller = () => {
       };
 
 
-      const ehandleSubmit = (e) => {
-        e.preventDefault();
-        const eproductData = {product};
-      
-        fetch('http://localhost:5000/ecom/exproduct/ecreate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(eproductData),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            alert('Product submitted successfully!');
-            fetchExProducts();
-
-          })
-          .catch((error) => console.error('Error:', error)
-        );
-          
-      };
       
     return (
 
@@ -122,7 +102,7 @@ const Seller = () => {
              <h2 className="font1">ADD ORDER</h2>
             <form onSubmit={handleSubmit}>
             <p className="font3">Name of the product</p>
-                <select value={name} onChange={(e) => setName(e.target.value)}>
+                <select value={name} onChange={(e) => setName(e.target.value)} required>
                                  <option value="Carrot">Carrot</option>
                                 <option value="Pumpkin">Pumpkin</option>
                                 <option value="Brinjal">Brinjal</option>
@@ -150,9 +130,11 @@ const Seller = () => {
                         ))}
                 </select>
              <p className="font3">Select the category</p>    
-                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <select value={category} onChange={(e) => setCategory(e.target.value)}
+                     required>
                     <option value="Inorganic Product">Inorganic Product</option>
                     <option value="Organic Product">Organic Product</option>
+                    
                 </select>
 
             <p className="font3">Select the place</p>    
@@ -220,7 +202,11 @@ const Seller = () => {
                             
                         {productListon.map((item, index) => (
                             <div key={index} className="order-item">
-                                {item.product} --- {item.category} --- {item.quantity}kg
+                                {item.product} --- {item.category} ---  {item.quantity === 0 ? (
+                    <span style={{ color: "red", fontWeight: "bold" }}>Filled</span>
+                ) : (
+                    `${item.quantity}kg`
+                )} Units
                             </div>
                         ))}
                         </div>
