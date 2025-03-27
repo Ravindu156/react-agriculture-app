@@ -79,105 +79,113 @@ const Admin = () => {
 
   const fetchExProducts = () => {
     fetch('http://localhost:5000/ecom/exproduct/eall')
-        .then((response) => response.json())
-        .then((data) => {
-            setProductListex(data);
-        })
-        .catch((error) => console.error('Error:', error));
-};    
+      .then((response) => response.json())
+      .then((data) => {
+        setProductListex(data);
+      })
+      .catch((error) => console.error('Error:', error));
+  };
 
   return (
     <div>
       <NavigationBar />
       <div className="admin-form">
-      <h2 className="font1">Exchange Admin Panel</h2>
-      <div className="seller-form">
-          
+        <div className='adminBtn'>
+          <a href="/admin/products" className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            Products
+          </a>
+          <a href="/admin/orders" className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 ml-4">
+            Order
+          </a>
+        </div>
+        <h2 className="font1">Exchange Admin Panel</h2>
+        <div className="seller-form">
+
           <div className="grid-container">
-          <h2 className="font1">SET PRICE</h2>
-          {/* Dropdown for Name */}
-          <div className="search-bar">
-            <p>Name of the product:</p>
-            <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
-              <option value="">Select Product</option>
-              <option value="Carrot">Carrot</option>
-                                <option value="Pumpkin">Pumpkin</option>
-                                <option value="Brinjal">Brinjal</option>
-                                <option value="Cabbage">Cabbage</option>
-                                <option value="Beans">Beans</option>
-                                <option value="Drumsticks">Drumsticks</option>
-                                <option value="Bitter Gourd">Bitter Gourd</option>
-                                <option value="Snake Gourd">Snake Gourd</option>
-                                <option value="Ridge Gourd">Ridge Gourd</option>
-                                <option value="Ladies' Fingers">Ladies' Fingers</option>
-                                <option value="Leeks">Leeks</option>
-                                <option value="Spinach">Spinach</option>
-                                <option value="Ash Plantain">Ash Plantain</option>
-                                <option value="Tomato">Tomato</option>
-                                <option value="Green Chilli">Green Chilli</option>
-                                <option value="Capsicum">Capsicum</option>
-                                <option value="Cucumber">Cucumber</option>
-                                <option value="Radish">Radish</option>
-                                <option value="Turnip">Turnip</option>
-                                <option value="Winged Beans">Winged Beans</option>
-                                {productListex.map((item) => (
-                                <option value={item.product} >
-                                {item.product}
-                                 </option>
-                        ))}
-            </select>
-          </div>
-
-          {/* Dropdown for Category */}
-          <div className="search-bar">
-            <p>Select the category:</p>
-            <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value="">Select Category</option>
-              <option value="Inorganic Product">Inorganic Product</option>
-              <option value="Organic Product">Organic Product</option>
-            </select>
-          </div>
-
-          {/* Input for Price */}
-          <div className="search-bar">
-            <p>Set New Price:</p>
-            <input
-              type="number"
-              placeholder="Enter new price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="search-barin"
-            />
-          </div>
-
-          {/* Button to Update Price */}
-          <button onClick={handleSubmit}>Update Price</button>
-        </div>
-      
-        {/* Product List */}
-        <h2 className="font1">PRICE LIST</h2>
-        <div className="product-list">
-          {productList.map((item, index) => (
-            <div key={index} className="product-item">
-              {item.product} - {item.category} - ${item.price}
+            <h2 className="font1">SET PRICE</h2>
+            {/* Dropdown for Name */}
+            <div className="search-bar">
+              <p>Name of the product:</p>
+              <select className="search-barin" value={name} onChange={(e) => setName(e.target.value)}>
+                <option value="">Select Product</option>
+                <option value="Carrot">Carrot</option>
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Brinjal">Brinjal</option>
+                <option value="Cabbage">Cabbage</option>
+                <option value="Beans">Beans</option>
+                <option value="Drumsticks">Drumsticks</option>
+                <option value="Bitter Gourd">Bitter Gourd</option>
+                <option value="Snake Gourd">Snake Gourd</option>
+                <option value="Ridge Gourd">Ridge Gourd</option>
+                <option value="Ladies' Fingers">Ladies' Fingers</option>
+                <option value="Leeks">Leeks</option>
+                <option value="Spinach">Spinach</option>
+                <option value="Ash Plantain">Ash Plantain</option>
+                <option value="Tomato">Tomato</option>
+                <option value="Green Chilli">Green Chilli</option>
+                <option value="Capsicum">Capsicum</option>
+                <option value="Cucumber">Cucumber</option>
+                <option value="Radish">Radish</option>
+                <option value="Turnip">Turnip</option>
+                <option value="Winged Beans">Winged Beans</option>
+                {productListex.map((item) => (
+                  <option value={item.product} >
+                    {item.product}
+                  </option>
+                ))}
+              </select>
             </div>
-          ))}
-        </div>
+
+            {/* Dropdown for Category */}
+            <div className="search-bar">
+              <p>Select the category:</p>
+              <select className="search-barin" value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">Select Category</option>
+                <option value="Inorganic Product">Inorganic Product</option>
+                <option value="Organic Product">Organic Product</option>
+              </select>
+            </div>
+
+            {/* Input for Price */}
+            <div className="search-bar">
+              <p>Set New Price:</p>
+              <input
+                type="number"
+                placeholder="Enter new price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="search-barin"
+              />
+            </div>
+
+            {/* Button to Update Price */}
+            <button onClick={handleSubmit}>Update Price</button>
+          </div>
+
+          {/* Product List */}
+          <h2 className="font1">PRICE LIST</h2>
+          <div className="product-list">
+            {productList.map((item, index) => (
+              <div key={index} className="product-item">
+                {item.product} - {item.category} - ${item.price}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="seller-form">
-        {/* Posted Receipts */}
-        <h2 className="font1">COMPLETED ORDERS</h2>
-        <div className="product-list">
-          {receiptsList.map((receipts, index) => (
-            <div key={index} className="product-item">
-              ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
-              <button className="button3" onClick={() => handleDelete(receipts._id)}>Confirm Order Fill</button>
-            </div>
-          ))}
-        </div>
+          {/* Posted Receipts */}
+          <h2 className="font1">COMPLETED ORDERS</h2>
+          <div className="product-list">
+            {receiptsList.map((receipts, index) => (
+              <div key={index} className="product-item">
+                ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
+                <button className="button3" onClick={() => handleDelete(receipts._id)}>Confirm Order Fill</button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      
+
     </div>
   );
 };

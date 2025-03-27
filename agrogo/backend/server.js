@@ -6,7 +6,8 @@ const multer = require('multer');
 const sellerProductsRouters = require('./routes/sellerProducts');
 const receiptRoutes = require('./routes/receipts');
 const priceRoutes = require('./routes/Priceset');
-
+const dotenv = require('dotenv');
+dotenv.config({path:'./agrogo/.env'}); 
 const exproductRoutes = require('./routes/Exproducts');
 
 const reviewRoutes = require('./routes/reviews')
@@ -14,6 +15,7 @@ const reviewRoutes = require('./routes/reviews')
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json({ limit: '60mb' }));
 app.use(express.urlencoded({ extended: true, limit: '60mb' }));
@@ -25,6 +27,7 @@ const productsRouters = require('./routes/products');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/article');
 const profileRoutes = require("./routes/profile"); // Import profile route
+const orderRoutes = require('./routes/OrderForms');
 
 app.use('/ecom/seller-products', sellerProductsRouters);
 app.use('/ecom/recipts', receiptRoutes);
@@ -32,12 +35,14 @@ app.use('/ecom/price', priceRoutes);
 app.use('/ecom/exproduct',exproductRoutes);
 app.use('/ecom/crops', cropsRouters);
 app.use('/ecom/products', productsRouters);
+app.use('/ecom/orders', orderRoutes);
+
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes);
-
 app.use("/api/profile", profileRoutes); // New profile route
 app.use("/api/reviews",reviewRoutes);
 
+//mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo
 // MongoDB Connection
 mongoose
     .connect('mongodb+srv://sanduni06nisansala:GXxRkwZRrQmkzQB2@agrogo.rbxzr.mongodb.net/AgroGo', {
@@ -49,4 +54,5 @@ mongoose
 
 // Start Server
 const PORT = 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

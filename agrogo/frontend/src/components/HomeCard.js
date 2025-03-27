@@ -16,7 +16,7 @@ const HomeCard = ({ name, image, category, price, loading,id }) => {
           <p className="text-center text-slate-500  font-medium">{category}</p>
           <p className="text-center font-bold">
             <span className="text-red-500">Rs.</span>
-            <span>{price}</span> per 1 kg
+            <span>{price}</span>
           </p>
           </Link>
         </>

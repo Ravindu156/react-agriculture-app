@@ -1,73 +1,63 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import CardFeature from "./CardFeature";
-import FilterProduct from "./FilterProduct";
 
 const AllProduct = ({ heading }) => {
-  const productData = useSelector((state) => state.product.productList);
-  const categoryList = [...new Set(productData.map((el) => el.category))];
+  const [productData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  //filter data display
-  const [filterby, setFilterBy] = useState("");
-  const [dataFilter, setDataFilter] = useState([]);
-
+  // Fetch latest 5 products from backend
   useEffect(() => {
-    setDataFilter(productData);
-  }, [productData]);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/ecom/products/product/");
+        const data = await response.json();
 
-  const handleFilterProduct = (category) => {
-    setFilterBy(category)
-    const filter = productData.filter(
-      (el) => el.category.toLowerCase() === category.toLowerCase()
-    );
-    setDataFilter(() => {
-      return [...filter];
-    });
-  };
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch products");
+        }
 
-  const loadingArrayFeature = new Array(10).fill(null);
+        if (data) {
+          // Get latest 5 products
+          const latestProducts = data.slice(-5).reverse();
+          setProductData(latestProducts);
+        } else {
+          throw new Error("Invalid data format from server");
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="my-5">
       <h2 className="font-bold text-2xl text-slate-800 mb-4">{heading}</h2>
 
-      <div className="flex gap-4 justify-center overflow-scroll scrollbar-none">
-        {categoryList[0] ? (
-          categoryList.map((el) => {
-            return (
-              <FilterProduct
-                category={el}
-                key={el}
-                isActive={el.toLowerCase() === filterby.toLowerCase()}
-                onClick={() => handleFilterProduct(el)}
-              />
-            );
-          })
-        ) : (
-          <div className="min-h-[150px] flex justify-center items-center">
-            <p>Loading...</p>
-          </div>
-        )}
-      </div>
-
+      {/* Product List */}
       <div className="flex flex-wrap justify-center gap-4 my-4">
-        {dataFilter[0]
-          ? dataFilter.map((el) => {
-              return (
-                <CardFeature
-                  key={el._id}
-                  id={el._id}
-                  image={el.image}
-                  name={el.name}
-                  category={el.category}
-                  price={el.price}
-                />
-              );
-            })
-          : 
-          loadingArrayFeature.map((el,index) => (
-              <CardFeature loading="Loading..." key={index+"allProduct"} />
-            ))}
+        {loading ? (
+          <p className="text-center">Loading products...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : productData.length > 0 ? (
+          productData.map((el) => (
+            <CardFeature
+              key={el._id}
+              id={el._id}
+              image={el.image}
+              name={el.name}
+              category={el.category}
+              price={el.price}
+            />
+          ))
+        ) : (
+          <p className="text-center">No products found</p>
+        )}
       </div>
     </div>
   );

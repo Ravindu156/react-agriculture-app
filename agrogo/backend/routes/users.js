@@ -4,8 +4,8 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const secretekey='vau@group14';
 const jwt = require('jsonwebtoken');
-
-
+const verify = require('../middleware/auth');
+require('dotenv').config({ path: '../.env' });
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile,gender, region, nic,role, password, education, occupation, experience } = req.body;
     
@@ -95,8 +95,27 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
       }
     });
-
+// Add this to your backend routes
+router.post('/check-email', async (req, res) => {
+  const { email } = req.body;
+  
+  try {
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+      // Email not found
+      return res.status(404).json({ message: 'Email not registered' });
+    }
+    
+    // Email exists
+    res.status(200).json({ message: 'Email exists' });
+  } catch (err) {
+    console.error('Error checking email:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
     router.get('/aeos', async (req, res) => {
+     
       try {
         const aeos = await User.find({ role: "Agricultural Executive Officer" });
         res.json(aeos);
@@ -105,41 +124,146 @@ router.post('/', async (req, res) => {
       }
     });
 
-    router.put('/reset-password', async (req, res) => {
-      const { email, newPassword, confirmPassword } = req.body;
+ const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
-      // Check if passwords match
-      if (newPassword !== confirmPassword) {
-        return res.status(400).json({ message: 'Passwords do not match' });
-      }
-    
-      try {
-        // Check if the user exists by email
-        const user = await User.findOne({ email });
-        if (!user) {
-          return res.status(404).json({ message: 'User not found with this email' });
-        }
-    
-        // Hash the new password (you should use bcrypt for hashing)
-        const bcrypt = require('bcryptjs');
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(newPassword, salt);
-    
-        // Update the password
-        user.password = hashedPassword;
-        await user.save();
-    
-        res.status(200).json({ message: 'Password updated successfully' });
-    
-      } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
-      }
-    });
-    
+// Store OTPs temporarily (in production, use Redis or another suitable database)
+const otpStore = {};
 
+// Configure nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // or your preferred email service
+  auth: {
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.EMAIL_PASSWORD
+  }
+});
 
+// Generate a 6-digit OTP
+const generateOTP = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
 
+// Route to request OTP
+router.post('/request-otp', async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    // Generate OTP
+    const otp = generateOTP();
+    
+    // Store OTP with expiry (2 minutes)
+    otpStore[email] = {
+      otp,
+      expiry: Date.now() + 2 * 60 * 1000 // 2 minutes
+    };
+    
+    // Send email with OTP
+    const mailOptions = {
+      from: process.env.EMAIL_USERNAME,
+      to: email,
+      subject: 'AgroGo Password Reset OTP',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
+          <h1 style="color: #2f855a; text-align: center;">AgroGo</h1>
+          <h2 style="text-align: center;">Password Reset</h2>
+          <p>You requested to reset your password. Use the following OTP to proceed:</p>
+          <div style="text-align: center; padding: 15px; background-color: #f0fff4; border-radius: 5px; margin: 20px 0;">
+            <h2 style="letter-spacing: 5px; font-size: 24px; margin: 0;">${otp}</h2>
+          </div>
+          <p>This OTP will expire in 2 minutes.</p>
+          <p>If you didn't request this, please ignore this email or contact support if you have concerns.</p>
+          <p style="margin-top: 30px; font-size: 12px; color: #666; text-align: center;">This is an automated email, please do not reply.</p>
+        </div>
+      `
+    };
+    
+    await transporter.sendMail(mailOptions);
+    
+    return res.status(200).json({ message: 'OTP sent to your email' });
+  } catch (error) {
+    console.error('OTP request error:', error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 
+// Route to verify OTP
+router.post('/verify-otp', (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    
+    // Check if OTP exists and is valid
+    const otpData = otpStore[email];
+    if (!otpData) {
+      return res.status(400).json({ message: 'OTP not found or expired. Please request a new one.' });
+    }
+    
+    // Check if OTP is expired
+    if (Date.now() > otpData.expiry) {
+      delete otpStore[email]; // Clean up expired OTP
+      return res.status(400).json({ message: 'OTP expired. Please request a new one.' });
+    }
+    
+    // Verify OTP
+    if (otpData.otp !== otp) {
+      return res.status(400).json({ message: 'Invalid OTP. Please try again.' });
+    }
+    
+    // OTP is valid
+    // We'll keep the OTP data for now as a verification flag
+    // It will be cleaned up after password reset or will expire naturally
+    return res.status(200).json({ message: 'OTP verified successfully' });
+  } catch (error) {
+    console.error('OTP verification error:', error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// Route to reset password
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { email, newPassword, confirmPassword } = req.body;
+    
+    // Check if OTP was verified (by checking if entry exists)
+    const otpData = otpStore[email];
+    if (!otpData) {
+      return res.status(401).json({ message: 'OTP verification required before password reset' });
+    }
+    
+    // Clean up the OTP data as it's no longer needed
+    delete otpStore[email];
+    
+    // Validate passwords
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords don't match" });
+    }
+    
+    // Find user
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    // Hash the new password using bcrypt
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    
+    // Update the user's password with the hashed version
+    user.password = hashedPassword;
+    await user.save();
+    
+    return res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('Password reset error:', error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 // Display all users
 router.get('/getusers', async (req, res) => {
   try {
@@ -150,5 +274,15 @@ router.get('/getusers', async (req, res) => {
   }
 });
 
-
+router.post('/logout', verify, async (req, res) => {
+  try {
+    res.status(200).json({ 
+      success: true,
+      message: 'Logout successful. Please remove the token from your client storage.' 
+    });
+  } catch (error) {
+    console.error('Error in logout:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
 module.exports = router;

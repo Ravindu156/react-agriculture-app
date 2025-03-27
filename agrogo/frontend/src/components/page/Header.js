@@ -20,8 +20,6 @@ const Header= () => {
       <div className=''>
           <img src={logo}className="h-full" />
       </div>
-
-
     </header>
    
   )
