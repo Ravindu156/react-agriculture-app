@@ -114,6 +114,12 @@ const BuyProducts = () => {
       //receipt submit
     const handleSubmit =  (e) => { 
         e.preventDefault();
+
+        if (!buyerid) {
+            alert("Buyer ID is required!");  // Show an alert or handle validation error
+            return;  // Stop execution if buyer ID is missing
+        }
+        
         const formattedReceipt = {
               buyerId: buyerid, // Ensure buyer ID is included
               currentPrice: receipt.currentPrice,
