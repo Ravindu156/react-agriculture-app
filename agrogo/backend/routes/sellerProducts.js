@@ -54,9 +54,9 @@ router.get('/chart-data', (req, res) => {
 
 
 router.get('/products-by-name', (req, res) => {
-  const { name } = req.query;
+  const { name, category } = req.query;
 
-  SellerProduct.find({ product: name })
+  SellerProduct.find({ product: name, category })
     .then((products) => {
       if (products.length > 0) {
         // Extract _id and quantity from the products

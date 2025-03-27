@@ -28,11 +28,11 @@ const BuyProducts = () => {
     }, [name, category]);
 
     useEffect(() => {
-        if (name) {
-            fetchProductList(name);
+        if (name && category) {
+            fetchProductList(name, category);
 
         }
-    }, [name]);
+    }, [name, category]);
 
      useEffect(() => {
                 
@@ -58,10 +58,10 @@ const BuyProducts = () => {
         }
     };
 
-    const fetchProductList = async (name) => {
+    const fetchProductList = async (name, category) => {
         try {
             const response = await axios.get('http://localhost:5000/ecom/seller-products/products-by-name', {
-                params: { name },
+                params: { name, category },
             });
             setProductList(response.data);
         } catch (error) {
@@ -246,7 +246,7 @@ const BuyProducts = () => {
                             productList.map((product) => (
                                 <div className="item1">
                                 <li  key={product._id}>
-                                    <span>ID: {product._id}, <br />Ask Quantity: {product.quantity}.Kg</span>
+                                    <span>ID: {product._id}, <br />Ask Quantity: {product.quantity}.Unit</span>
                                     <button className="button2" onClick={() => handleSelect(product._id)}>Select</button>
                                 </li>
                                 </div>
