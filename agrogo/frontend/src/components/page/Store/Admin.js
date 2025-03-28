@@ -185,9 +185,9 @@ const Admin = () => {
 
           {/* Product List */}
           <h2 className="font1">PRICE LIST</h2>
-          <div className="product-list">
+          <div className="productp-list">
             {productList.map((item, index) => (
-              <div key={index} className="product-item">
+              <div key={index} className="productp-item">
                 {item.product} - {item.category} - ${item.price}
               </div>
             ))}

@@ -211,7 +211,7 @@ const Seller = () => {
                                 {item.product} --- {item.category} ---  {item.quantity === 0 ? (
                     <span style={{ color: "red", fontWeight: "bold" }}>Filled</span>
                 ) : (
-                    `${item.quantity}kg`
+                    `${item.quantity}`
                 )} Units
                             </div>
                         ))}
