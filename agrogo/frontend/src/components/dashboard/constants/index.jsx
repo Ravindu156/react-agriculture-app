@@ -1,6 +1,6 @@
 export const navItems = [
   { label: "Articles", href: "#articles" },
-  { label: "Farm Management Tools", href: "/Store" },
+  { label: "Agrogo Exchange", href: "/Inorganic" },
   { label: "Farm Supply MarketPlace", href: "/ecom/home" },
   { label: "Crop Calender", href: "/cropcalendar" },
   { label: "Advisory service", href: "/advisory" },
@@ -13,6 +13,6 @@ export const adminnavItems = [
   { label: "User Management", href: "#UserManagement" },
   { label: "Content Management", href: "#ContentManagement" },
   { label: "Analytics & Reports", href: "#AnalyticsReports" },
-  { label: "System Management", href: "#SystemManagement" },
+  { label: "Exchange System Management", href: "/Admin" },
 
 ];
