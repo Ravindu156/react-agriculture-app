@@ -19,10 +19,10 @@ const NavigationBar = () => {
         <li>
           <Link to="/Buy" className="buy-button">FILL ORDERS</Link>
         </li>
-        <li>
-          {/* Show Admin link only if the role is NOT "user" */}
+        {/*<li>
+           Show Admin link only if the role is NOT "user" 
           {userRole !== "user" && <Link to="/Admin" className="admin-button">ADMIN</Link>}
-        </li>
+        </li>*/}
         <li>
           {/* Use <a> for hash navigation */}
           <a href="/dashboard" className="home-button">HOME</a>
