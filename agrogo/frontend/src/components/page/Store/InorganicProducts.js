@@ -31,9 +31,22 @@ const BuyProducts = () => {
         fetch('http://localhost:5000/ecom/price/all')
             .then((response) => response.json())
             .then((data) => {
-                setProductList(data);
+                // Object to track the latest entry for each product
+                const latestPrices = {};
+    
+                data.forEach((item) => {
+                    if (
+                        !latestPrices[item.product] || 
+                        new Date(item.date) > new Date(latestPrices[item.product].date)
+                    ) {
+                        latestPrices[item.product] = item;
+                    }
+                });
+    
+                // Convert object values back to an array
+                setProductList(Object.values(latestPrices));
             })
-            .catch((error) => console.error('Error:', error));
+            .catch((error) => console.error('Error fetching products:', error));
     };
 
     const fetchOnProducts = () => {
