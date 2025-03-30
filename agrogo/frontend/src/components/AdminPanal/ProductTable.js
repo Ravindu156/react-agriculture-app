@@ -46,7 +46,7 @@ const ProductTable = () => {
             <th className="border px-4 py-2">Category</th>
             <th className="border px-4 py-2">Price</th>
             <th className="border px-4 py-2">Quantity</th>
-            <th className="border px-4 py-2">Actions</th>
+            {/* <th className="border px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -57,14 +57,14 @@ const ProductTable = () => {
               <td className="border px-4 py-2">{product.category}</td>
               <td className="border px-4 py-2">{product.price}</td>
               <td className="border px-4 py-2">{product.quantity}</td>
-              <td className="border px-4 py-2">
-                <button
+              {/* {<td className="border px-4 py-2">
+                { <button
                   onClick={() => handleDelete(product._id)}
                   className="text-white bg-red-500 hover:bg-red-600 py-1 px-4 rounded"
                 >
                   Delete
-                </button>
-              </td>
+                </button> }
+              </td> } */}
             </tr>
           ))}
         </tbody>
