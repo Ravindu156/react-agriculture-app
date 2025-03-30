@@ -172,7 +172,7 @@ const Seller = () => {
                             <option value="Vavuniya">Vavuniya</option>
                 </select>   
               
-             <p className="font3">Quantity (in Kg)</p>
+             <p className="font3">Quantity (in Kg/Units)</p>
                 <input
                     
                     type="number"
