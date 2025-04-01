@@ -10,7 +10,7 @@ function Profile() {
   const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
-  // ✅ Ensure only the correct user profile is shown
+  // Ensure only the correct user profile is shown
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -24,7 +24,7 @@ function Profile() {
         const res = await fetch("http://localhost:5000/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Cache-Control": "no-cache", // ✅ Force fresh data
+            "Cache-Control": "no-cache", //  Force fresh data
           },
         });
 
@@ -36,7 +36,7 @@ function Profile() {
 
         const data = await res.json();
 
-        // ✅ Ensure new login always fetches fresh data
+        // Ensure new login always fetches fresh data
         setUser(null);
         setTimeout(() => {
           setUser(data);
