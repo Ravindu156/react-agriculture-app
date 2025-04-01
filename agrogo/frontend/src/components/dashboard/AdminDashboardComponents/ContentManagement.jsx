@@ -5,36 +5,36 @@ import '../Article.css'; // Assuming your styles are here
 const ContentManagement = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [approved, setApproved] = useState(false);
   // Fetch all articles from the backend
   useEffect(() => {
     const fetchArticles = async () => {
       const token = localStorage.getItem('token'); // Get token from localStorage
-    
+
       if (!token) {
         console.error('No token found, authorization denied'); // Improved error message
         setLoading(false);
         return;
       }
-    
+
       try {
         console.log('Token being sent:', token); // Debugging - Check token value
-    
+
         const response = await axios.get('http://localhost:5000/api/articles/getArticles', {
           headers: {
             Authorization: `Bearer ${token.trim()}`, // Ensure no spaces in token
           },
         });
-    
+
         setArticles(response.data); // Set the fetched articles in state
-        
+
       } catch (error) {
         console.error('Error fetching articles:', error.response?.data || error.message); // Improved error handling
       } finally {
         setLoading(false); // Set loading to false after the request is done
       }
     };
-    
+
     fetchArticles();
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
@@ -59,12 +59,21 @@ const ContentManagement = () => {
         )
       );
 
-      
+
     } catch (error) {
       console.error('Error toggling approval:', error.response?.data || error.message);
     }
   };
-
+  const handleApproval = (id) => {
+    // Update the approval state of the article with the given id
+    setArticles((prevArticles) =>
+      prevArticles.map((article) =>
+        article._id === id
+          ? { ...article, adminApproval: !article.adminApproval } // Toggle only the clicked article's approval state
+          : article
+      )
+    );
+  };
 
   return (
     <div id="ContentManagement" className="mt-20">
@@ -89,13 +98,21 @@ const ContentManagement = () => {
               <p className="text-gray-500 mt-3">By {article.author} | {article.date}</p>
               <p className="category">Category: {article.category}</p>
               <button
-                className={`mt-3 p-2 rounded ${
-                  article.adminApproval ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-                }`}
+                className={`mt-3 p-2 rounded ${article.adminApproval ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+                  }`}
                 onClick={() => toggleApproval(article._id)}
               >
-                {article.adminApproval ? 'Approved ✅' : 'Not Approved ❌'}
+                {article.adminApproval ? 'Published ✅' : 'Not Published ❌'}
               </button>
+              {/* <button
+                onClick={toggleApproval}
+                className={`mt-3 px-4 py-2 text-white rounded-lg transition-all duration-300 ${approved ? "bg-green-600" : "bg-red-600"
+                  }`}
+              >
+                {approved ? "approved ✅" : "Not Approved ❌"}
+              </button> */}
+
+
             </div>
           ))}
         </div>
