@@ -144,7 +144,7 @@ export default function UserForm(){
         mobile: "0000000000", // Default value for backend validation
         gender: "Not Specified",
         region: "Not Specified",
-        nic: "000000000X", // Default value for backend validation
+        nic: "Not Specified", // Default value for backend validation
         education: "Not Specified",
         occupation: "Not Specified",
         experience: "Not Specified"
@@ -190,7 +190,7 @@ export default function UserForm(){
       
       // Add a delay before navigating to dashboard for the user to see the success message
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/login');
       }, 1500);
       
     } catch (error) {
