@@ -102,11 +102,11 @@ const AdminOrders = () => {
                         </tr>
                         <tr>
                           <td className="border px-4 py-2">Price/Qty</td>
-                          <td className="border px-4 py-2">${item.price} × {item.quantity}</td>
+                          <td className="border px-4 py-2">Rs.{item.price} × {item.quantity}</td>
                         </tr>
                         <tr>
                           <td className="border px-4 py-2">Total</td>
-                          <td className="border px-4 py-2">${item.price * item.quantity}</td>
+                          <td className="border px-4 py-2">Rs.{item.price * item.quantity}</td>
                         </tr>
                       </tbody>
                     </table>
