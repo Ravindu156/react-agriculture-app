@@ -77,7 +77,7 @@ router.post('/', async (req, res) => {
         }
         
     
-        const token = jwt.sign({ userId: user._id }, secretekey, { expiresIn: '10h' });
+        const token = jwt.sign({ userId: user._id }, secretekey, { expiresIn: '1h' });
         console.log('Generated Token:', token); 
   
         res.status(200).json({
@@ -127,44 +127,39 @@ router.post('/check-email', async (req, res) => {
  const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-// Store OTPs temporarily (in production, use Redis or another suitable database)
+
 const otpStore = {};
 
-// Configure nodemailer
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or your preferred email service
+  service: 'gmail', 
   auth: {
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD
   }
 });
 
-// Generate a 6-digit OTP
+
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-// Route to request OTP
+
 router.post('/request-otp', async (req, res) => {
   try {
     const { email } = req.body;
     
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
     
-    // Generate OTP
     const otp = generateOTP();
     
-    // Store OTP with expiry (2 minutes)
     otpStore[email] = {
       otp,
       expiry: Date.now() + 2 * 60 * 1000 // 2 minutes
     };
     
-    // Send email with OTP
     const mailOptions = {
       from: process.env.EMAIL_USERNAME,
       to: email,
@@ -215,9 +210,6 @@ router.post('/verify-otp', (req, res) => {
       return res.status(400).json({ message: 'Invalid OTP. Please try again.' });
     }
     
-    // OTP is valid
-    // We'll keep the OTP data for now as a verification flag
-    // It will be cleaned up after password reset or will expire naturally
     return res.status(200).json({ message: 'OTP verified successfully' });
   } catch (error) {
     console.error('OTP verification error:', error);
@@ -225,12 +217,10 @@ router.post('/verify-otp', (req, res) => {
   }
 });
 
-// Route to reset password
 router.post('/reset-password', async (req, res) => {
   try {
     const { email, newPassword, confirmPassword } = req.body;
     
-    // Check if OTP was verified (by checking if entry exists)
     const otpData = otpStore[email];
     if (!otpData) {
       return res.status(401).json({ message: 'OTP verification required before password reset' });

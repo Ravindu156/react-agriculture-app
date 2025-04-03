@@ -101,14 +101,14 @@ const Navbar = () => {
           </ul>
           <div className="hidden lg:flex items-center space-x-6 ml-auto">
             {/* Notification Button */}
-            <button onClick={openNotifications} className="relative hide-scrollbar">
+            {/* <button onClick={openNotifications} className="relative hide-scrollbar">
               <Bell size={35} />
               {notificationOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg p-2 notification-menu">
                   <p className="text-sm">No new notifications</p>
                 </div>
               )}
-            </button>
+            </button> */}
 
             {/* Profile Button */}
             <button onClick={toggleProfileMenu} className="hide-scrollbar profile-btn">

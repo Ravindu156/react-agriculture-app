@@ -144,7 +144,7 @@ export default function UserForm(){
         mobile: "0000000000", // Default value for backend validation
         gender: "Not Specified",
         region: "Not Specified",
-        nic: "Not Specified", // Default value for backend validation
+        nic: "Not Specified",
         education: "Not Specified",
         occupation: "Not Specified",
         experience: "Not Specified"

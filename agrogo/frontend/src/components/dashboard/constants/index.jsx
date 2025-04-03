@@ -12,7 +12,7 @@ export const navItems = [
 export const adminnavItems = [
   { label: "User Management", href: "#UserManagement" },
   { label: "Content Management", href: "#ContentManagement" },
-  { label: "Analytics & Reports", href: "#AnalyticsReports" },
+  // { label: "Analytics & Reports", href: "#AnalyticsReports" },
   { label: "Exchange System Management", href: "/Admin" },
 
 ];

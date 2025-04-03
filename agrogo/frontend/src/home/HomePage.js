@@ -184,15 +184,8 @@ export default function HomePage() {
       <div className="flex items-center justify-between">
         <div className="ml-8 w-[60%]">
         <p className="text-lg mt-4 text-justify mx-auto w-[80%]">
-          Executive officers play a critical role in managing the agricultural sector and ensuring the efficiency of the entire supply chain. AgroGo provides executive officers with the tools and resources to:
-          <ul className="mt-4 list-disc pl-8">
-            <li><strong>Oversee Agricultural Operations</strong></li>
-            <li><strong>Facilitate Policy Development</strong></li>
-            <li><strong>Collaborate with Stakeholders</strong></li>
-            <li><strong>Track Market Trends</strong></li>
-          </ul>
-          AgroGo empowers executive officers by providing a platform for effective decision-making, collaboration, and the implementation of strategies that contribute to the development of the agricultural sector.
-        </p>
+        Executive officers play a crucial role in guiding the agricultural sector by sharing
+         knowledge and expertise. AgroGo provides them with a platform to upload articles and offer expert advice, helping farmers and agribusinesses make informed decisions. Through AgroGo, executive officers can share industry insights, discuss best practices, and provide guidance on key agricultural topics, contributing to the growth and development of the sector.        </p>
         </div>
         <img src={officer} alt="Executive Officer" className="h-[480px] w-[450px] mx-auto" />
         </div>
