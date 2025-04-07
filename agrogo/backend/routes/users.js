@@ -9,12 +9,7 @@ require('dotenv').config({ path: '../.env' });
 router.post('/', async (req, res) => {
     const { firstname,lastname,username, email, mobile,gender, region, nic,role, password, education, occupation, experience } = req.body;
     
-    if (mobile.length !== 10) {
-      return res.status(400).json({ message: 'Mobile number must be 10 digits long' });
-    }
-    if (nic.length < 10) {
-      return res.status(400).json({ message: 'NIC number is incorrect' });
-    }
+   
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: 'Invalid email format' });
@@ -37,7 +32,21 @@ router.post('/', async (req, res) => {
         password,
       };
 
-      if (role === "Agricultural Executive Officer") {
+      if (role === "Agricultural Executive Officer" && nic) {
+        const existingNIC = await User.findOne({ nic });
+      if (existingNIC) {
+        return res.status(400).json({ message: 'NIC is already taken. Please use a different NIC.' });
+      }
+        if (mobile.length !== 10) {
+          return res.status(400).json({ message: 'Mobile number must be 10 digits long' });
+        }
+        if (nic.length < 10) {
+          return res.status(400).json({ message: 'NIC number is incorrect' });
+        }
+        userData.mobile = mobile;
+    userData.nic = nic;
+    userData.gender = gender;
+    userData.region = region;
         userData.education = education;
         userData.occupation = occupation;
         userData.experience = experience;

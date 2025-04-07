@@ -188,7 +188,7 @@ const Admin = () => {
           <div className="productp-list">
             {productList.map((item, index) => (
               <div key={index} className="productp-item">
-                {item.product} - {item.category} - ${item.price}
+                {item.product} - {item.category} - Rs.{item.price}
               </div>
             ))}
           </div>
@@ -220,7 +220,7 @@ const Admin = () => {
           <div className="product-list">
             {receiptsList.map((receipts, index) => (
               <div key={index} className="product-item">
-                ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: ${receipts.totalPrice}
+                ID: {receipts._id}, Quantity: {receipts.totalQuantity}, Total Price: Rs.{receipts.totalPrice}
                 <button className="button3" onClick={() => handleDelete(receipts._id)}>Confirm Order Fill</button>
               </div>
             ))}

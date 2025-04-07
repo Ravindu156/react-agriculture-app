@@ -5,15 +5,15 @@ const userSchema = new mongoose.Schema({
     lastname: { type: String, required: true }, 
     username: {type:String, required:true, unique: true },
     email:{type:String, required:true,unique:true},
-    mobile: { type: String, required: false},
-    gender:{type:String,required:true},
-    region:{type:String, required:true},
+    mobile: { type: String},
+    gender:{type:String},
+    region:{type:String},
     role:{type:String, required:true},
-    nic: { type: String, required: true , unique: true },
-    password:{type:String, required: true},
-    education: { type: String, required: false },
-  occupation: { type: String, required: false },
-  experience: { type: String, required: false },
+    nic: { type: String },
+    password:{type:String},
+    education: { type: String },
+  occupation: { type: String },
+  experience: { type: String},
 });
 
 module.exports = mongoose.model('User',userSchema);

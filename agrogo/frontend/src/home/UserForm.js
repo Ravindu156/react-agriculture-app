@@ -106,14 +106,6 @@ export default function UserForm(){
       setStatusType("error");
       return false;
     }
-    
-    // Add mobile number validation
-    if (formData.mobile && formData.mobile.length !== 10) {
-      setStatusMessage("Mobile number must be 10 digits long.");
-      setStatusType("error");
-      return false;
-    }
-    
     return true;
   };
 
@@ -132,38 +124,22 @@ export default function UserForm(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // For regular users
-    if (!isAgricultural) {
+    // For regular users submitting from step 1
+    if (currentStep === 1 && !isAgricultural) {
       if (!validateStep1()) {
         return;
       }
-      
-      // Add default values for fields not shown in step 1 for regular users
-      const dataToSubmit = { 
-        ...formData,
-        mobile: "0000000000", // Default value for backend validation
-        gender: "Not Specified",
-        region: "Not Specified",
-        nic: "Not Specified",
-        education: "Not Specified",
-        occupation: "Not Specified",
-        experience: "Not Specified"
-      };
-      
-      submitFormData(dataToSubmit);
-    } 
-    // For agricultural officers
-    else if (isAgricultural && currentStep === 2) {
+    }
+    
+    // For agricultural officers submitting from step 2
+    if (currentStep === 2) {
       if (!validateStep2()) {
         return;
       }
-      submitFormData(formData);
     }
-  };
-  
-  const submitFormData = async (dataToSubmit) => {
+
     try {
-      const response = await axios.post("http://localhost:5000/api/users/", dataToSubmit);
+      const response = await axios.post("http://localhost:5000/api/users/", formData);
 
       setFormData({
         firstname: "",
@@ -184,15 +160,10 @@ export default function UserForm(){
       
       setCurrentStep(1);
       setIsAgricultural(false);
-      setStatusMessage("Registration successful! 🎉");
+      setStatusMessage("Registration successful!");
       setStatusType("success");
       console.log("User registered:", response.data);
-      
-      // Add a delay before navigating to dashboard for the user to see the success message
-      setTimeout(() => {
-        navigate('/login');
-      }, 1500);
-      
+      navigate('/login');
     } catch (error) {
       console.error("Error registering user:", error.response?.data || error.message);
       if (error.response && error.response.data && error.response.data.message) {
@@ -204,11 +175,6 @@ export default function UserForm(){
     }
   };
 
-  // Fun animation for form transitions
-  const formAnimationClass = currentStep === 1 
-    ? "transition-all duration-500 transform" 
-    : "transition-all duration-500 transform translate-x-0";
-
   return (
     <div className="flex min-h-screen">
       <div className="w-3/5 hidden lg:block">
@@ -219,75 +185,50 @@ export default function UserForm(){
         />
       </div>
       <div className="w-full lg:w-2/5 bg-yellow-50 flex flex-col items-center justify-center">
-        <div className="max-w-md w-full space-y-6 p-8 rounded-xl shadow-lg bg-white">
-          <h1 className="text-4xl font-bold text-green-600 text-center">
-            AgroGo 
-            <span className="text-yellow-500 ml-1">🌱</span>
-          </h1>
-          <h2 className="text-2xl text-center mb-4">
-            {currentStep === 1 ? "Create your account" : "Complete your profile"}
-          </h2>
+        <div className="max-w-md w-full space-y-6">
+          <h1 className="text-4xl font-bold text-green-600 text-center">AgroGo</h1>
+          <h2 className="text-2xl text-center mb-4">Create your account</h2>
 
           {statusMessage && (
             <div
-              className={`fixed top-4 left-1/2 transform -translate-x-1/2 mb-4 px-8 py-4 text-center text-white rounded-lg shadow-lg z-50 ${
+              className={`fixed top-0 left-1/2 transform -translate-x-1/2 mb-4 px-8 py-4 text-center text-white rounded-lg shadow-lg z-50 ${
                 statusType === "error"
-                  ? "bg-gradient-to-r from-red-500 to-red-700 animate-bounce"
-                  : "bg-gradient-to-r from-green-400 to-green-600"
+                  ? "bg-gradient-to-r from-red-500 to-red-700 animate-slideDown animate-fadeOut"
+                  : "bg-gradient-to-r from-green-400 to-green-600 animate-slideDown animate-fadeOut"
               }`}
             >
               {statusMessage}
             </div>
           )}
 
-          <div className="flex justify-center mb-4">
-            <div className="flex items-center">
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${
-                currentStep >= 1 ? "bg-green-500 text-white" : "bg-gray-300"
-              }`}>
-                1
-              </div>
-              <div className={`h-1 w-16 ${
-                currentStep > 1 ? "bg-green-500" : "bg-gray-300"
-              }`}></div>
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center ${
-                currentStep >= 2 ? "bg-green-500 text-white" : "bg-gray-300"
-              }`}>
-                2
-              </div>
-            </div>
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             {currentStep === 1 && (
-              <div className={`space-y-4 ${formAnimationClass}`}>
-                <div className="flex space-x-2">
-                  <input
-                    type="text"
-                    name="firstname"
-                    placeholder="First Name"
-                    value={formData.firstname}
-                    onChange={handleChange}
-                    className="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="lastname"
-                    placeholder="Last Name"
-                    value={formData.lastname}
-                    className="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  name="firstname"
+                  placeholder="First Name"
+                  value={formData.firstname}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+                  required
+                />
+                <input
+                  type="text"
+                  name="lastname"
+                  placeholder="Last Name"
+                  value={formData.lastname}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+                  onChange={handleChange}
+                  required
+                />
                 <input
                   type="text"
                   name="username"
                   placeholder="Username"
                   value={formData.username}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 />
                 <input
@@ -296,7 +237,7 @@ export default function UserForm(){
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 />
                 <div className="relative">
@@ -306,12 +247,12 @@ export default function UserForm(){
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                     required
                   />
                   <span
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                    className="absolute right-4 top-2 cursor-pointer text-gray-500 hover:text-gray-700"
+                    className="absolute right-4 top-2 cursor-pointer"
                   >
                     {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
                   </span>
@@ -323,36 +264,36 @@ export default function UserForm(){
                     placeholder="Confirm Password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                     required
                   />
                   <span
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                    className="absolute right-4 top-2 cursor-pointer text-gray-500 hover:text-gray-700"
+                    className="absolute right-4 top-2 cursor-pointer"
                   >
                     {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
                   </span>
                 </div>
                 
-                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                <div>
                   <label className="inline-flex items-center">
                     <input
                       type="checkbox"
                       checked={isAgricultural}
                       onChange={handleCheckboxChange}
-                      className="form-checkbox h-5 w-5 text-green-600"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Register as Agricultural Executive Officer 👨‍🌾</span>
+                    <span className="ml-2">Register as Agricultural Executive Officer</span>
                   </label>
                 </div>
                 
                 <div>
                   <a 
-                    className="text-green-600 hover:text-green-800 cursor-pointer transition-all" 
+                    className="text-stone-500 hover:text-blue-700 cursor-pointer" 
                     style={{cursor:"pointer"}}
                     onClick={() => navigate("/login")}
                   >
-                    Already registered? Log in here →
+                    You are already registered. Log in here
                   </a>
                 </div>
                 
@@ -361,16 +302,16 @@ export default function UserForm(){
                     <button 
                       type="button" 
                       onClick={handleNext} 
-                      className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105"
+                      className="px-4 py-2 bg-blue-800 text-white rounded-lg"
                     >
-                      Next →
+                      Next
                     </button>
                   ) : (
                     <button 
                       type="submit" 
-                      className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all transform hover:scale-105"
+                      className="px-4 py-2 bg-green-800 text-white rounded-lg"
                     >
-                      Register 🚀
+                      Submit
                     </button>
                   )}
                 </div>
@@ -378,22 +319,21 @@ export default function UserForm(){
             )}
             
             {currentStep === 2 && (
-              <div className={`space-y-4 ${formAnimationClass}`}>
+              <div className="space-y-4">
                 <input
                   type="text"
                   name="mobile"
-                  placeholder="Mobile Number (10 digits)"
+                  placeholder="Mobile Number"
                   value={formData.mobile}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                 />
                 
                 <select
                   name="gender"
                   value={formData.gender}
                   onChange={handleGenderSelect}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 >
                   <option value="">Select Your Gender</option>
@@ -408,7 +348,7 @@ export default function UserForm(){
                   name="region"
                   value={formData.region}
                   onChange={handleDistrictSelect}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 >
                   <option value="">Select Your Region</option>
@@ -425,15 +365,15 @@ export default function UserForm(){
                   placeholder="NIC number"
                   value={formData.nic}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+
                 />
                 
                 <select
                   name="education"
                   value={formData.education}
                   onChange={handleEduSelect}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 >
                   <option value="">Select Your Education Level</option>
@@ -448,7 +388,7 @@ export default function UserForm(){
                   name="experience"
                   value={formData.experience}
                   onChange={handleExpSelect}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 >
                   <option value="">Select Your Experience Level</option>
@@ -465,7 +405,7 @@ export default function UserForm(){
                   placeholder="Occupation"
                   value={formData.occupation}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                   required
                 />
                 
@@ -473,15 +413,15 @@ export default function UserForm(){
                   <button 
                     type="button" 
                     onClick={handlePrevious} 
-                    className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all transform hover:scale-105"
+                    className="px-4 py-2 bg-blue-800 text-white rounded-lg"
                   >
-                    ← Back
+                    Previous
                   </button>
                   <button 
                     type="submit" 
-                    className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all transform hover:scale-105"
+                    className="px-4 py-2 bg-green-800 text-white rounded-lg"
                   >
-                    Complete Registration 🚀
+                    Submit
                   </button>
                 </div>
               </div>
